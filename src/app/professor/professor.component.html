@@ -1,0 +1,24 @@
+
+<input type="number" name="matricula" [(ngModel)]="matricula">
+<button (click)="buscar()">Buscar</button>
+
+<p>{{professor.cdMatricula}}</p>
+<p>{{professor.nmProfessor}}</p>
+<p>{{professor.dsEmail}}</p>
+<p>{{professor.dsCelular}}</p>
+<p>{{professor.pwAcesso}}</p>
+
+<br>
+<h1>Inserir</h1>
+<label>Nome</label>
+<input type="text" name="nmProfessor" [(ngModel)]="professorCreate.nmProfessor">
+<label>Celular</label>
+<input type="text" name="dsCelular" [(ngModel)]="professorCreate.dsCelular">
+<label>Email</label>
+<input type="text" name="dsEmail" [(ngModel)]="professorCreate.dsEmail">
+<label>Senha</label>
+<input type="password" name="pwAcesso" [(ngModel)]="professorCreate.pwAcesso">
+
+<button (click)="inserir()">Inserir</button>
+
+
