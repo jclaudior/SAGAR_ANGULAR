@@ -6,7 +6,9 @@
   text-decoration: none;
 }
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif!important;
+  margin: 0px!important;
+  padding: 0px!important;
 }
 .sidebar {
   position: fixed;
@@ -90,6 +92,12 @@ label #cancel{
   padding: 4px 9px;
   transition: all .5s ease;
 }
+
+.btnlabel{
+    display: block!important;
+    margin-bottom: 0px!important;
+}
+
 #check:checked ~ .sidebar{
   left: 0;
 }
@@ -118,4 +126,15 @@ section{
 .header {
     height: 100px;
     background: #063146;
+}
+
+
+.textLinkHere{
+  color: rgb(91, 203, 255);
+  font-weight: bolder;
+}
+
+
+.btn-primary{
+  background-color: #063146!important;
 }

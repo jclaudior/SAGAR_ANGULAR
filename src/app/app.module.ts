@@ -6,6 +6,7 @@ import { TurmaComponent } from './turma/turma.component';
 import { FormsModule }   from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/pro
   imports: [
     BrowserModule,
     HttpClientModule,
+    AppRoutingModule,
     FormsModule 
   ],
   providers: [],
