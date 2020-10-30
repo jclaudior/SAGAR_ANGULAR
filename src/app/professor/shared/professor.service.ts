@@ -13,7 +13,7 @@ export class ProfessorService {
   constructor(private http: HttpClient) { }
 
   getBuscarProfessor(matricula: number): Observable<Professor>{
-      return this.http.get<Professor>(`${this.API}/${matricula}`);
+      return this.http.get<Professor>(`${this.API}/${matricula}`);  //http://localhost:8080/professor/1
   }
 
   postInserirProfessor(professor: Professor): Observable<any>{

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "syntaxerrorangular"
+    }
+  },
+  "defaultProject": "syntaxerrorangular",
+  "cli": {
+    "analytics": false
+  }
 }
