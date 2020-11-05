@@ -19,4 +19,8 @@ export class TurmaService {
   postInserirTurma(turma: Turma): Observable<any>{
     return this.http.post<any>(`${this.API}`, turma);
   }
+
+  postAlterarTurma(turma: Turma): Observable<any>{
+    return this.http.post<any>(`${this.API}`, turma);
+  }
 }
