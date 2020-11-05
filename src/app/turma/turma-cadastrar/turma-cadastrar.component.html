@@ -1,0 +1,26 @@
+<p class="textLinkHere">TURMA > CADASTRO</p>
+<hr>
+<h6 class="display-4">CADASTRO DE TURMA</h6>
+<div class="row">
+    <div class="col-4 mt-5">
+      <label>Cod. Turma</label>
+      <input class="form-control">
+    </div>
+    <div class="col-8 mt-5">
+      <label>Cod. Curso</label>
+      <input class="form-control" type="text" [(ngModel)]="turma.cdCurso" name="cdCurso">
+    </div>
+    <div class="col-8 mt-5">
+      <label>Turma</label>
+      <input class="form-control" type="text" [(ngModel)]="turma.turma" name="turma">
+    </div>
+    <div class="col-4 mt-5">
+      <label>Periodo</label>
+      <input class="form-control" type="text" [(ngModel)]="turma.periodo" name="periodo">
+    </div>
+    <div class="col-10 mt-5">
+    </div>
+    <div class="col-2 mt-5">
+      <button class="btn btn-primary form-control" (click)="cadastrarTurma()">Cadastrar</button>
+    </div>
+</div>
