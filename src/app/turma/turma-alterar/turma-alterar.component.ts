@@ -35,4 +35,13 @@ export class TurmaAlterarComponent implements OnInit {
 
     );
   }
+
+  buscarTurma(): void{
+    
+  }
+
+  limparTurma(): void{
+    
+  }
+
 }
