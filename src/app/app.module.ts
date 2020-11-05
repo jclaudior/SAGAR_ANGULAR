@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar.component';
+import { TurmaAlterarComponent } from './turma/turma-alterar/turma-alterar.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar
     HeaderComponent,
     ProfessorCadastrarComponent,
     TurmaCadastrarComponent,
+    TurmaAlterarComponent,
   ],
   imports: [
     BrowserModule,
