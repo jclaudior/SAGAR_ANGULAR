@@ -6,12 +6,14 @@ import { FormsModule }   from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProfessorCadastrarComponent,
+    TurmaCadastrarComponent,
   ],
   imports: [
     BrowserModule,
