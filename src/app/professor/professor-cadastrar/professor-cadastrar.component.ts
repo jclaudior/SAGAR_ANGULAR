@@ -1,3 +1,4 @@
+import { ResponseProfessor } from './../shared/responseProfessor.model';
 import { ProfessorService } from './../shared/professor.service';
 import { Professor } from './../shared/professor.model';
 import { FormsModule }   from '@angular/forms';
@@ -18,14 +19,19 @@ export class ProfessorCadastrarComponent implements OnInit {
     pwAcesso: null
   };
 
+  responseProfessor: ResponseProfessor;
+
   constructor(private service: ProfessorService) { }
 
   ngOnInit(): void {
   }
 
   cadastrarProfessor(): void{
-    console.log("");
     this.service.postInserirProfessor(this.professor).subscribe(
+      response => {
+        this.responseProfessor = response;
+        console.log(this.responseProfessor);
+      }
 
     );
   }
