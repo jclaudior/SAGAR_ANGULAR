@@ -34,7 +34,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'turmaAlterar',
+    path: 'turmaConsultar',
     component: TurmaConsultarComponent
 
   },
