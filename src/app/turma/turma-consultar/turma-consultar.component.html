@@ -1,14 +1,14 @@
-<p class="textLinkHere">TURMA > CADASTRO</p>
+<p class="textLinkHere">TURMA > CONSULTA</p>
 <hr>
-<h6 class="display-4">CADASTRO DE TURMA</h6>
+<h6 class="display-4">CONSULTA DE TURMA</h6>
 <div class="row">
     <div class="col-6 mt-5">
       <label>Cod. Turma</label>
       <input class="form-control">
     </div>
     <div class="col-6 mt-5">
-      <label>Cod. Curso</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.cdCurso" name="cdCurso">
+      <button class="btn btn-primary form-control" (click)="buscarTurma()">Buscar</button>
+      <button class="btn btn-primary form-control" (click)="limparTurma()">Limpar</button>
     </div>
     <div class="col-6 mt-5">
       <label>Turma</label>
