@@ -4,6 +4,7 @@ import { from } from 'rxjs';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar.component';
 import { TurmaAlterarComponent } from './turma/turma-alterar/turma-alterar.component';
+import { TurmaConsultarComponent } from './turma/turma-consultar/turma-consultar.component';
 
 
 export const routes: Routes = [
@@ -29,6 +30,12 @@ export const routes: Routes = [
   {
     path: 'turmaAlterar',
     component: TurmaAlterarComponent
+
+  },
+
+  {
+    path: 'turmaAlterar',
+    component: TurmaConsultarComponent
 
   },
 ];

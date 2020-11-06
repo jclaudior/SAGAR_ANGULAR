@@ -8,6 +8,7 @@ import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/pro
 import { AppRoutingModule } from './app-routing.module';
 import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar.component';
 import { TurmaAlterarComponent } from './turma/turma-alterar/turma-alterar.component';
+import { TurmaConsultarComponent } from './turma/turma-consultar/turma-consultar.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TurmaAlterarComponent } from './turma/turma-alterar/turma-alterar.compo
     ProfessorCadastrarComponent,
     TurmaCadastrarComponent,
     TurmaAlterarComponent,
+    TurmaConsultarComponent,
   ],
   imports: [
     BrowserModule,
