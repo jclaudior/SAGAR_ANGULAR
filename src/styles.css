@@ -138,3 +138,12 @@ section{
 .btn-primary{
   background-color: #063146!important;
 }
+
+
+.text-error{
+  color: red;
+}
+
+.text-success{
+  color: rgb(13, 102, 1);
+}

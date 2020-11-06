@@ -20,7 +20,7 @@ export class ProfessorCadastrarComponent implements OnInit {
 
   @ViewChild('formProfessor', {static: true}) formProfessor: NgForm;
 
-
+  requestSucess = false;
   mensagemModal = '';
   titleModal = '';
 
@@ -45,6 +45,7 @@ export class ProfessorCadastrarComponent implements OnInit {
   cadastrarProfessor(): void{
     this.service.postInserirProfessor(this.professor).subscribe(
       response => {
+        this.requestSucess = true;
         this.responseProfessor = response;
         this.titleModal = this.responseProfessor.mensagem;
         if (this.responseProfessor.retorno != null){
@@ -55,8 +56,15 @@ export class ProfessorCadastrarComponent implements OnInit {
         $('#mensagemModal').modal('show');
       },
       error => {
-        this.titleModal = error.name;
-        this.mensagemModal = error.message;
+        console.log(error);
+        this.requestSucess = false;
+        if (error.error.mensagem != null){
+          this.titleModal = error.error.mensagem;
+          this.mensagemModal = `Professor: ${error.error.retorno.nmProfessor}, ja esta ultilizando a Matricula: ${error.error.retorno.cdMatricula} `;
+        }else{
+          this.titleModal = error.name;
+          this.mensagemModal = error.message;
+        }
         $('#mensagemModal').modal('show');
       }
     );
