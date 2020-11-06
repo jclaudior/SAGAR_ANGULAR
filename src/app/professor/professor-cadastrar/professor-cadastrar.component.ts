@@ -1,8 +1,15 @@
 import { ResponseProfessor } from './../shared/responseProfessor.model';
 import { ProfessorService } from './../shared/professor.service';
 import { Professor } from './../shared/professor.model';
-import { FormsModule }   from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
+
+
+
+declare var $: any;
+
+
 
 @Component({
   selector: 'app-professor-cadastrar',
@@ -10,6 +17,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./professor-cadastrar.component.css']
 })
 export class ProfessorCadastrarComponent implements OnInit {
+
+  @ViewChild('formProfessor', {static: true}) formProfessor: NgForm;
+
+
+  mensagemModal = '';
+  titleModal = '';
+
+  btnCadastrar = false;
+  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   professor: Professor = {
     cdMatricula: null,
@@ -30,9 +46,24 @@ export class ProfessorCadastrarComponent implements OnInit {
     this.service.postInserirProfessor(this.professor).subscribe(
       response => {
         this.responseProfessor = response;
-        console.log(this.responseProfessor);
+        this.titleModal = this.responseProfessor.mensagem;
+        if (this.responseProfessor.retorno != null){
+          this.mensagemModal = `Matricula: ${this.responseProfessor.retorno.cdMatricula} Professor: ${this.responseProfessor.retorno.nmProfessor}`;
+        }else{
+          this.mensagemModal = this.responseProfessor.mensagem;
+        }
+        $('#mensagemModal').modal('show');
+      },
+      error => {
+        this.titleModal = error.name;
+        this.mensagemModal = error.message;
+        $('#mensagemModal').modal('show');
       }
-
     );
+  }
+
+
+  validaForm(){
+
   }
 }
