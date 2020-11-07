@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { from } from 'rxjs';
-//import { DisciplinaCadastrarComponent } from '.disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
-//import { TurmaConsultarComponent } from './turma/turma-consultar/turma-consultar.component';
-
+import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
+import { DisciplinaConsultarComponent} from './disciplina/disciplina-consultar/disciplina-consultar.component';
+import { DisciplinaAlterarComponent } from './disciplina/disciplina-alterar/disciplina-aterar.component';
 
 export const routes: Routes = [
   {
@@ -15,19 +15,19 @@ export const routes: Routes = [
 
   {
     path: 'disciplinaCadastrar',
-    //component: DiciplinaCadastrarComponent
+    component: DisciplinaCadastrarComponent
 
   },
   
   {
   path: 'disciplinaConsultar',
-    //component: DisciplinaConsultarComponent
+    component: DisciplinaConsultarComponent
 
   },
 
   {
     path: 'disciplinaAlterar',
-    //component: DisciplinaAlterarComponent
+    component: DisciplinaAlterarComponent
 
   },
 ];

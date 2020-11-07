@@ -5,13 +5,18 @@ import { AppComponent } from './app.component';
 import { FormsModule }   from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
+import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
+import { DisciplinaAlterarComponent } from './disciplina/disciplina-alterar/disciplina-aterar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    
+    DisciplinaCadastrarComponent,
+    DisciplinaConsultarComponent,
+    DisciplinaAlterarComponent
   ],
   imports: [
     BrowserModule,
