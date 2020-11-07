@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { from } from 'rxjs';
-import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
-import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar.component';
-import { TurmaAlterarComponent } from './turma/turma-alterar/turma-alterar.component';
-import { TurmaConsultarComponent } from './turma/turma-consultar/turma-consultar.component';
+//import { }
+//import { TurmaConsultarComponent } from './turma/turma-consultar/turma-consultar.component';
 
 
 export const routes: Routes = [
@@ -16,26 +14,20 @@ export const routes: Routes = [
   },
 
   {
-    path: 'professorCadastrar',
-    component: ProfessorCadastrarComponent
+    path: 'disciplinaCadastrar',
+    //component: DiciplinaCadastrarComponent
+
+  },
+  
+  {
+  path: 'disciplinaConsultar',
+    //component: DisciplinaConsultarComponent
 
   },
 
   {
-    path: 'turmaCadastrar',
-    component: TurmaCadastrarComponent
-
-  },
-
-  {
-    path: 'turmaAlterar',
-    component: TurmaAlterarComponent
-
-  },
-
-  {
-    path: 'turmaConsultar',
-    component: TurmaConsultarComponent
+    path: 'disciplinaAlterar',
+    //component: DisciplinaAlterarComponent
 
   },
 ];
