@@ -18,8 +18,9 @@
       <label>Nome Coordenador</label>
       <input class="form-control" type="text" [(ngModel)]="curso.nmCoordenador" name="nmCoordenador">
     </div>
-    <div class="col-4 mt-5">
+    <div class="col-12 mt-5">
         <label>Disciplinas</label>
+        <dual-list [source]="source" [(destination)]="confirmed" [format]="" [disabled]=""></dual-list>
     </div>
     <div class="col-10 mt-5"></div>
     <div class="col-2 mt-5">
