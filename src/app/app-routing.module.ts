@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { from } from 'rxjs';
-import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
+import { CursoCadastrarComponent} from './curso/curso-cadastrar/curso-cadastrar.component';
+import { CursoConsultarComponent} from './curso/curso-consultar/curso-consultar.component';
+import { CursoAlterarComponent} from './curso/curso-alterar/curso-alterar.component';
 
 export const routes: Routes = [
   {
