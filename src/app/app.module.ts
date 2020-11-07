@@ -16,7 +16,7 @@ import { DisciplinaAlterarComponent } from './disciplina/disciplina-alterar/disc
     HeaderComponent,
     DisciplinaCadastrarComponent,
     DisciplinaConsultarComponent,
-    DisciplinaAlterarComponent
+    DisciplinaAlterarComponent,
   ],
   imports: [
     BrowserModule,

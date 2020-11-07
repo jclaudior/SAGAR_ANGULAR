@@ -15,7 +15,7 @@ export class DisciplinaConsultarComponent implements OnInit {
     cdDisciplina: null,
     nmDisciplina: null,
     cargaHoraria: null,
-    status: null
+    status: null,
   };
 
   responseDisciplina: ResponseDisciplina;
