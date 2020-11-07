@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { from } from 'rxjs';
 import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
-import { DisciplinaConsultarComponent} from './disciplina/disciplina-consultar/disciplina-consultar.component';
-import { DisciplinaAlterarComponent } from './disciplina/disciplina-alterar/disciplina-alterar.component';
 
 export const routes: Routes = [
   {
@@ -14,20 +12,20 @@ export const routes: Routes = [
   },
 
   {
-    path: 'disciplinaCadastrar',
-    component: DisciplinaCadastrarComponent
+    path: 'cursoCadastrar',
+    component: CursoCadastrarComponent
 
   },
   
   {
-  path: 'disciplinaConsultar',
-    component: DisciplinaConsultarComponent
+  path: 'cursoConsultar',
+    component: CursoConsultarComponent
 
   },
 
   {
-    path: 'disciplinaAlterar',
-    component: DisciplinaAlterarComponent
+    path: 'cursoAlterar',
+    component: CursoAlterarComponent
 
   },
 ];

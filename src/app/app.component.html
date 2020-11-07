@@ -34,17 +34,17 @@
         <li class="li-sidbar" (click)="showMenuDisciplina()">
             <a href="#"><i class="fas fa-graduation-cap"></i>Disciplina</a>
             <ul [hidden] = "disciplina">
-                <li><a routerLink="/disciplinaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
-                <li><a routerLink="/disciplinaConsultar" class="sublink-sidbar">Consultar</a></li>
-                <li><a routerLink="/disciplinaAlterar" class="sublink-sidbar">Alterar</a></li>
+                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a href="#" class="sublink-sidbar">Consultar</a></li>
+                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
         <li class="li-sidbar" (click)="showMenuCurso()">
             <a href="#"><i class="fas fa-book"></i>Curso</a>
             <ul [hidden] = "curso">
-                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
-                <li><a href="#" class="sublink-sidbar">Consultar</a></li>
-                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
+                <li><a routerLink="/cursoCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/cursoConsultar" class="sublink-sidbar">Consultar</a></li>
+                <li><a routerLink="/cursoAlterar" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
     </ul>
