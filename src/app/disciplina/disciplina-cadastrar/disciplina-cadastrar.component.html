@@ -1,26 +1,26 @@
-<p class="textLinkHere">PROFESSOR > CADASTRO</p>
+<p class="textLinkHere">DISCIPLINA > CADASTRO</p>
 <hr>
-<h6 class="display-4">CADASTRO DE PROFESSOR</h6>
+<h6 class="display-4">CADASTRO DE DISCIPLINA</h6>
 <div class="row">
     <div class="col-4 mt-5">
-      <label>Matricula</label>
+      <label>Disciplina</label>
       <input class="form-control">
     </div>
     <div class="col-8 mt-5">
-      <label>Nome</label>
-      <input class="form-control" type="text" [(ngModel)]="professor.nmProfessor" name="nmProfessor">
+      <label>Cod. Disciplina</label>
+      <input class="form-control" type="text" [(ngModel)]="disciplina.cdDisciplina" name="cdDisciplina">
     </div>
     <div class="col-8 mt-5">
-      <label>E-mail</label>
-      <input class="form-control" type="text" [(ngModel)]="professor.dsEmail" name="dsEmail">
+      <label>Disciplina</label>
+      <input class="form-control" type="text" [(ngModel)]="disciplina.nmDisciplina" name="nmDisciplina">
     </div>
     <div class="col-4 mt-5">
-      <label>Celular</label>
-      <input class="form-control" type="text" [(ngModel)]="professor.dsCelular" name="dsCelular">
+      <label>Carga Horária</label>
+      <input class="form-control" type="text" [(ngModel)]="disciplina.cargaHoraria" name="cargaHoraria">
     </div>
     <div class="col-10 mt-5">
     </div>
     <div class="col-2 mt-5">
-      <button class="btn btn-primary form-control" (click)="cadastrarProfessor()">Cadastrar</button>
+      <button class="btn btn-primary form-control" (click)="cadastrarDisciplina()">Cadastrar</button>
     </div>
 </div>
