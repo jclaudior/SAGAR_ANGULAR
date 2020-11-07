@@ -7,8 +7,13 @@
       <input class="form-control">
     </div>
     <div class="col-6 mt-5">
-      <label>Cod. Curso</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.cdCurso" name="cdCurso">
+      <label>Curso</label>
+      <select class="form-control" [(ngModel)]="turma.periodo" name="periodo">
+        <option onselect="true">Selecione Uma Opção</option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+      </select>
     </div>
     <div class="col-6 mt-5">
       <label>Turma</label>

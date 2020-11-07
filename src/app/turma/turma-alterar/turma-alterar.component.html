@@ -2,13 +2,15 @@
 <hr>
 <h6 class="display-4">ALTERAR DADOS DA TURMA</h6>
 <div class="row">
-    <div class="col-6 mt-4">
+    <div class="col-4 mt-4">
       <label>Cod. Turma</label>
       <input class="form-control">
     </div>
-    <div class="col-6 mt-4">
-      <label>Cod. Curso</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.cdCurso" name="cdCurso">
+    <div class="col-2 mt-auto">
+      <button class="btn-primary form-control" (click)="buscarTurma()">Buscar</button>
+    </div>
+    <div class="col-2 mt-auto">
+      <button class="btn-primary form-control" (click)="limparTurma()">Limpar</button>
     </div>
     <div class="col-6 mt-4">
       <label>Turma</label>
@@ -16,7 +18,6 @@
     </div>
     <div class="col-6 mt-4">
       <label>Periodo</label>
-      <!--<input class="form-control" type="text" [(ngModel)]="turma.periodo" name="periodo">-->
       <select class="form-control" [(ngModel)]="turma.periodo" name="periodo">
         <option onselect="true">Selecione Uma Opção</option>
         <option value="Matutino">Matutino</option>
@@ -24,13 +25,11 @@
         <option value="Diurno">Diurno</option>
       </select>
     </div>
+    <div class="col-6 mt-4">
+      <label>Curso</label>
+      <input class="form-control" type="text" [(ngModel)]="turma.cdCurso" name="cdCurso">
+    </div>
     <div class="col-4"></div>
-    <div class="col-2 mt-4">
-      <button class="btn-primary form-control" (click)="buscarTurma()">Buscar</button>
-    </div>
-    <div class="col-2 mt-4">
-      <button class="btn-primary form-control" (click)="limparTurma()">Limpar</button>
-    </div>
     <div class="col-10 mt-5">
       <label>Status:</label>
       <br><input type="checkbox" [(ngModel)]="turma.status" name="status">
