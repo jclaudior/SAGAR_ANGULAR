@@ -29,4 +29,5 @@ export class CursoCadastrarComponent implements OnInit {
   cadastrarCurso(): void{
     
   }
+
 }
