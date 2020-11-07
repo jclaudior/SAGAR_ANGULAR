@@ -25,7 +25,15 @@ export class DisciplinaAlterarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cadastrarDisciplina(): void{
+  buscarDisciplina(): void{
+    
+  }
+
+  limparDisciplina(): void{
+    
+  }
+
+  alterarDisciplina(): void{
     
   }
 }
