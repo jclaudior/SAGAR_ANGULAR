@@ -23,6 +23,7 @@ export class ProfessorCadastrarComponent implements OnInit {
   requestSucess = false;
   mensagemModal = '';
   titleModal = '';
+  cadastrando = false;
 
   btnCadastrar = false;
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
@@ -44,6 +45,8 @@ export class ProfessorCadastrarComponent implements OnInit {
   }
 
   cadastrarProfessor(): void{
+    console.log(this.professor);
+    this.cadastrando = true;
     this.service.postInserirProfessor(this.professor).subscribe(
       response => {
         this.requestSucess = true;
@@ -57,24 +60,30 @@ export class ProfessorCadastrarComponent implements OnInit {
             dsEmail: null,
             dsCelular: null,
             pwAcesso: null,
-            stProfessor: null
+            stProfessor: true
           };
         }else{
           this.mensagemModal = this.responseProfessor.mensagem;
         }
         $('#mensagemModal').modal('show');
+        this.cadastrando = false;
       },
       error => {
         console.log(error);
         this.requestSucess = false;
         if (error.error.mensagem != null){
           this.titleModal = error.error.mensagem;
-          this.mensagemModal = `Professor: ${error.error.retorno.nmProfessor}, ja esta ultilizando a Matricula: ${error.error.retorno.cdMatricula} `;
+          if(error.error.retorno != null){
+            this.mensagemModal = `Professor: ${error.error.retorno.nmProfessor}, ja esta ultilizando a Matricula: ${error.error.retorno.cdMatricula} `;
+          }else{
+            this.mensagemModal = error.error.mensagem;
+          }
         }else{
           this.titleModal = error.name;
           this.mensagemModal = error.message;
         }
         $('#mensagemModal').modal('show');
+        this.cadastrando = false;
       }
     );
   }

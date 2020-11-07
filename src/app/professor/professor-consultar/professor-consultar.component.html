@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-4 mt-5">
       <label>Matricula</label>
-      <input class="form-control" name="cdMatricula" placeholder="0000" [(ngModel)]="professor.cdMatricula" [ngClass]="{'is-invalid': matriculaProfessor.errors}" type="number" required #matriculaProfessor="ngModel">
+      <input class="form-control" required name="cdMatricula" placeholder="0000" [(ngModel)]="professor.cdMatricula" [ngClass]="{'is-invalid': matriculaProfessor.errors}" type="number" required #matriculaProfessor="ngModel">
     </div>
     <div class="col-8 mt-5">
       <label>Nome</label>
@@ -35,7 +35,7 @@
       <button class="btn btn-primary form-control" (click)="limpa()" #btnCadastrar name="btnCadastrar" >Limpar</button>
     </div>
     <div class="col-2 mt-5">
-      <button class="btn btn-primary form-control ml-3" (click)="consultarProfessor()" #btnCadastrar name="btnCadastrar" >Consultar</button>
+      <button class="btn btn-primary form-control" (click)="consultarProfessor()" #btnCadastrar name="btnCadastrar" [disabled]="formProfessor.form.invalid">Consultar</button>
     </div>
 </div>
 </form>

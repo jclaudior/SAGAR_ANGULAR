@@ -8,7 +8,8 @@ import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/pro
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component'
+import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
+import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component'
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ProfessorConsultarComponent } from './professor/professor-consultar/pro
     HeaderComponent,
     ProfessorCadastrarComponent,
     ProfessorConsultarComponent,
+    ProfessorEditarComponent,
   ],
   imports: [
     BrowserModule,

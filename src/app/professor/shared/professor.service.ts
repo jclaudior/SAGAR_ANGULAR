@@ -20,4 +20,8 @@ export class ProfessorService {
   postInserirProfessor(professor: Professor): Observable<ResponseProfessor >{
     return this.http.post<ResponseProfessor >(`${this.API}`, professor);
   }
+
+  putAlterarProfessor(professor: Professor): Observable<ResponseProfessor >{
+    return this.http.put<ResponseProfessor >(`${this.API}`, professor);
+  }
 }
