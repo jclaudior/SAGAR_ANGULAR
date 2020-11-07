@@ -34,7 +34,7 @@ export class CursoAlterarComponent implements OnInit {
     
   }
 
-  alterarCurso(): void{
+  cadastrarCurso(): void{
     
   }
 }
