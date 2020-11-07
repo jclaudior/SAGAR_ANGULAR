@@ -13,7 +13,7 @@ export class TurmaConsultarComponent implements OnInit {
 
   turma: Turma = {
     cdTurma: null,
-    cdCurso: null,
+    curso: null,
     turma: null,
     periodo: null,
     status: null
