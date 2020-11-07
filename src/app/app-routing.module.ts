@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { from } from 'rxjs';
-//import { }
+//import { DisciplinaCadastrarComponent } from '.disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
 //import { TurmaConsultarComponent } from './turma/turma-consultar/turma-consultar.component';
 
 
