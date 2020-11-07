@@ -7,13 +7,15 @@ import { HeaderComponent } from './header/header.component';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProfessorCadastrarComponent,
+    ProfessorConsultarComponent,
   ],
   imports: [
     BrowserModule,

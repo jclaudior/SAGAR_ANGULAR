@@ -6,7 +6,7 @@
     <div class="col-4 mt-5">
       <label>Matricula</label>
       <input class="form-control" name="cdMatricula" placeholder="0000" [(ngModel)]="professor.cdMatricula" [ngClass]="{'is-invalid': matriculaProfessor.errors}" type="number" required #matriculaProfessor="ngModel">
-      <div *ngIf="matriculaProfessor.errors" class="invalid-feedback  d-block">
+      <div *ngIf="matriculaProfessor.errors && matriculaProfessor.dirty" class="invalid-feedback  d-block">
         <div *ngIf="matriculaProfessor.errors.required">
             Matricula Requirido.
         </div>
@@ -15,7 +15,7 @@
     <div class="col-8 mt-5">
       <label>Nome</label>
       <input class="form-control" placeholder="Digite o nome do professor" #nomeProfessor="ngModel" type="text" [(ngModel)]="professor.nmProfessor" [ngClass]="{'is-invalid': nomeProfessor.errors}" required name="nmProfessor">
-      <div *ngIf="nomeProfessor.errors" class="invalid-feedback  d-block">
+      <div *ngIf="nomeProfessor.errors && nomeProfessor.dirty" class="invalid-feedback  d-block">
         <div *ngIf="nomeProfessor.errors.required">
             Nome Requirido.
         </div>
@@ -24,7 +24,7 @@
     <div class="col-8 mt-5">
       <label>E-mail</label>
       <input class="form-control" type="email" placeholder="Digite o e-mail do professor" [(ngModel)]="professor.dsEmail" [ngClass]="{'is-invalid': offEmail.errors}" name="dsEmail" [pattern]="emailPattern"  required #offEmail="ngModel">
-      <div *ngIf="offEmail.errors" class="invalid-feedback  d-block">
+      <div *ngIf="offEmail.errors && offEmail.dirty" class="invalid-feedback  d-block">
         <div *ngIf="offEmail.errors.required">
             E-mail Requirido.
         </div>
@@ -36,7 +36,7 @@
     <div class="col-4 mt-5">
       <label>Celular</label>
       <input class="form-control" type="text" [(ngModel)]="professor.dsCelular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" [ngClass]="{'is-invalid': celularProfessor.errors}" name="dsCelular" #celularProfessor="ngModel" required>
-      <div *ngIf="celularProfessor.errors" class="invalid-feedback  d-block">
+      <div *ngIf="celularProfessor.errors && celularProfessor.dirty" class="invalid-feedback  d-block">
         <div *ngIf="celularProfessor.errors.required">
             Celular Requirido.
         </div>

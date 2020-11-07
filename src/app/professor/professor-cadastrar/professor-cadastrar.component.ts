@@ -32,7 +32,8 @@ export class ProfessorCadastrarComponent implements OnInit {
     nmProfessor: null,
     dsEmail: null,
     dsCelular: null,
-    pwAcesso: null
+    pwAcesso: null,
+    stProfessor: true
   };
 
   responseProfessor: ResponseProfessor;
@@ -50,6 +51,14 @@ export class ProfessorCadastrarComponent implements OnInit {
         this.titleModal = this.responseProfessor.mensagem;
         if (this.responseProfessor.retorno != null){
           this.mensagemModal = `Matricula: ${this.responseProfessor.retorno.cdMatricula} Professor: ${this.responseProfessor.retorno.nmProfessor}`;
+          this.professor = {
+            cdMatricula: null,
+            nmProfessor: null,
+            dsEmail: null,
+            dsCelular: null,
+            pwAcesso: null,
+            stProfessor: null
+          };
         }else{
           this.mensagemModal = this.responseProfessor.mensagem;
         }
@@ -70,8 +79,4 @@ export class ProfessorCadastrarComponent implements OnInit {
     );
   }
 
-
-  validaForm(){
-
-  }
 }

@@ -1,3 +1,4 @@
+import { ResponseProfessor } from './responseProfessor.model';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,11 +13,11 @@ export class ProfessorService {
 
   constructor(private http: HttpClient) { }
 
-  getBuscarProfessor(matricula: number): Observable<Professor>{
-      return this.http.get<Professor>(`${this.API}/${matricula}`);  //http://localhost:8080/professor/1
+  getBuscarProfessor(matricula: number): Observable<ResponseProfessor>{
+      return this.http.get<ResponseProfessor >(`${this.API}/${matricula}`);
   }
 
-  postInserirProfessor(professor: Professor): Observable<any>{
-    return this.http.post<any>(`${this.API}`, professor);
+  postInserirProfessor(professor: Professor): Observable<ResponseProfessor >{
+    return this.http.post<ResponseProfessor >(`${this.API}`, professor);
   }
 }
