@@ -8,34 +8,31 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'syntaxerrorangular';
 
-
   aula = true;
   professor = true;
   turma = true;
   disciplina = true;
   curso = true;
 
+  showMenuAula(): void{
+    this.aula =  !this.aula;
+  }
 
+  showMenuProfessor(): void{
+    this.professor = !this.professor;
+  }
 
-showMenuAula(): void{
-  this.aula =  !this.aula;
-}
+  showMenuTurma(): void {
+    this.turma = !this.turma;
+  }
 
-showMenuProfessor(): void{
-  this.professor = !this.professor;
-}
+  showMenuDisciplina(): void {
+    this.disciplina = !this.disciplina;
+  }
 
-showMenuTurma(): void {
-  this.turma = !this.turma;
-}
-
-showMenuDisciplina(): void {
-  this.disciplina = !this.disciplina;
-}
-
-showMenuCurso(): void{
-  this.curso = !this.curso;
-}
+  showMenuCurso(): void{
+    this.curso = !this.curso;
+  }
 
 }
 
