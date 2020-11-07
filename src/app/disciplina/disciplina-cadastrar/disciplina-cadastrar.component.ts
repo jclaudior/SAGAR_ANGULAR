@@ -26,11 +26,6 @@ export class DisciplinaCadastrarComponent implements OnInit {
   }
 
   cadastrarDisciplina(): void{
-    this.service.postInserirDisciplina(this.disciplina).subscribe(
-      response => {
-        this.responseDisciplina = response;
-        console.log(this.responseDisciplina);
-      }
-    );
+    
   }
 }

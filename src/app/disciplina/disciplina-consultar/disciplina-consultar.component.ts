@@ -5,11 +5,11 @@ import { FormsModule }   from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-disciplina-cadastrar',
-  templateUrl: './disciplina-cadastrar.component.html',
-  styleUrls: ['./disciplina-cadastrar.component.css']
+  selector: 'app-disciplina-consultar',
+  templateUrl: './disciplina-consultar.component.html',
+  styleUrls: ['./disciplina-consultar.component.css']
 })
-export class DisciplinaCadastrarComponent implements OnInit {
+export class DisciplinaConsultarComponent implements OnInit {
 
   disciplina: Disciplina = {
     cdDisciplina: null,
@@ -26,11 +26,6 @@ export class DisciplinaCadastrarComponent implements OnInit {
   }
 
   cadastrarDisciplina(): void{
-    this.service.postInserirDisciplina(this.disciplina).subscribe(
-      response => {
-        this.responseDisciplina = response;
-        console.log(this.responseDisciplina);
-      }
-    );
+    
   }
 }

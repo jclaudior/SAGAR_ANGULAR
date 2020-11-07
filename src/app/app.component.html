@@ -18,7 +18,7 @@
         <li class="li-sidbar " (click)="showMenuProfessor()">
             <a href="#"><i class="fas fa-chalkboard-teacher" ></i>Professor</a>
             <ul [hidden] = "professor">
-                <li><a  routerLink="/professorCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
                 <li><a href="#" class="sublink-sidbar">Consultar</a></li>
                 <li><a href="#" class="sublink-sidbar">Alterar</a></li>
             </ul>
@@ -26,17 +26,17 @@
         <li class="li-sidbar" (click)="showMenuTurma()">
             <a href="#"><i class="fas fa-users"></i>Turma</a>
             <ul [hidden] = "turma">
-                <li><a routerLink="/turmaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
-                <li><a routerLink="/turmaConsultar" class="sublink-sidbar">Consultar</a></li>
-                <li><a routerLink="/turmaAlterar" class="sublink-sidbar">Alterar</a></li>
+                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a href="#" class="sublink-sidbar">Consultar</a></li>
+                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
         <li class="li-sidbar" (click)="showMenuDisciplina()">
             <a href="#"><i class="fas fa-graduation-cap"></i>Disciplina</a>
             <ul [hidden] = "disciplina">
-                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
-                <li><a href="#" class="sublink-sidbar">Consultar</a></li>
-                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
+                <li><a routerLink="/disciplinaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/disciplinaConsultar class="sublink-sidbar">Consultar</a></li>
+                <li><a routerLink="/disciplinaAlterar class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
         <li class="li-sidbar" (click)="showMenuCurso()">
