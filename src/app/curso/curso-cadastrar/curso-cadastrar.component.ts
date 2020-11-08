@@ -4,6 +4,7 @@ import { Curso } from './../shared/curso.model';
 import { FormsModule }   from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-curso-cadastrar',
   templateUrl: './curso-cadastrar.component.html',
