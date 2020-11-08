@@ -21,7 +21,7 @@ export class DisciplinaService {
     return this.http.get<ResponseDisciplina >(`${this.API}/${matricula}`);
   }
 
-  putAlterarDisciplina(disciplina: Disciplina): Observable<ResponseDisciplina >{
+  postAlterarDisciplina(disciplina: Disciplina): Observable<ResponseDisciplina >{
     return this.http.put<ResponseDisciplina >(`${this.API}`, disciplina);
   }
 

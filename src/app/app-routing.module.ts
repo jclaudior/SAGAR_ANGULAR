@@ -5,6 +5,7 @@ import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/pro
 import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
 import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
+import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
 
 
 export const routes: Routes = [
@@ -35,6 +36,10 @@ export const routes: Routes = [
   {
     path: 'DisciplinaConsultar',
     component: DisciplinaConsultarComponent
+  },
+  {
+    path: 'DisciplinaEditar',
+    component: DisciplinaEditarComponent
   },
 ];
 

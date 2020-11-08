@@ -1,0 +1,70 @@
+<p class="textLinkHere">DISCIPLINA > ALTERAR</p>
+<hr>
+<h6 class="display-4">ALTERAR DADOS DA DISCIPLINA</h6>
+<form #formDisciplina="ngForm">
+<div class="row">
+    <div class="col-4 mt-5">
+      <label>Cod. Disciplina</label>
+      <input class="form-control" name="idDisciplina" [(ngModel)]="disciplina.idDisciplina" [ngClass]="{'is-invalid': idDisciplina.errors}" type="number" required #idDisciplina="ngModel" [disabled]="consulta" placeholder="0000" >
+      <div *ngIf="idDisciplina.errors && idDisciplina.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="idDisciplina.errors.required">
+            Código Requirido.
+        </div>
+      </div>
+    </div>
+    <div class="col-2 mt-5 pt-2">
+      <button class="btn btn-primary form-control mt-4" (click)="consultarDisciplina()" #btnBuscar name="btnBuscar" [disabled]="formDisciplina.form.invalid">Buscar</button>
+    </div>
+    <div class="col-2 mt-5 pt-2">
+      <button class="btn btn-primary form-control mt-4" (click)="limpa()" #btnLimpar name="btnLimpar" [disabled]="(formDisciplina.form.invalid || !consulta)">Limpar</button>
+    </div>
+    <div class="col-6 mt-5">
+      <label>Nome</label>
+      <input class="form-control" name="nomeDisciplina" [(ngModel)]="disciplina.nmDisciplina" [ngClass]="{'is-invalid': nomeDisciplina.errors}" type="text" required #nomeDisciplina="ngModel" [disabled]="!consulta">
+      <div *ngIf="nomeDisciplina.errors && nomeDisciplina.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="nomeDisciplina.errors.required">
+            Nome Requirido.
+        </div>
+      </div>
+    </div>
+    <div class="col-6 mt-5">
+      <label>Carga Horária</label>
+      <input class="form-control" name="qtHora" [(ngModel)]="disciplina.qtHora" [ngClass]="{'is-invalid': qtHora.errors}" type="number" required #qtHora="ngModel" [disabled]="!consulta">
+      <div *ngIf="qtHora.errors && offEmail.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="qtHora.errors.required">
+            Carga Horária Requirido.
+        </div>
+      </div>
+    </div>
+    <div class="col-4 mt-5">
+      <label>Status</label><br>
+      <input type="checkbox" class="form-check-input ml-1" id="exampleCheck1" (change)="disciplina.stDisciplina = !disciplina.stDisciplina"  [checked]="!disciplina.stDisciplina" [disabled]="!consulta">
+      <label class="form-check-label ml-4" for="exampleCheck1">Inativo</label>
+    </div>
+    <div class="col-10 mt-5">
+    </div>
+    <div class="col-2 mt-5">
+      <button class="btn btn-primary form-control" (click)="alterarDisciplina()" #btnAlterar name="btnAlterar" [disabled]="(formDisciplina.form.invalid || !consulta)">Alterar</button>
+    </div>
+</div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

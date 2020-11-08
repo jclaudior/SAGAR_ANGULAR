@@ -12,6 +12,7 @@ import { ProfessorConsultarComponent } from './professor/professor-consultar/pro
 import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
 import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
+import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/
     ProfessorConsultarComponent,
     ProfessorEditarComponent,
     DisciplinaCadastrarComponent,
-    DisciplinaConsultarComponent
+    DisciplinaConsultarComponent,
+    DisciplinaEditarComponent,
   ],
   imports: [
     BrowserModule,
