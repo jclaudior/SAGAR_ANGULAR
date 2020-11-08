@@ -25,7 +25,7 @@ import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,                               // <========== Add this line!
+    FormsModule,
     ReactiveFormsModule,
     CommonModule,
     NgxMaskModule.forRoot(),

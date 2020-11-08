@@ -4,19 +4,54 @@
 <div class="row">
     <div class="col-4 mt-5">
       <label>Cod. Disciplina</label>
-      <input class="form-control">
+      <input class="form-control" name="idDisciplina" type="number" [(ngModel)]="disciplina.idDisciplina" [ngClass]="{'is-invalid': codDisciplina.errors}" required #codDisciplina="ngModel">
+      <div *ngIf="codDisciplina.errors && codDisciplina.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="codDisciplina.errors.required">
+            Código Requirido.
+        </div>
+      </div>
     </div>
     <div class="col-8 mt-5">
       <label>Nome</label>
-      <input class="form-control" type="text" [(ngModel)]="disciplina.idDisciplina" name="idDisciplina">
+      <input class="form-control" name="nmDisciplina" type="text" [(ngModel)]="disciplina.nmDisciplina" [ngClass]="{'is-invalid': nomeDisciplina.errors}" required #nomeDisciplina="ngModel">
+      <div *ngIf="nomeDisciplina.errors && nomeDisciplina.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="nomeDisciplina.errors.required">
+            Nome Requirido.
+        </div>
+      </div>
     </div>
     <div class="col-4 mt-5">
       <label>Carga Horária</label>
-      <input class="form-control" type="text" [(ngModel)]="disciplina.nmDisciplina" name="nmDisciplina">
+      <input class="form-control" name="qtHora" type="number" [(ngModel)]="disciplina.qtHora" [ngClass]="{'is-invalid': cargaHoraria.errors}" required #cargaHoraria="ngModel">
+      <div *ngIf="cargaHoraria.errors && cargaHoraria.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="cargaHoraria.errors.required">
+            Carga Horária Requirida.
+        </div>
+      </div>
     </div>
     <div class="col-10 mt-5">
     </div>
     <div class="col-2 mt-5">
-      <button class="btn btn-primary form-control" (click)="cadastrarDisciplina()">Cadastrar</button>
+      <button class="btn btn-primary form-control" (click)="cadastrarDisciplina()" #btnCadastrar name="btnCadastrar" [disabled]="formDisciplina.form.invalid || cadastrando">Cadastrar</button>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
 </div>
