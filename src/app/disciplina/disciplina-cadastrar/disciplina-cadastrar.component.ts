@@ -26,7 +26,7 @@ export class DisciplinaCadastrarComponent implements OnInit {
     idDisciplina: null,
     nmDisciplina: null,
     qtHora: null,
-    stDisciplina: null
+    stDisciplina: true
   };
 
   responseDisciplina: ResponseDisciplina;

@@ -35,8 +35,8 @@
             <a ><i class="fas fa-graduation-cap"></i>Disciplina</a>
             <ul [hidden] = "disciplina">
                 <li><a routerLink="/DisciplinaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
-                <li><a href="#" class="sublink-sidbar">Consultar</a></li>
-                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
+                <li><a routerLink="/DisciplinaConsultar" class="sublink-sidbar">Consultar</a></li>
+                <li><a routerLink="/DisciplinaEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
         <li class="li-sidbar" (click)="showMenuCurso()">

@@ -11,6 +11,7 @@ import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/pro
 import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
 import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
 import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
+import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/
     ProfessorConsultarComponent,
     ProfessorEditarComponent,
     DisciplinaCadastrarComponent,
+    DisciplinaConsultarComponent
   ],
   imports: [
     BrowserModule,

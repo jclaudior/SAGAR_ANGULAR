@@ -1,0 +1,56 @@
+<p class="textLinkHere">DISCIPLINA > CONSULTAR</p>
+<hr>
+<h6 class="display-4">CONSULTA DE DISCIPLINA</h6>
+<form #formDisciplina="ngForm">
+<div class="row">
+    <div class="col-4 mt-5">
+      <label>Cod. Disciplina</label>
+      <input class="form-control" required name="idDisciplina" placeholder="0000" [(ngModel)]="disciplina.idDisciplina" [ngClass]="{'is-invalid': idDisciplina.errors}" type="number" required #idDisciplina="ngModel">
+    </div>
+    <div class="col-2 mt-auto">
+      <button class="btn btn-primary form-control" (click)="consultarDisciplina()" #btnCadastrar name="btnCadastrar" [disabled]="formDisciplina.form.invalid">Consultar</button>
+    </div>
+    <div class="col-2 mt-auto">
+      <button class="btn btn-primary form-control" (click)="limpa()" #btnLimpar name="btnLimpar" [disabled]="formDisciplina.form.invalid">Limpar</button>
+    </div>
+    <div class="col-6 mt-5">
+      <label>Nome</label>
+      <input class="form-control" disabled  type="text" [(ngModel)]="disciplina.nmDisciplina" name="nmDisciplina">
+    </div>
+    <div class="col-6 mt-5">
+      <label>Carga Horária</label>
+      <input class="form-control" disabled type="text" [(ngModel)]="disciplina.qtHora"  name="qtHora" >
+    </div>
+    <div class="col-12 mt-5">
+      <label>Status</label>
+      <div *ngIf="disciplina.stDisciplina == true" class="text-success d-block">
+        <b>Ativo</b>
+      </div>
+      <div *ngIf="disciplina.stDisciplina == false" class="text-error d-block">
+        <b>Inativo</b>
+      </div>
+    </div>
+    <div class="col-8 mt-5">
+    </div>
+</div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
