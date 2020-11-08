@@ -9,7 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
-import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component'
+import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
+import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar.component'
+import { AngularDualListBoxModule } from 'angular-dual-listbox';
+
+
 
 @NgModule({
   declarations: [
@@ -18,6 +22,7 @@ import { ProfessorEditarComponent } from './professor/professor-editar/professor
     ProfessorCadastrarComponent,
     ProfessorConsultarComponent,
     ProfessorEditarComponent,
+    CursoCadastrarComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,8 @@ import { ProfessorEditarComponent } from './professor/professor-editar/professor
     FormsModule,                               // <========== Add this line!
     ReactiveFormsModule,
     CommonModule,
-    NgxMaskModule.forRoot(),
+    AngularDualListBoxModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

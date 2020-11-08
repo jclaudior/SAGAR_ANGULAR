@@ -1,3 +1,4 @@
+import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar.component';
 import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
@@ -25,6 +26,10 @@ export const routes: Routes = [
   {
     path: 'ProfessorEditar',
     component: ProfessorEditarComponent
+  },
+  {
+    path:'CursoCadastrar',
+    component: CursoCadastrarComponent
   }
 ];
 
