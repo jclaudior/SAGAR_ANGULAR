@@ -18,7 +18,7 @@
         <li class="li-sidbar " (click)="showMenuProfessor()">
             <a><i class="fas fa-chalkboard-teacher" ></i>Professor</a>
             <ul [hidden] = "professor">
-                <li><a  routerLink="/professorCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/professorCadastrar" class="sublink-sidbar">Cadastrar</a></li>
                 <li><a routerLink="/ProfessorConsultar" class="sublink-sidbar">Consultar</a></li>
                 <li><a routerLink="/ProfessorEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
@@ -34,7 +34,7 @@
         <li class="li-sidbar" (click)="showMenuDisciplina()">
             <a ><i class="fas fa-graduation-cap"></i>Disciplina</a>
             <ul [hidden] = "disciplina">
-                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/disciplinaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
                 <li><a href="#" class="sublink-sidbar">Consultar</a></li>
                 <li><a href="#" class="sublink-sidbar">Alterar</a></li>
             </ul>
