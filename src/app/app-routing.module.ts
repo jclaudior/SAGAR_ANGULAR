@@ -1,10 +1,12 @@
+import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { from } from 'rxjs';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar.component';
-import { TurmaAlterarComponent } from './turma/turma-alterar/turma-alterar.component';
+import { TurmaEditarComponent } from './turma/turma-editar/turma-editar.component';
 import { TurmaConsultarComponent } from './turma/turma-consultar/turma-consultar.component';
+import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
 
 
 export const routes: Routes = [
@@ -28,8 +30,8 @@ export const routes: Routes = [
   },
 
   {
-    path: 'turmaAlterar',
-    component: TurmaAlterarComponent
+    path: 'turmaEditar',
+    component: TurmaEditarComponent
 
   },
 
@@ -38,6 +40,14 @@ export const routes: Routes = [
     component: TurmaConsultarComponent
 
   },
+  {
+    path: 'ProfessorConsultar',
+    component: ProfessorConsultarComponent
+  },
+  {
+    path: 'ProfessorEditar',
+    component: ProfessorEditarComponent
+  }
 ];
 
 

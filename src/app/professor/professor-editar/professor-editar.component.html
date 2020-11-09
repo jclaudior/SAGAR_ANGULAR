@@ -1,20 +1,26 @@
-<p class="textLinkHere">PROFESSOR > CADASTRO</p>
+<p class="textLinkHere">PROFESSOR > ALTERAR</p>
 <hr>
-<h6 class="display-4">CADASTRO DE PROFESSOR</h6>
+<h6 class="display-4">ALTERAR DADOS PROFESSOR</h6>
 <form #formProfessor="ngForm">
 <div class="row">
     <div class="col-4 mt-5">
       <label>Matricula</label>
-      <input class="form-control" name="cdMatricula" placeholder="0000" [(ngModel)]="professor.cdMatricula" [ngClass]="{'is-invalid': matriculaProfessor.errors}" type="number" required #matriculaProfessor="ngModel">
+      <input class="form-control" name="cdMatricula" placeholder="0000" [(ngModel)]="professor.cdMatricula" [ngClass]="{'is-invalid': matriculaProfessor.errors}" type="number" required #matriculaProfessor="ngModel" [disabled]="consulta">
       <div *ngIf="matriculaProfessor.errors && matriculaProfessor.dirty" class="invalid-feedback  d-block">
         <div *ngIf="matriculaProfessor.errors.required">
             Matricula Requirido.
         </div>
      </div>
     </div>
-    <div class="col-8 mt-5">
+    <div class="col-2 mt-5 pt-2">
+      <button class="btn btn-primary form-control mt-4" (click)="consultarProfessor()" #btnCadastrar name="btnCadastrar" >Consultar</button>
+    </div>
+    <div class="col-2 mt-5 pt-2">
+      <button class="btn btn-primary form-control mt-4" (click)="limpa()" #btnCadastrar name="btnCadastrar" >Limpar</button>
+    </div>
+    <div class="col-12 mt-5">
       <label>Nome</label>
-      <input class="form-control" placeholder="Digite o nome do professor" #nomeProfessor="ngModel" type="text" [(ngModel)]="professor.nmProfessor" [ngClass]="{'is-invalid': nomeProfessor.errors}" required name="nmProfessor">
+      <input class="form-control"  #nomeProfessor type="text" [(ngModel)]="professor.nmProfessor" [ngClass]="{'is-invalid': nomeProfessor.errors}"  required name="nmProfessor" [disabled]="!consulta">
       <div *ngIf="nomeProfessor.errors && nomeProfessor.dirty" class="invalid-feedback  d-block">
         <div *ngIf="nomeProfessor.errors.required">
             Nome Requirido.
@@ -23,7 +29,7 @@
     </div>
     <div class="col-8 mt-5">
       <label>E-mail</label>
-      <input class="form-control" type="email" placeholder="Digite o e-mail do professor" [(ngModel)]="professor.dsEmail" [ngClass]="{'is-invalid': offEmail.errors}" name="dsEmail" [pattern]="emailPattern"  required #offEmail="ngModel">
+      <input class="form-control" type="email"  [(ngModel)]="professor.dsEmail" [ngClass]="{'is-invalid': offEmail.errors}" name="dsEmail" [pattern]="emailPattern"  required #offEmail="ngModel" [disabled]="!consulta">
       <div *ngIf="offEmail.errors && offEmail.dirty" class="invalid-feedback  d-block">
         <div *ngIf="offEmail.errors.required">
             E-mail Requirido.
@@ -35,17 +41,22 @@
     </div>
     <div class="col-4 mt-5">
       <label>Celular</label>
-      <input class="form-control" type="text" [(ngModel)]="professor.dsCelular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" [ngClass]="{'is-invalid': celularProfessor.errors}" name="dsCelular" #celularProfessor="ngModel" required>
+      <input class="form-control" type="text" [(ngModel)]="professor.dsCelular" mask="(00) 00000-0000" [ngClass]="{'is-invalid': celularProfessor.errors}" name="dsCelular"  #celularProfessor="ngModel" [disabled]="!consulta" required>
       <div *ngIf="celularProfessor.errors && celularProfessor.dirty" class="invalid-feedback  d-block">
         <div *ngIf="celularProfessor.errors.required">
             Celular Requirido.
         </div>
      </div>
     </div>
+    <div class="col-4 mt-5">
+      <label>Status</label><br>
+      <input type="checkbox" class="form-check-input ml-1" id="exampleCheck1" (change)="professor.stProfessor = !professor.stProfessor"  [checked]="!professor.stProfessor" [disabled]="!consulta">
+      <label class="form-check-label ml-4" for="exampleCheck1">Inativo</label>
+    </div>
     <div class="col-10 mt-5">
     </div>
     <div class="col-2 mt-5">
-      <button class="btn btn-primary form-control" (click)="cadastrarProfessor()" #btnCadastrar name="btnCadastrar" [disabled]="formProfessor.form.invalid || cadastrando">Cadastrar</button>
+      <button class="btn btn-primary form-control" (click)="alterarProfessor()" #btnCadastrar name="btnCadastrar" [disabled]="(formProfessor.form.invalid || !consulta)">Alterar</button>
     </div>
 </div>
 </form>

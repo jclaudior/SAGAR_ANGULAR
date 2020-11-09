@@ -18,12 +18,7 @@
     </div>
     <div class="col-6 mt-4">
       <label>Periodo</label>
-      <select class="form-control" [(ngModel)]="turma.periodo" name="periodo">
-        <option onselect="true">Selecione Uma Opção</option>
-        <option value="Matutino">Matutino</option>
-        <option value="Vespertino">Vespertino</option>
-        <option value="Diurno">Diurno</option>
-      </select>
+      <select class="form-control" [(ngModel)]="turma.periodo" name="periodo"></select>
     </div>
     <div class="col-6 mt-4">
       <label>Curso</label>
@@ -36,6 +31,6 @@
       <label class="ml-2"><b>Inativo</b></label>
     </div>
     <div class="col-2 mt-5">
-      <button class="btn btn-primary form-control" (click)="alterarTurma()">Altear</button>
+      <button class="btn btn-primary form-control" (click)="editarTurma()">Altear</button>
     </div>
 </div>

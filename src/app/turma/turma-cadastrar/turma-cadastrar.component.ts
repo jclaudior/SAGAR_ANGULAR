@@ -12,11 +12,11 @@ import { Component, OnInit } from '@angular/core';
 export class TurmaCadastrarComponent implements OnInit {
 
   turma: Turma = {
-    cdTurma: null,
-    cdCurso: null,
-    turma: null,
-    periodo: null,
-    status: null
+    cdCodigo: null,
+    nmTurma: null,
+    curso: null,
+    dsPeriodo: null,
+    stTurma: true,
   };
 
   responseTurma: ResponseTurma;

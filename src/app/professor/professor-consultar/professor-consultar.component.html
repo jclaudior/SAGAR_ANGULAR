@@ -1,0 +1,61 @@
+<p class="textLinkHere">PROFESSOR > CONSULTAR</p>
+<hr>
+<h6 class="display-4">CONSULTA DE PROFESSOR</h6>
+<form #formProfessor="ngForm">
+<div class="row">
+    <div class="col-4 mt-5">
+      <label>Matricula</label>
+      <input class="form-control" required name="cdMatricula" placeholder="0000" [(ngModel)]="professor.cdMatricula" [ngClass]="{'is-invalid': matriculaProfessor.errors}" type="number" required #matriculaProfessor="ngModel">
+    </div>
+    <div class="col-8 mt-5">
+      <label>Nome</label>
+      <input class="form-control" disabled  type="text" [(ngModel)]="professor.nmProfessor" name="nmProfessor">
+    </div>
+    <div class="col-8 mt-5">
+      <label>E-mail</label>
+      <input class="form-control" disabled type="email"  [(ngModel)]="professor.dsEmail"  name="dsEmail" >
+    </div>
+    <div class="col-4 mt-5">
+      <label>Celular</label>
+      <input class="form-control" disabled type="text" [(ngModel)]="professor.dsCelular" mask="(00) 00000-0000"  name="dsCelular" >
+    </div>
+    <div class="col-12 mt-5">
+      <label>Status</label>
+      <div *ngIf="professor.stProfessor == true" class="text-success  d-block">
+        <b>Ativo</b>
+      </div>
+      <div *ngIf="professor.stProfessor == false" class="text-error  d-block">
+        <b>Inativo</b>
+      </div>
+    </div>
+    <div class="col-8 mt-5">
+
+    </div>
+    <div class="col-2 mt-5">
+      <button class="btn btn-primary form-control" (click)="limpa()" #btnCadastrar name="btnCadastrar" >Limpar</button>
+    </div>
+    <div class="col-2 mt-5">
+      <button class="btn btn-primary form-control" (click)="consultarProfessor()" #btnCadastrar name="btnCadastrar" [disabled]="formProfessor.form.invalid">Consultar</button>
+    </div>
+</div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

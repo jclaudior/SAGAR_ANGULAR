@@ -1,7 +1,7 @@
 export interface Turma{
-    cdTurma: number,
+    cdCodigo: number,
+    nmTurma: string,
     curso: string,
-    turma: string,
-    periodo: string,
-    status: string,
+    dsPeriodo: string,
+    stTurma: boolean,
 }

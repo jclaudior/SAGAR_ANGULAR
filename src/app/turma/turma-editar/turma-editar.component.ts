@@ -5,18 +5,18 @@ import { FormsModule }   from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-turma-alterar',
-  templateUrl: './turma-alterar.component.html',
-  styleUrls: ['./turma-alterar.component.css']
+  selector: 'app-turma-editar',
+  templateUrl: './turma-editar.component.html',
+  styleUrls: ['./turma-editar.component.css']
 })
-export class TurmaAlterarComponent implements OnInit {
+export class TurmaEditarComponent implements OnInit {
 
   turma: Turma = {
-    cdTurma: null,
-    cdCurso: null,
-    turma: null,
-    periodo: null,
-    status: null
+    cdCodigo: null,
+    nmTurma: null,
+    curso: null,
+    dsPeriodo: null,
+    stTurma: true,
   };
 
   responseTurma: ResponseTurma;
@@ -26,8 +26,8 @@ export class TurmaAlterarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  alterarTurma(): void{
-    this.service.postAlterarTurma(this.turma).subscribe(
+  editarTurma(): void{
+    this.service.postEditarTurma(this.turma).subscribe(
       response => {
         this.responseTurma = response;
         console.log(this.responseTurma);
