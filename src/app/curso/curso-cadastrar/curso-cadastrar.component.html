@@ -1,30 +1,67 @@
 <p class="textLinkHere">DISCIPLINA > CADASTRO</p>
 <hr>
 <h6 class="display-4">CADASTRO DE DISCIPLINA</h6>
+<form #formCurso="ngForm">
 <div class="row">
     <div class="col-4 mt-5">
       <label>Cod. Curso</label>
-      <input class="form-control" type="number" [(ngModel)]="curso.cdCurso" name="cdCurso">
+      <input class="form-control" type="number" [(ngModel)]="curso.cdCurso" name="cdCurso" required  [ngClass]="{'is-invalid': codigoCurso.errors}" #codigoCurso="ngModel">
+      <div *ngIf="codigoCurso.errors && codigoCurso.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="codigoCurso.errors.required">
+            Cod Curso Requirido.
+        </div>
+     </div>
     </div>
     <div class="col-8 mt-5">
       <label>Nome do Curso</label>
-      <input class="form-control" type="text" [(ngModel)]="curso.nmCurso" name="nmCurso">
+      <input class="form-control" type="text" [(ngModel)]="curso.nmCurso" name="nmCurso" required [ngClass]="{'is-invalid': nomeCurso.errors}" #nomeCurso="ngModel">
+      <div *ngIf="nomeCurso.errors && nomeCurso.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="nomeCurso.errors.required">
+            Nome do Curso Requirido.
+        </div>
+     </div>
     </div>
     <div class="col-4 mt-5">
       <label>Cod. Coordenador</label>
-      <input class="form-control" type="number" [(ngModel)]="curso.cordenadorEntity.cdMatricula" name="cdCoordenador">
+      <input class="form-control" type="number" (blur)="buscarCordenador()" [(ngModel)]="cordenador.cdMatricula" name="cdCoordenador" [ngClass]="{'is-invalid': cordenadorCurso.errors}" required #cordenadorCurso="ngModel">
+      <div *ngIf="cordenadorCurso.errors && cordenadorCurso.dirty" class="invalid-feedback  d-block">
+        <div *ngIf="cordenadorCurso.errors.required">
+          Cordenador Curso Requirido.
+        </div>
+     </div>
     </div>
     <div class="col-8 mt-5">
       <label>Nome Coordenador</label>
-      <input class="form-control" type="text" [(ngModel)]="curso.cordenadorEntity.nmCordenador" name="nmCoordenador">
+      <input class="form-control" type="text" [(ngModel)]="cordenador.nmCordenador" name="nmCoordenador" disabled>
     </div>
     <div class="col-12 mt-5">
 	<dual-list [sort]="keepSorted" [source]="source" [key]="idDisciplina" [display]="display" [filter]="filter"
-		[(destination)]="confirmed" height="265px" [format]="format" [disabled]="disabled"></dual-list>
+		[(destination)]="confirmed" height="150px" [format]="format" [disabled]="disabled"></dual-list>
   </div>
   <div class="col-10 mt-5"></div>
   <div class="col-2 mt-5">
-    <button class="btn btn-primary form-control" (click)="cadastrarCurso()">Cadastrar</button>
+    <button class="btn btn-primary form-control" (click)="cadastrarCurso()" [disabled]="formCurso.form.invalid || cadastrando || (confirmed?.length <= 0)">Cadastrar</button>
   </div>
 </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
