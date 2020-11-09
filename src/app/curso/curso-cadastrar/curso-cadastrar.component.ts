@@ -1,62 +1,68 @@
+import { Cordenador } from './../shared/cordenador.model';
 
 
 import { Component, OnInit } from '@angular/core';
 
 
 import { DualListComponent } from 'angular-dual-listbox';
+import { Curso } from '../shared/curso.model';
 import { Disciplina } from '../shared/disciplina.model';
 import { DisciplinaService } from '../shared/disciplina.service';
 import { DiscipinasResponse } from '../shared/disciplinasResponse';
 
 @Component({
-  selector: 'app-curso-cadastrar',
-  templateUrl: './curso-cadastrar.component.html',
-  styleUrls: ['./curso-cadastrar.component.css']
+	selector: 'app-curso-cadastrar',
+	templateUrl: './curso-cadastrar.component.html',
+	styleUrls: ['./curso-cadastrar.component.css']
 })
 export class CursoCadastrarComponent implements OnInit {
+cordenador: Cordenador = {
+  cdMatricula: null,
+  nmCordenador: null,
+  pwAcesso: null,
+  stCordenador: true,
+}
+curso: Curso = {
+  cdCurso: null,
+  nmCurso: null,
+  qtHora: null,
+  cordenadorEntity: this.cordenador,
+  disciplinas: []
+}
+
+tab = 1;
+keepSorted = true;
+idDisciplina: string;
+display: any;
+filter = false;
+source: Array<any>;
+confirmed: Array<any>;
+userAdd = '';
+disabled = false;
+
+sourceLeft = true;
+format: any = DualListComponent.DEFAULT_FORMAT;
+private sourceStations: Array<Disciplina>;
+private confirmedStations: Array<any>;
+disciplinasArray: Array<Disciplina>;
+
+disciplinasResponse: DiscipinasResponse;
 
 
-  tab = 1;
-	keepSorted = true;
-	idDisciplina: string;
-	display: any;
-	filter = false;
-	source: Array<any>;
-	confirmed: Array<any>;
-	userAdd = '';
-	disabled = false;
+constructor(private disciplinaService: DisciplinaService) {
 
-	sourceLeft = true;
-	format: any = DualListComponent.DEFAULT_FORMAT;
+}
 
-
-	private sourceStations: Array<Disciplina>;
-
-
-	private confirmedStations: Array<any>;
-
-
-
-  disciplinasArray: Array<Disciplina>;
-
-  disciplinasResponse: DiscipinasResponse;
-
-
-  constructor(private disciplinaService: DisciplinaService ){
-
-  }
-
-	ngOnInit() {
-    this.disciplinaService.getListarDisciplinas().subscribe(
-      response => {
-        this.disciplinasResponse = response;
-        this.disciplinasArray = this.disciplinasResponse.retorno;
-        console.log(this.disciplinasArray );
-        this.doReset();
-      }
-    );
-
-	}
+ngOnInit() {
+	this.disciplinaService.getListarDisciplinas().subscribe(
+		response => {
+			this.disciplinasResponse = response;
+			this.disciplinasArray = this.disciplinasResponse.retorno;
+			console.log(this.disciplinasArray);
+			this.doReset();
+		}
+	);
+}
 
 	private stationLabel(item: Disciplina) {
 		return `Nome: ${item.nmDisciplina} | Carga Horaria: ${item.qtHora}`;
@@ -71,12 +77,12 @@ export class CursoCadastrarComponent implements OnInit {
 	}
 
 	swapSource() {
-			this.useStations();
+		this.useStations();
 	}
 
 	doReset() {
-    this.sourceStations = JSON.parse(JSON.stringify(this.disciplinasArray ));
-    console.log(this.sourceStations)
+		this.sourceStations = JSON.parse(JSON.stringify(this.disciplinasArray));
+		console.log(this.sourceStations)
 		this.confirmedStations = new Array<any>();
 
 
@@ -98,7 +104,7 @@ export class CursoCadastrarComponent implements OnInit {
 			const o = {};
 			o[this.idDisciplina] = this.source.length + 1;
 			o[this.display] = this.userAdd;
-			this.source.push( o );
+			this.source.push(o);
 		} else {
 			this.source.push(this.userAdd);
 		}
@@ -108,7 +114,7 @@ export class CursoCadastrarComponent implements OnInit {
 	doAdd() {
 		for (let i = 0, len = this.source.length; i < len; i += 1) {
 			const o = this.source[i];
-			const found = this.confirmed.find( (e: any) => e === o );
+			const found = this.confirmed.find((e: any) => e === o);
 			if (!found) {
 				this.confirmed.push(o);
 				break;
@@ -134,14 +140,16 @@ export class CursoCadastrarComponent implements OnInit {
 		this.disabled = !this.disabled;
 	}
 
-	disableBtn() {
-		return (this.disabled ? 'Enable' : 'Disabled');
-	}
+disableBtn() {
+	return (this.disabled ? 'Enable' : 'Disabled');
+}
 
-	swapDirection() {
-		this.sourceLeft = !this.sourceLeft;
-		this.format.direction = this.sourceLeft ? DualListComponent.LTR : DualListComponent.RTL;
-	}
+swapDirection(): void {
+  this.sourceLeft = !this.sourceLeft;
+  this.format.direction = this.sourceLeft ? DualListComponent.LTR : DualListComponent.RTL;
+}
 
+cadastrarCurso(): void{
 
+}
 }
