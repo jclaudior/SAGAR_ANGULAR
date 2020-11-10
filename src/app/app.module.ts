@@ -14,6 +14,7 @@ import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { EditarCursoComponent } from './curso/editar-curso/editar-curso.component';
 import { CursoConsultarComponent } from './curso/curso-consultar/curso-consultar.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -27,6 +28,7 @@ import { CursoConsultarComponent } from './curso/curso-consultar/curso-consultar
     CursoCadastrarComponent,
     EditarCursoComponent,
     CursoConsultarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

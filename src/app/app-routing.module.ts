@@ -6,6 +6,7 @@ import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/pro
 import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
 import { EditarCursoComponent } from './curso/editar-curso/editar-curso.component';
 import { CursoConsultarComponent } from './curso/curso-consultar/curso-consultar.component';
+import { HomeComponent } from './home/home.component';
 
 
 export const routes: Routes = [
@@ -40,6 +41,10 @@ export const routes: Routes = [
   {
     path: 'CursoConsultar',
     component: CursoConsultarComponent
+  },
+  {
+    path: 'Home',
+    component: HomeComponent
   }
 ];
 
