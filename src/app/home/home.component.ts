@@ -25,8 +25,10 @@ export class HomeComponent implements OnInit {
         datasets: [{
           label: 'Quantida de Alunos Conectados',
           data: [85, 100, 60, 46, 90, 100],
-          backgroundColor: ["red", "blue", "orange","green","pink","gray"],
-          borderWidth: 1
+          backgroundColor: ['rgba(255, 25, 25, 0.6)', "blue", "orange","green","pink","gray"],
+          borderColor:['red', "blue", "orange","green","pink","gray"],
+          borderWidth: 2,
+          barPercentage: 0.6
         }]
       },
       options: {
