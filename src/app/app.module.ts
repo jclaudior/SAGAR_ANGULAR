@@ -13,6 +13,7 @@ import { ProfessorEditarComponent } from './professor/professor-editar/professor
 import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar.component'
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { EditarCursoComponent } from './curso/editar-curso/editar-curso.component';
+import { CursoConsultarComponent } from './curso/curso-consultar/curso-consultar.component';
 
 
 
@@ -25,6 +26,7 @@ import { EditarCursoComponent } from './curso/editar-curso/editar-curso.componen
     ProfessorEditarComponent,
     CursoCadastrarComponent,
     EditarCursoComponent,
+    CursoConsultarComponent,
   ],
   imports: [
     BrowserModule,
