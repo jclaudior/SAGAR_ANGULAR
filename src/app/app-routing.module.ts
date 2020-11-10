@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
+import { EditarCursoComponent } from './curso/editar-curso/editar-curso.component';
 
 
 export const routes: Routes = [
@@ -30,6 +31,10 @@ export const routes: Routes = [
   {
     path:'CursoCadastrar',
     component: CursoCadastrarComponent
+  },
+  {
+    path:'EditarCurso',
+    component: EditarCursoComponent
   }
 ];
 

@@ -13,7 +13,16 @@ export class CursoService {
 
   private readonly API = 'http://localhost:8080/curso';
 
+  getBuscarCurso(codigo: number): Observable<ResponseCurso>{
+    return this.http.get<ResponseCurso>(`${this.API}/${codigo}`);
+  }
+
   postCadastrarCurso(curso: Curso): Observable<ResponseCurso>{
     return this.http.post<ResponseCurso>(`${this.API}`, curso);
   }
+
+  putAlterarCurso(curso: Curso): Observable<ResponseCurso>{
+    return this.http.put<ResponseCurso>(`${this.API}`, curso);
+  }
+
 }

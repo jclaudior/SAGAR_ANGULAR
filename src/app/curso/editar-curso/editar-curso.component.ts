@@ -1,14 +1,10 @@
+import { Component, OnInit } from '@angular/core';
 import { ResponseCurso } from './../shared/cursoResponse';
 import { CursoService } from './../shared/curso.service';
 import { CordenadorService } from './../shared/cordenador.service';
 import { ResponseCordenador } from './../shared/cordenadorResponse';
 import { Cordenador } from './../shared/cordenador.model';
 import { NgForm } from '@angular/forms';
-
-
-import { Component, OnInit } from '@angular/core';
-
-
 import { DualListComponent } from 'angular-dual-listbox';
 import { Curso } from '../shared/curso.model';
 import { Disciplina } from '../shared/disciplina.model';
@@ -18,15 +14,17 @@ import { DiscipinasResponse } from '../shared/disciplinasResponse';
 declare var $: any;
 
 @Component({
-  selector: 'app-curso-cadastrar',
-  templateUrl: './curso-cadastrar.component.html',
-  styleUrls: ['./curso-cadastrar.component.css']
+  selector: 'app-editar-curso',
+  templateUrl: './editar-curso.component.html',
+  styleUrls: ['./editar-curso.component.css']
 })
-export class CursoCadastrarComponent implements OnInit {
+export class EditarCursoComponent implements OnInit {
+
   requestSucess = false;
   mensagemModal = '';
   titleModal = '';
   cadastrando = false;
+  consulta = false;
 
   responseCordenador: ResponseCordenador;
 
@@ -38,7 +36,6 @@ export class CursoCadastrarComponent implements OnInit {
     pwAcesso: null,
     stCordenador: true,
   };
-
   curso: Curso = {
     cdCurso: null,
     nmCurso: null,
@@ -60,7 +57,7 @@ export class CursoCadastrarComponent implements OnInit {
   sourceLeft = true;
   format: any = DualListComponent.DEFAULT_FORMAT;
   private sourceStations: Array<Disciplina>;
-  private confirmedStations: Array<any>;
+  private confirmedStations: Array<Disciplina>;
   disciplinasArray: Array<Disciplina>;
 
   disciplinasResponse: DiscipinasResponse;
@@ -102,11 +99,6 @@ export class CursoCadastrarComponent implements OnInit {
   }
 
   doReset(): void {
-    this.sourceStations = JSON.parse(JSON.stringify(this.disciplinasArray));
-    console.log(this.sourceStations);
-    this.confirmedStations = new Array<any>();
-
-
 
     this.useStations();
 
@@ -168,17 +160,18 @@ export class CursoCadastrarComponent implements OnInit {
     this.format.direction = this.sourceLeft ? DualListComponent.LTR : DualListComponent.RTL;
   }
 
-  cadastrarCurso(): void {
+  alterarCurso(): void {
+    this.cadastrando = !this.cadastrando;
     this.curso.cordenadorEntity = this.cordenador;
     this.curso.disciplinas = this.confirmed;
     console.log(this.curso);
-    this.cursoService.postCadastrarCurso(this.curso).subscribe(
+    this.cursoService.putAlterarCurso(this.curso).subscribe(
       response => {
         this.requestSucess = true;
         this.responseCurso = response;
         this.titleModal = this.responseCurso.mensagem;
         if (this.responseCurso.retorno != null) {
-          this.mensagemModal = `Cod. Curso: ${this.responseCurso.retorno.cdCurso} Nome: ${this.responseCurso.retorno.nmCurso}`;
+          this.mensagemModal = `Cod. Curso: ${this.responseCurso.retorno.cdCurso} Professor: ${this.responseCurso.retorno.nmCurso}`;
           this.curso = {
             cdCurso: null,
             nmCurso: null,
@@ -192,23 +185,22 @@ export class CursoCadastrarComponent implements OnInit {
             pwAcesso: null,
             stCordenador: true,
           };
+          this.sourceStations = [];
+          this.confirmedStations = [];
+          this.consulta = false;
+          this.doReset();
         } else {
           this.mensagemModal = this.responseCurso.mensagem;
         }
         $('#mensagemModal').modal('show');
         this.cadastrando = false;
-        this.doReset();
       },
       error => {
         console.log(error);
         this.requestSucess = false;
         if (error.error.mensagem != null) {
           this.titleModal = error.error.mensagem;
-          if (error.error.retorno != null) {
-            this.mensagemModal = `Curso: ${error.error.retorno.nmCurso}, ja esta ultilizando a Matricula: ${error.error.retorno.cdCurso} `;
-          } else {
-            this.mensagemModal = error.error.mensagem;
-          }
+          this.mensagemModal = error.error.mensagem;
         } else {
           this.titleModal = error.name;
           this.mensagemModal = error.message;
@@ -248,4 +240,73 @@ export class CursoCadastrarComponent implements OnInit {
     );
     }
   }
+
+  buscarCurso(): void{
+    this.cursoService.getBuscarCurso(this.curso.cdCurso).subscribe(
+      respose => {
+        console.log(respose.retorno);
+        this.curso = respose.retorno;
+        this.cordenador = this.curso.cordenadorEntity;
+        this.disciplinaService.getListarDisciplinas().subscribe(
+          response => {
+            this.disciplinasResponse = response;
+            this.disciplinasArray = this.disciplinasResponse.retorno;
+          }
+        );
+        this.sourceStations = JSON.parse(JSON.stringify(this.disciplinasArray));
+        this.confirmedStations = JSON.parse(JSON.stringify(this.curso.disciplinas));
+        this.doReset();
+        this.consulta = true;
+      },
+      error => {
+        console.log(error);
+        this.requestSucess = false;
+        if (error.error.mensagem != null){
+          this.titleModal = error.error.mensagem;
+          this.mensagemModal = error.error.mensagem;
+        }else{
+          this.titleModal = error.name;
+          this.mensagemModal = error.message;
+        }
+        this.cordenador = {
+          cdMatricula: null,
+          nmCordenador: null,
+          pwAcesso: null,
+          stCordenador: true,
+        };
+        this.curso = {
+          cdCurso: null,
+          nmCurso: null,
+          qtHora: null,
+          cordenadorEntity: this.cordenador,
+          disciplinas: []
+        };
+        this.sourceStations = [];
+        this.confirmedStations = [];
+        this.doReset();
+        $('#mensagemModal').modal('show');
+      }
+    );
+  }
+
+  limpar(): void{
+    this.consulta = false;
+    this.cordenador = {
+      cdMatricula: null,
+      nmCordenador: null,
+      pwAcesso: null,
+      stCordenador: true,
+    };
+    this.curso = {
+      cdCurso: null,
+      nmCurso: null,
+      qtHora: null,
+      cordenadorEntity: this.cordenador,
+      disciplinas: []
+    };
+    this.sourceStations = [];
+    this.confirmedStations = [];
+    this.doReset();
+  }
+
 }

@@ -42,9 +42,9 @@
         <li class="li-sidbar" (click)="showMenuCurso()">
             <a><i class="fas fa-book"></i>Curso</a>
             <ul [hidden] = "curso">
-                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/CursoCadastrar" class="sublink-sidbar">Cadastrar</a></li>
                 <li><a href="#" class="sublink-sidbar">Consultar</a></li>
-                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
+              <li><a routerLink="/EditarCurso" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
     </ul>
