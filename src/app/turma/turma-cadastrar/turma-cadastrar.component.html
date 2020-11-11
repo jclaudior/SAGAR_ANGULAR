@@ -23,14 +23,15 @@
       </div>
       <div class="col-6 mt-5">
         <label>Curso</label>
-        <select class="form-control" name="curso" [(ngModel)]="turma.curso" required #curso="ngModel" [(ngModel)]='turma.curso' (change)="cursoSelecionado()">
-          <option *ngFor="let curso of listCurso" [value]="curso">{{curso.nmCurso}}</option>
+        <select class="form-control" name="curso" [(ngModel)]="turma.curso" (ngModelChange)="setNewCurso($event)" >
+          <option>Selecione Uma Opção</option>
+          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
         </select>
       </div>
       <div class="col-6 mt-5">
         <label>Periodo</label>
-        <select class="form-control" name="dsPeriodo" [(ngModel)]="turma.dsPeriodo" required #curso="ngModel">
-          <option selected>Selecione Uma Opção</option>
+        <select class="form-control" name="dsPeriodo" [(ngModel)]="turma.dsPeriodo">
+          <option>Selecione Uma Opção</option>
           <option value="Matutino">Matutino</option>
           <option value="Vespertino">Vespertino</option>
           <option value="Diurno">Diurno</option>

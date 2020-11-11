@@ -103,7 +103,9 @@ export class TurmaCadastrarComponent implements OnInit {
     );
   }
 
-  cursoSelecionado(){
+  setNewCurso(curso: Curso): void {
+    console.log(curso);
+    this.turma.curso = curso;
     console.log(this.turma);
   }
 
