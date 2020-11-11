@@ -6,7 +6,7 @@
 <div class="sidebar">
     <header>SAGAR</header>
     <ul class="sidebar-item">
-        <li class="li-sidbar"><a href="#"><i class="fas fa-home"></i>Home</a></li>
+        <li class="li-sidbar"><a routerLink="/Home"><i class="fas fa-home"></i>Home</a></li>
         <li class="li-sidbar" (click)="showMenuAula()">
             <a><i class="fas fa-book-open"></i>Aula</a>
             <ul [hidden] = "aula">
@@ -18,7 +18,7 @@
         <li class="li-sidbar " (click)="showMenuProfessor()">
             <a><i class="fas fa-chalkboard-teacher" ></i>Professor</a>
             <ul [hidden] = "professor">
-                <li><a  routerLink="/professorCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/professorCadastrar" class="sublink-sidbar">Cadastrar</a></li>
                 <li><a routerLink="/ProfessorConsultar" class="sublink-sidbar">Consultar</a></li>
                 <li><a routerLink="/ProfessorEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
@@ -34,17 +34,17 @@
         <li class="li-sidbar" (click)="showMenuDisciplina()">
             <a ><i class="fas fa-graduation-cap"></i>Disciplina</a>
             <ul [hidden] = "disciplina">
-                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
-                <li><a href="#" class="sublink-sidbar">Consultar</a></li>
-                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
+                <li><a routerLink="/DisciplinaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/DisciplinaConsultar" class="sublink-sidbar">Consultar</a></li>
+                <li><a routerLink="/DisciplinaEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
         <li class="li-sidbar" (click)="showMenuCurso()">
             <a><i class="fas fa-book"></i>Curso</a>
             <ul [hidden] = "curso">
-                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
-                <li><a href="#" class="sublink-sidbar">Consultar</a></li>
-                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
+                <li><a routerLink="/CursoCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/CursoConsultar" class="sublink-sidbar">Consultar</a></li>
+              <li><a routerLink="/EditarCurso" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
     </ul>
