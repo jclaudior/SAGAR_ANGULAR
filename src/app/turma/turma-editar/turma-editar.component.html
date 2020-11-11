@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-4 mt-4">
       <label>Cod. Turma</label>
-      <input class="form-control">
+      <input class="form-control" [(ngModel)]="turma.cdCodigo" name="cdCodigo">
     </div>
     <div class="col-2 mt-auto">
       <button class="btn-primary form-control" (click)="buscarTurma()">Buscar</button>
@@ -14,20 +14,20 @@
     </div>
     <div class="col-6 mt-4">
       <label>Turma</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.turma" name="turma">
+      <input class="form-control" type="text" [(ngModel)]="turma.nmTurma" name="nmTurma">
     </div>
     <div class="col-6 mt-4">
       <label>Periodo</label>
-      <select class="form-control" [(ngModel)]="turma.periodo" name="periodo"></select>
+      <select class="form-control" [(ngModel)]="turma.dsPeriodo" name="dsPeriodo"></select>
     </div>
     <div class="col-6 mt-4">
       <label>Curso</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.cdCurso" name="cdCurso">
+      <input class="form-control" type="text" [(ngModel)]="turma.curso" name="curso">
     </div>
     <div class="col-4"></div>
     <div class="col-10 mt-5">
       <label>Status:</label>
-      <br><input type="checkbox" [(ngModel)]="turma.stStatus" name="stStatus">
+      <br><input type="checkbox" [(ngModel)]="turma.stTurma" name="stTurma">
       <label class="ml-2"><b>Inativo</b></label>
     </div>
     <div class="col-2 mt-5">
