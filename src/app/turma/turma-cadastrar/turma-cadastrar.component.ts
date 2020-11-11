@@ -32,7 +32,7 @@ export class TurmaCadastrarComponent implements OnInit {
     cdCurso: null,
     nmCurso: null,
     qtHora: null
-  }
+  };
 
   turma: Turma = {
     cdCodigo: null,
@@ -104,7 +104,7 @@ export class TurmaCadastrarComponent implements OnInit {
   }
 
   cursoSelecionado(){
-    console.log(this.turma.curso.nmCurso);
+    console.log(this.turma);
   }
 
 }
