@@ -1,26 +1,36 @@
 <p class="textLinkHere">TURMA > CADASTRO</p>
 <hr>
 <h6 class="display-4">CADASTRO DE TURMA</h6>
-<form #formDisciplina="ngForm">
+<form #formTurma="ngForm">
   <div class="row">
       <div class="col-6 mt-5">
         <label>Cod. Turma</label>
-        <input class="form-control" type="number" [(ngModel)]="turma.cdCodigo" name="cdCodigo">
+        <input class="form-control" name="cdCodigo" type="number" [(ngModel)]="turma.cdCodigo" [ngClass]="{'is-invalid': cdCodigo.errors}" required #cdCodigo="ngModel">
+        <div *ngIf="cdCodigo.errors && cdCodigo.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="cdCodigo.errors.required">
+              Código Requirido.
+          </div>
+        </div>
       </div>
       <div class="col-6 mt-5">
         <label>Turma</label>
-        <input class="form-control" type="text" [(ngModel)]="turma.nmTurma" name="nmTurma">
+        <input class="form-control" name="nmTurma" type="text" [(ngModel)]="turma.nmTurma" [ngClass]="{'is-invalid': nmTurma.errors}" required #nmTurma="ngModel">
+        <div *ngIf="nmTurma.errors && nmTurma.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="nmTurma.errors.required">
+              Turma Requirida.
+          </div>
+        </div>
       </div>
       <div class="col-6 mt-5">
         <label>Curso</label>
-        <select class="form-control" [(ngModel)]="turma.curso" name="curso">
-          <option>Selecione Uma Opção</option>
+        <select class="form-control" name="curso" [(ngModel)]="turma.curso" required #curso="ngModel" [(ngModel)]='turma.curso' (change)="cursoSelecionado()">
+          <option *ngFor="let curso of listCurso" [value]="curso">{{curso.nmCurso}}</option>
         </select>
       </div>
       <div class="col-6 mt-5">
         <label>Periodo</label>
-        <select class="form-control" [(ngModel)]="turma.dsPeriodo" name="dsPeriodo">
-          <option onselect="true">Selecione Uma Opção</option>
+        <select class="form-control" name="dsPeriodo" [(ngModel)]="turma.dsPeriodo" required #curso="ngModel">
+          <option selected>Selecione Uma Opção</option>
           <option value="Matutino">Matutino</option>
           <option value="Vespertino">Vespertino</option>
           <option value="Diurno">Diurno</option>
@@ -29,7 +39,7 @@
       <div class="col-10 mt-5">
       </div>
       <div class="col-2 mt-5">
-        <button class="btn btn-primary form-control" (click)="cadastrarTurma()">Cadastrar</button>
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formTurma.form.invalid || cadastrando">Cadastrar</button>
       </div>
   </div>
 </form>

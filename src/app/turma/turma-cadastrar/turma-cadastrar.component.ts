@@ -1,9 +1,13 @@
 import { ResponseTurma } from './../shared/responseTurma.model';
 import { TurmaService } from './../shared/turma.service';
+import { CursoService } from './../shared/curso.service';
+import { Curso } from './../shared/curso.model';
 import { Turma } from '../shared/turma.model';
-import { FormsModule, NgForm }   from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { $ } from 'protractor';
+import { CursosResponse } from '../shared/cursoResponse';
+
+declare var $: any;
 
 @Component({
   selector: 'app-turma-cadastrar',
@@ -21,19 +25,37 @@ export class TurmaCadastrarComponent implements OnInit {
 
   btnCadastrar = false;
 
+  responseTurma: ResponseTurma;
+  responseCursos: CursosResponse;
+
+  curso: Curso = {
+    cdCurso: null,
+    nmCurso: null,
+    qtHora: null
+  }
+
   turma: Turma = {
     cdCodigo: null,
     nmTurma: null,
-    curso: null,
+    curso: this.curso,
     dsPeriodo: null,
-    stTurma: true,
+    stTurma: true
   };
 
-  responseTurma: ResponseTurma;
+  listCurso: Array<Curso>;
 
-  constructor(private service: TurmaService) { }
+  constructor(private service: TurmaService,
+  private cursoService: CursoService) {
+
+  }
 
   ngOnInit(): void {
+    this.cursoService.getListarCursos().subscribe(
+      response=>{
+        this.responseCursos = response;
+        this.listCurso = this.responseCursos.retorno;
+      }
+    );
   }
 
   cadastrarTurma(): void{
@@ -79,6 +101,10 @@ export class TurmaCadastrarComponent implements OnInit {
         this.cadastrando = false;
       }
     );
+  }
+
+  cursoSelecionado(){
+    console.log(this.turma.curso.nmCurso);
   }
 
 }

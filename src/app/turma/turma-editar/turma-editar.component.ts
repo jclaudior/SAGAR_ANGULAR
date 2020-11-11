@@ -16,7 +16,7 @@ export class TurmaEditarComponent implements OnInit {
     nmTurma: null,
     curso: null,
     dsPeriodo: null,
-    stTurma: true,
+    stTurma: true
   };
 
   responseTurma: ResponseTurma;
