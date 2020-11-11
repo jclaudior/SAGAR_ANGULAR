@@ -14,8 +14,7 @@ import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { EditarCursoComponent } from './curso/editar-curso/editar-curso.component';
 import { CursoConsultarComponent } from './curso/curso-consultar/curso-consultar.component';
-
-
+import { HomeComponent } from './home/home.component';
 import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
@@ -33,6 +32,7 @@ import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/discip
     DisciplinaCadastrarComponent,
     DisciplinaConsultarComponent,
     DisciplinaEditarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

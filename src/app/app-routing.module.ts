@@ -9,6 +9,7 @@ import { CursoConsultarComponent } from './curso/curso-consultar/curso-consultar
 import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
+import { HomeComponent } from './home/home.component';
 
 
 export const routes: Routes = [
@@ -56,6 +57,10 @@ export const routes: Routes = [
     path: 'DisciplinaEditar',
     component: DisciplinaEditarComponent
   },
+  {
+    path: 'Home',
+    component: HomeComponent
+  }
 ];
 
 
