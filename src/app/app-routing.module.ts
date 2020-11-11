@@ -10,6 +10,7 @@ import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
 import { HomeComponent } from './home/home.component';
+import { ConversaComponent } from './conversa/conversa.component';
 
 
 export const routes: Routes = [
@@ -60,6 +61,11 @@ export const routes: Routes = [
   {
     path: 'Home',
     component: HomeComponent
+  },
+
+  {
+    path: 'Conversa',
+    component: ConversaComponent
   }
 ];
 

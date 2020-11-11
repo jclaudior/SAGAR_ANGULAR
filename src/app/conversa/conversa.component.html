@@ -1,0 +1,15 @@
+
+<p class="textLinkHere">ENVIAR MENSAGEM</p>
+<hr>
+
+<div class="row">
+    <div class="col-4 mt-5">
+      <label>Matricula professor</label>
+      <input class="form-control" required name="cdMatricula" placeholder="0000" [(ngModel)]="professor.cdMatricula" [ngClass]="{'is-invalid': matriculaProfessor.errors}" type="number" required #matriculaProfessor="ngModel">
+    </div>
+
+    <div class="col-2 mt-5 pt-2">
+      <button class="btn btn-primary mt-4" (click)='consultarNumero()'>Acessar Conversa</button>
+    </div>
+
+</div>
