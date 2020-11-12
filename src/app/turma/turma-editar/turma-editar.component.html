@@ -1,36 +1,67 @@
 <p class="textLinkHere">TURMA > ALTERAR</p>
 <hr>
 <h6 class="display-4">ALTERAR DADOS DA TURMA</h6>
-<div class="row">
-    <div class="col-4 mt-4">
-      <label>Cod. Turma</label>
-      <input class="form-control" [(ngModel)]="turma.cdCodigo" name="cdCodigo">
+<form #formTurma="ngForm">
+  <div class="row">
+      <div class="col-4 mt-4">
+        <label>Cod. Turma</label>
+        <input class="form-control" [(ngModel)]="turma.cdCodigo" name="cdCodigo" [ngClass]="{'is-invalid': cdCodigo.errors}" type="number" required #cdCodigo="ngModel" [disabled]="consulta">
+        <div *ngIf="cdCodigo.errors && cdCodigo.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="cdCodigo.errors.required">
+              Código Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-2 mt-5 pt-2">
+        <button class="btn-primary form-control" (click)="buscarTurma()" name="btnBuscar" #btnBuscar [disabled]="formTurma.form.invalid">Buscar</button>
+      </div>
+      <div class="col-2 mt-5 pt-2">
+        <button class="btn-primary form-control" (click)="limparTurma()" name="btnLimpar" #btnLimpar [disabled]="formTurma.form.invalid">Limpar</button>
+      </div>
+      <div class="col-6 mt-4">
+        <label>Turma</label>
+        <input class="form-control" [(ngModel)]="turma.nmTurma" name="nmTurma" [ngClass]="{'is-invalid': nmTurma.errors}" type="number" required #nmTurma="ngModel" [disabled]="consulta">
+        <div *ngIf="nmTurma.errors && nmTurma.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="nmTurma.errors.required">
+              Nome da Turma Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mt-4">
+        <label>Periodo</label>
+        <select class="form-control" [(ngModel)]="turma.dsPeriodo" name="dsPeriodo"></select>
+      </div>
+      <div class="col-6 mt-4">
+        <label>Curso</label>
+        <input class="form-control" type="text" [(ngModel)]="turma.curso" name="curso">
+      </div>
+      <div class="col-4"></div>
+      <div class="col-10 mt-5">
+        <label>Status:</label>
+        <br><input type="checkbox" [(ngModel)]="turma.stTurma" name="stTurma">
+        <label class="ml-2"><b>Inativo</b></label>
+      </div>
+      <div class="col-2 mt-5">
+        <button class="btn btn-primary form-control" (click)="editarTurma()" name="btnEditar" #btnEditar [disabled]="formTurma.form.invalid">Altear</button>
+      </div>
+  </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
     </div>
-    <div class="col-2 mt-auto">
-      <button class="btn-primary form-control" (click)="buscarTurma()">Buscar</button>
-    </div>
-    <div class="col-2 mt-auto">
-      <button class="btn-primary form-control" (click)="limparTurma()">Limpar</button>
-    </div>
-    <div class="col-6 mt-4">
-      <label>Turma</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.nmTurma" name="nmTurma">
-    </div>
-    <div class="col-6 mt-4">
-      <label>Periodo</label>
-      <select class="form-control" [(ngModel)]="turma.dsPeriodo" name="dsPeriodo"></select>
-    </div>
-    <div class="col-6 mt-4">
-      <label>Curso</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.curso" name="curso">
-    </div>
-    <div class="col-4"></div>
-    <div class="col-10 mt-5">
-      <label>Status:</label>
-      <br><input type="checkbox" [(ngModel)]="turma.stTurma" name="stTurma">
-      <label class="ml-2"><b>Inativo</b></label>
-    </div>
-    <div class="col-2 mt-5">
-      <button class="btn btn-primary form-control" (click)="editarTurma()">Altear</button>
-    </div>
+  </div>
 </div>

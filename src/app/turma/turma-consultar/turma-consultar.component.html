@@ -1,37 +1,64 @@
 <p class="textLinkHere">TURMA > CONSULTA</p>
 <hr>
 <h6 class="display-4">CONSULTA DE TURMA</h6>
-<div class="row">
-    <div class="col-4 mt-5">
-      <label>Cod. Turma</label>
-      <input class="form-control" type="number" [(ngModel)]="turma.cdCodigo" name="cdCodigo">
+<form #formTurma="ngForm">
+  <div class="row">
+      <div class="col-4 mt-5">
+        <label>Cod. Turma</label>
+        <input class="form-control" name="cdCodigo" type="number" [(ngModel)]="turma.cdCodigo" [ngClass]="{'is-invalid': cdCodigo.errors}" required #cdCodigo="ngModel" [disabled]="consulta">
+        <div *ngIf="cdCodigo.errors && cdCodigo.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="cdCodigo.errors.required">
+              Código Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-2 mt-5 pt-2">
+        <button class="btn btn-primary form-control mt-4" (click)="buscarTurma()">Buscar</button>
+      </div>
+      <div class="col-2 mt-5 pt-2">
+        <button class="btn btn-primary form-control mt-4" (click)="limparTurma()">Limpar</button>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Turma</label>
+        <input class="form-control" name="nmTurma" type="text" [(ngModel)]="turma.nmTurma" #nmTurma="ngModel" disabled>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Periodo</label>
+        <input class="form-control" name="dsPeriodo" type="text" [(ngModel)]="turma.dsPeriodo" #dsPeriodo="ngModel" disabled>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Curso</label>
+        <input class="form-control" type="text" [(ngModel)]="turma.curso" name="curso" disabled>
+      </div>
+      <div class="col-6"></div>
+      <div class="col-4 mt-5">
+        <label>Status:</label>
+        <label>Status:</label>
+        <div *ngIf="turma.stTurma == true" class="text-success d-block">
+          <b>Ativo</b>
+        </div>
+        <div *ngIf="turma.stTurma == false" class="text-error d-block">
+          <b>Inativo</b>
+        </div>
+      </div>
+  </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
     </div>
-    <div class="col-2 mt-auto">
-      <button class="btn btn-primary form-control" (click)="buscarTurma()">Buscar</button>
-    </div>
-    <div class="col-2 mt-auto">
-      <button class="btn btn-primary form-control" (click)="limparTurma()">Limpar</button>
-    </div>
-    <div class="col-6 mt-5">
-      <label>Turma</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.nmTurma" name="nmTurma">
-    </div>
-    <div class="col-6 mt-5">
-      <label>Periodo</label>
-      <select class="form-control" [(ngModel)]="turma.dsPeriodo" name="dsPeriodo">
-        <option onselect="true">Selecione Uma Opção</option>
-        <option value="Matutino">Matutino</option>
-        <option value="Vespertino">Vespertino</option>
-        <option value="Diurno">Diurno</option>
-      </select>
-    </div>
-    <div class="col-6 mt-5">
-      <label>Curso</label>
-      <input class="form-control" type="text" [(ngModel)]="turma.curso" name="curso">
-    </div>
-    <div class="col-6"></div>
-    <div class="col-4 mt-5">
-      <label>Status:</label>      
-      <label class="form-check-label ml-2" for="exampleCheck1"><b>Inativo</b></label>
-    </div>
+  </div>
 </div>
