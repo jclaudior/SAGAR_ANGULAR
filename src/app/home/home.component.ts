@@ -1,5 +1,8 @@
+import { DashboardService } from './shared/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
+import { Dashboard } from './shared/dashboard.model';
+
 
 @Component({
   selector: 'app-home',
@@ -9,24 +12,28 @@ import * as Chart from 'chart.js';
 export class HomeComponent implements OnInit {
 
   canvas: any; ctx: any; canvas2: any; ctx2: any; canvas3: any; ctx3: any;
-
+  topAcessoAula: Dashboard;
+  constructor(private dashboardService: DashboardService){}
   ngOnInit() {
-
     this.canvas = document.getElementById('myChart');
     this.canvas2 = document.getElementById('myChart2');
     this.canvas3 = document.getElementById('myChart3');
     this.ctx = this.canvas.getContext('2d');
     this.ctx2 = this.canvas2.getContext('2d');
     this.ctx3 = this.canvas3.getContext('2d');
+    this.dashboardService.getTopAcessoAula().subscribe(
+      request =>{
+         this.topAcessoAula = request;
+         console.log(this.topAcessoAula);
+
     let myChart = new Chart(this.ctx, {
       type: 'bar',
       data: {
-        labels: ["Redes", "Banco de Dados", "Analise de Sistema", "Redes", "Banco de Dados", "Analise de Sistema"],
+        labels: this.topAcessoAula.labels,
         datasets: [{
-          label: 'Quantida de Alunos Conectados',
-          data: [85, 100, 60, 46, 90, 100],
-          backgroundColor: ['rgba(255, 25, 25, 0.6)', "blue", "orange","green","pink","gray"],
-          borderColor:['red', "blue", "orange","green","pink","gray"],
+          label: this.topAcessoAula.labe,
+          data: this.topAcessoAula.values,
+          backgroundColor: this.topAcessoAula.colors,
           borderWidth: 2,
           barPercentage: 0.6
         }]
@@ -46,6 +53,10 @@ export class HomeComponent implements OnInit {
         }
       }
     });
+      }
+
+    );
+
 
     let myChart2 = new Chart(this.ctx2, {
       type: 'pie',
