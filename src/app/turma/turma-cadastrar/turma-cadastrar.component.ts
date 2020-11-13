@@ -1,11 +1,12 @@
 import { ResponseTurma } from './../shared/responseTurma.model';
 import { TurmaService } from './../shared/turma.service';
+import { Turma } from '../shared/turma.model';
+import { CursosResponse } from '../shared/cursoResponse';
 import { CursoService } from './../shared/curso.service';
 import { Curso } from './../shared/curso.model';
-import { Turma } from '../shared/turma.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CursosResponse } from '../shared/cursoResponse';
+
 
 declare var $: any;
 
@@ -35,7 +36,7 @@ export class TurmaCadastrarComponent implements OnInit {
   };
 
   turma: Turma = {
-    cdCodigo: null,
+    cdTurma: null,
     nmTurma: null,
     curso: this.curso,
     dsPeriodo: null,
@@ -69,9 +70,9 @@ export class TurmaCadastrarComponent implements OnInit {
         console.log(this.responseTurma);
         this.titleModal = this.responseTurma.mensagem;
         if (this.responseTurma.retorno != null){
-          this.mensagemModal = `IdTurma: ${this.responseTurma.retorno.cdCodigo} NomeTurma: ${this.responseTurma.retorno.nmTurma}`;
+          this.mensagemModal = `IdTurma: ${this.responseTurma.retorno.cdTurma} NomeTurma: ${this.responseTurma.retorno.nmTurma}`;
           this.turma = {
-            cdCodigo: null,
+            cdTurma: null,
             nmTurma: null,
             curso: null,
             dsPeriodo: null,
@@ -89,7 +90,7 @@ export class TurmaCadastrarComponent implements OnInit {
         if (error.error.mensagem != null){
           this.titleModal = error.error.mensagem;
           if(error.error.retorno != null){
-            this.mensagemModal = `NomeTurma: ${error.error.retorno.nmTurma}, Já existe: ${error.error.retorno.cdCodigo} `;
+            this.mensagemModal = `NomeTurma: ${error.error.retorno.nmTurma}, Já existe: ${error.error.retorno.cdTurma} `;
           }else{
             this.mensagemModal = error.error.mensagem;
           }

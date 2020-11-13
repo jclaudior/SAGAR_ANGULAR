@@ -5,9 +5,9 @@
   <div class="row">
       <div class="col-6 mt-5">
         <label>Cod. Turma</label>
-        <input class="form-control" name="cdCodigo" type="number" [(ngModel)]="turma.cdCodigo" [ngClass]="{'is-invalid': cdCodigo.errors}" required #cdCodigo="ngModel">
-        <div *ngIf="cdCodigo.errors && cdCodigo.dirty" class="invalid-feedback  d-block">
-          <div *ngIf="cdCodigo.errors.required">
+        <input class="form-control" name="cdTurma" type="number" [(ngModel)]="turma.cdTurma" [ngClass]="{'is-invalid': cdTurma.errors}" required #cdTurma="ngModel">
+        <div *ngIf="cdTurma.errors && cdTurma.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="cdTurma.errors.required">
               Código Requirido.
           </div>
         </div>

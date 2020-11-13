@@ -1,7 +1,7 @@
 import { Curso } from './curso.model';
 
 export interface Turma{
-    cdCodigo: number,
+    cdTurma: number,
     nmTurma: string,
     curso: Curso,
     dsPeriodo: string,

@@ -5,9 +5,9 @@
   <div class="row">
       <div class="col-4 mt-4">
         <label>Cod. Turma</label>
-        <input class="form-control" [(ngModel)]="turma.cdCodigo" name="cdCodigo" [ngClass]="{'is-invalid': cdCodigo.errors}" type="number" required #cdCodigo="ngModel" [disabled]="consulta">
-        <div *ngIf="cdCodigo.errors && cdCodigo.dirty" class="invalid-feedback  d-block">
-          <div *ngIf="cdCodigo.errors.required">
+        <input class="form-control" [(ngModel)]="turma.cdTurma" name="cdTurma" [ngClass]="{'is-invalid': cdTurma.errors}" type="number" required #cdTurma="ngModel" [disabled]="consulta">
+        <div *ngIf="cdTurma.errors && cdTurma.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="cdTurma.errors.required">
               Código Requirido.
           </div>
         </div>
@@ -20,7 +20,7 @@
       </div>
       <div class="col-6 mt-4">
         <label>Turma</label>
-        <input class="form-control" [(ngModel)]="turma.nmTurma" name="nmTurma" [ngClass]="{'is-invalid': nmTurma.errors}" type="number" required #nmTurma="ngModel" [disabled]="consulta">
+        <input class="form-control" [(ngModel)]="turma.nmTurma" name="nmTurma" [ngClass]="{'is-invalid': nmTurma.errors}" required #nmTurma="ngModel" [disabled]="!consulta">
         <div *ngIf="nmTurma.errors && nmTurma.dirty" class="invalid-feedback  d-block">
           <div *ngIf="nmTurma.errors.required">
               Nome da Turma Requirido.
@@ -29,11 +29,28 @@
       </div>
       <div class="col-6 mt-4">
         <label>Periodo</label>
-        <select class="form-control" [(ngModel)]="turma.dsPeriodo" name="dsPeriodo"></select>
+        <select class="form-control" [(ngModel)]="turma.dsPeriodo" name="dsPeriodo" [ngClass]="{'is-invalid': dsPeriodo.errors}" required #dsPeriodo="ngModel" [disabled]="!consulta">
+          <option>Selecione Uma Opção</option>
+          <option value="Matutino">Matutino</option>
+          <option value="Vespertino">Vespertino</option>
+          <option value="Diurno">Diurno</option>
+        </select>
+        <div *ngIf="dsPeriodo.errors && dsPeriodo.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="dsPeriodo.errors.required">
+              Periodo Requirido.
+          </div>
+        </div>
       </div>
       <div class="col-6 mt-4">
         <label>Curso</label>
-        <input class="form-control" type="text" [(ngModel)]="turma.curso" name="curso">
+        <select class="form-control" type="text" [(ngModel)]="turma.curso" name="curso" [ngClass]="{'is-invalid': curso.errors}" required #curso="ngModel" [disabled]="!consulta">
+          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
+        </select>
+        <div *ngIf="curso.errors && curso.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="curso.errors.required">
+              Curso Requirido.
+          </div>
+        </div>
       </div>
       <div class="col-4"></div>
       <div class="col-10 mt-5">
@@ -42,7 +59,7 @@
         <label class="ml-2"><b>Inativo</b></label>
       </div>
       <div class="col-2 mt-5">
-        <button class="btn btn-primary form-control" (click)="editarTurma()" name="btnEditar" #btnEditar [disabled]="formTurma.form.invalid">Altear</button>
+        <button class="btn btn-primary form-control" (click)="alterarTurma()" name="btnEditar" #btnEditar [disabled]="formTurma.form.invalid">Altear</button>
       </div>
   </div>
 </form>
