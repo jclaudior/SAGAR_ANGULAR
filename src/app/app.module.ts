@@ -1,3 +1,4 @@
+import { AulaCadastrarComponent } from './aula/aula-cadastrar/aula-cadastrar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -39,6 +40,7 @@ import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/discip
     DisciplinaConsultarComponent,
     DisciplinaEditarComponent,
     HomeComponent,
+    AulaCadastrarComponent,
   ],
   imports: [
     BrowserModule,
