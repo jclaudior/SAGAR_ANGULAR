@@ -8,11 +8,15 @@ import { Injectable } from '@angular/core';
 })
 export class DashboardService {
 
-  private readonly API = 'http://localhost:8080/dashboard';
+  private readonly API = 'http://localhost:8080/dashboard/aula';
 
   constructor(private http: HttpClient) { }
 
   getTopAcessoAula(): Observable<Dashboard>{
-    return this.http.get<Dashboard>(`${this.API}/2020-11-11/2020-11-13`);
+    return this.http.get<Dashboard>(`${this.API}/top/2020-11-12/2020-11-12`);
+  }
+
+  getLowAcessoAula(): Observable<Dashboard>{
+    return this.http.get<Dashboard>(`${this.API}/low/2020-11-12/2020-11-12`);
   }
 }
