@@ -1,0 +1,65 @@
+<p class="textLinkHere">TURMA > CADASTRO</p>
+<hr>
+<h6 class="display-4">CADASTRO DE TURMA</h6>
+<form #formTurma="ngForm">
+  <div class="row">
+      <div class="col-6 mt-5">
+        <label>Cod. Turma</label>
+        <input class="form-control" name="cdTurma" type="number" [(ngModel)]="turma.cdTurma" [ngClass]="{'is-invalid': cdTurma.errors}" required #cdTurma="ngModel">
+        <div *ngIf="cdTurma.errors && cdTurma.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="cdTurma.errors.required">
+              Código Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Turma</label>
+        <input class="form-control" name="nmTurma" type="text" [(ngModel)]="turma.nmTurma" [ngClass]="{'is-invalid': nmTurma.errors}" required #nmTurma="ngModel">
+        <div *ngIf="nmTurma.errors && nmTurma.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="nmTurma.errors.required">
+              Turma Requirida.
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Curso</label>
+        <select class="form-control" name="curso" [(ngModel)]="turma.curso" (ngModelChange)="setNewCurso($event)" >
+          <option>Selecione Uma Opção</option>
+          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
+        </select>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Periodo</label>
+        <select class="form-control" name="dsPeriodo" [(ngModel)]="turma.dsPeriodo">
+          <option>Selecione Uma Opção</option>
+          <option value="Matutino">Matutino</option>
+          <option value="Vespertino">Vespertino</option>
+          <option value="Diurno">Diurno</option>
+        </select>
+      </div>
+      <div class="col-10 mt-5">
+      </div>
+      <div class="col-2 mt-5">
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formTurma.form.invalid || cadastrando">Cadastrar</button>
+      </div>
+  </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

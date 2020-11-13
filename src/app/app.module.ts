@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar.component';
+import { TurmaEditarComponent } from './turma/turma-editar/turma-editar.component';
+import { TurmaConsultarComponent } from './turma/turma-consultar/turma-consultar.component';
 import { CommonModule } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
@@ -25,6 +28,9 @@ import { ConversaComponent } from './conversa/conversa.component';
     AppComponent,
     HeaderComponent,
     ProfessorCadastrarComponent,
+    TurmaCadastrarComponent,
+    TurmaEditarComponent,
+    TurmaConsultarComponent,
     ProfessorConsultarComponent,
     ProfessorEditarComponent,
     CursoCadastrarComponent,

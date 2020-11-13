@@ -1,0 +1,84 @@
+<p class="textLinkHere">TURMA > ALTERAR</p>
+<hr>
+<h6 class="display-4">ALTERAR DADOS DA TURMA</h6>
+<form #formTurma="ngForm">
+  <div class="row">
+      <div class="col-4 mt-4">
+        <label>Cod. Turma</label>
+        <input class="form-control" [(ngModel)]="turma.cdTurma" name="cdTurma" [ngClass]="{'is-invalid': cdTurma.errors}" type="number" required #cdTurma="ngModel" [disabled]="consulta">
+        <div *ngIf="cdTurma.errors && cdTurma.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="cdTurma.errors.required">
+              Código Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-2 mt-5 pt-2">
+        <button class="btn-primary form-control" (click)="buscarTurma()" name="btnBuscar" #btnBuscar [disabled]="formTurma.form.invalid">Buscar</button>
+      </div>
+      <div class="col-2 mt-5 pt-2">
+        <button class="btn-primary form-control" (click)="limparTurma()" name="btnLimpar" #btnLimpar [disabled]="formTurma.form.invalid">Limpar</button>
+      </div>
+      <div class="col-6 mt-4">
+        <label>Turma</label>
+        <input class="form-control" [(ngModel)]="turma.nmTurma" name="nmTurma" [ngClass]="{'is-invalid': nmTurma.errors}" required #nmTurma="ngModel" [disabled]="!consulta">
+        <div *ngIf="nmTurma.errors && nmTurma.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="nmTurma.errors.required">
+              Nome da Turma Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mt-4">
+        <label>Periodo</label>
+        <select class="form-control" [(ngModel)]="turma.dsPeriodo" name="dsPeriodo" [ngClass]="{'is-invalid': dsPeriodo.errors}" required #dsPeriodo="ngModel" [disabled]="!consulta">
+          <option>Selecione Uma Opção</option>
+          <option value="Matutino">Matutino</option>
+          <option value="Vespertino">Vespertino</option>
+          <option value="Diurno">Diurno</option>
+        </select>
+        <div *ngIf="dsPeriodo.errors && dsPeriodo.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="dsPeriodo.errors.required">
+              Periodo Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mt-4">
+        <label>Curso</label>
+        <select class="form-control" type="text" [(ngModel)]="turma.curso" name="curso" [ngClass]="{'is-invalid': curso.errors}" required #curso="ngModel" [disabled]="!consulta">
+          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
+        </select>
+        <div *ngIf="curso.errors && curso.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="curso.errors.required">
+              Curso Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-10 mt-5">
+        <label>Status:</label>
+        <br><input type="checkbox" [(ngModel)]="turma.stTurma" name="stTurma">
+        <label class="ml-2"><b>Inativo</b></label>
+      </div>
+      <div class="col-2 mt-5">
+        <button class="btn btn-primary form-control" (click)="alterarTurma()" name="btnEditar" #btnEditar [disabled]="formTurma.form.invalid">Altear</button>
+      </div>
+  </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

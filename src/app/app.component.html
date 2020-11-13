@@ -26,9 +26,9 @@
         <li class="li-sidbar" (click)="showMenuTurma()">
             <a ><i class="fas fa-users"></i>Turma</a>
             <ul [hidden] = "turma">
-                <li><a href="#" class="sublink-sidbar">Cadastrar</a></li>
-                <li><a href="#" class="sublink-sidbar">Consultar</a></li>
-                <li><a href="#" class="sublink-sidbar">Alterar</a></li>
+                <li><a routerLink="/turmaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/turmaConsultar" class="sublink-sidbar">Consultar</a></li>
+                <li><a routerLink="/turmaEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
         <li class="li-sidbar" (click)="showMenuDisciplina()">

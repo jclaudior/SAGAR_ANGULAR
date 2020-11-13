@@ -5,11 +5,13 @@
   list-style: none;
   text-decoration: none;
 }
+
 body {
   font-family: 'Roboto', sans-serif!important;
   margin: 0px!important;
   padding: 0px!important;
 }
+
 .sidebar {
   position: fixed;
   left: -250px;
@@ -18,6 +20,7 @@ body {
   background: #042331;
   transition: all .5s ease;
 }
+
 .sidebar header {
   font-size: 22px;
   color: white;
@@ -26,6 +29,7 @@ body {
   background: #063146;
   user-select: none;
 }
+
 .sidebar .li-sidbar{
   display: block;
   height: 100%;
@@ -59,22 +63,25 @@ body {
     transition: .4s;
   }
 
-  ul .sublink-sidbar:hover {
+ul .sublink-sidbar:hover {
     padding-left: 50px;
-  }
+}
 
 .sidebar ul a i{
   margin-right: 16px;
 }
+
 #check{
   display: none;
 }
+
 label #btn,label #cancel{
   position: absolute;
   background: #042331;
   border-radius: 3px;
   cursor: pointer;
 }
+
 label #btn{
   left: 40px;
   top: 25px;
@@ -83,6 +90,7 @@ label #btn{
   padding: 6px 12px;
   transition: all .5s;
 }
+
 label #cancel{
   z-index: 1111;
   left: -195px;
@@ -101,17 +109,21 @@ label #cancel{
 #check:checked ~ .sidebar{
   left: 0;
 }
+
 #check:checked ~ label #btn{
   left: 250px;
   opacity: 0;
   pointer-events: none;
 }
+
 #check:checked ~ label #cancel{
   left: 195px;
 }
+
 #check:checked ~ section{
   margin-left: 250px;
 }
+
 section{
   background-position: center;
   background-size: cover;
