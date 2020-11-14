@@ -14,7 +14,7 @@ export class AulaService {
   constructor(private http: HttpClient) { }
 
   getBuscarAula(aula: number): Observable<ResponseAula>{
-      return this.http.get<ResponseAula>(`${this.API}/${aula}`);  //http://localhost:8080/turma/1
+      return this.http.get<ResponseAula>(`${this.API}/${aula}`);
   }
 
   postInserirAula(aula: Aula): Observable<ResponseAula>{

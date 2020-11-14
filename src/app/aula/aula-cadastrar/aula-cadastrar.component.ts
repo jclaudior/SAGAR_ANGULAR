@@ -78,7 +78,7 @@ export class AulaCadastrarComponent implements OnInit {
 
   listCurso: Array<Curso>;
 
-  constructor(
+  constructor(private service: AulaService,
   private cursoService: CursoService) {
 
   }
