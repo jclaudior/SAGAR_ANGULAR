@@ -7,11 +7,11 @@ export interface Aula{
     professor: Professor;
     turma: Turma;
     disciplina: Disciplina;
-    lkAula: String;
-    lkGravacao: String;
+    lkAula: string;
+    lkGravacao: string;
     qtAluno: number;
     dtAula: Date;
-    hrInicio: String;
-    hrTermino: String;
-    dsAula: String;
+    hrInicio: string;
+    hrTermino: string;
+    dsAula: string;
 }

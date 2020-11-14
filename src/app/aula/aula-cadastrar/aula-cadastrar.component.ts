@@ -1,7 +1,12 @@
-import { CursosResponse } from './shared/cursoResponse';
-import { ResponseAula } from './../shared/responseAula.model';
-import { AulaService } from './../shared/aula.service';
+import { CursoService } from '../shared/curso.service';
+import { Professor } from '../shared/professor.model';
+import { Curso } from '../shared/curso.model';
 import { Turma } from '../shared/turma.model';
+import { Disciplina } from '../shared/disciplina.model';
+import { Aula } from '../shared/aula.model';
+import { CursosResponse } from '../shared/cursoResponse';
+import { ResponseAula } from '../shared/responseAula.model';
+import { AulaService } from '../shared/aula.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -27,10 +32,19 @@ export class AulaCadastrarComponent implements OnInit {
   responseAula: ResponseAula;
   responseCursos: CursosResponse;
 
+  professor: Professor = {
+    cdMatricula: null,
+    nmProfessor: null,
+    dsEmail: null,
+    dsCelular: null,
+    pwAcesso: null,
+    stProfessor: null,
+  };
+
   curso: Curso = {
     cdCurso: null,
     nmCurso: null,
-    qtHora: null
+    qtHora: null,
   };
 
   turma: Turma = {
@@ -41,9 +55,30 @@ export class AulaCadastrarComponent implements OnInit {
     stTurma: true
   };
 
+  disciplina: Disciplina = {
+    idDisciplina: null,
+    nmDisciplina: null,
+    qtHora: null,
+    stDisciplina: null,
+  };
+
+  aula: Aula = {
+    idAula: null,
+    professor: this.professor,
+    turma: this.turma,
+    disciplina: this.disciplina,
+    lkAula: null,
+    lkGravacao: null,
+    qtAluno: null,
+    dtAula: null,
+    hrInicio: null,
+    hrTermino: null,
+    dsAula: null,
+  };
+
   listCurso: Array<Curso>;
 
-  constructor(private service: TurmaService,
+  constructor(
   private cursoService: CursoService) {
 
   }
@@ -58,26 +93,32 @@ export class AulaCadastrarComponent implements OnInit {
   }
 
   cadastrarTurma(): void{
-    console.log(this.turma);
+    console.log(this.aula);
     this.cadastrando = true;
-    this.service.postInserirTurma(this.turma).subscribe(
+    this.service.postInserirAula(this.aula).subscribe(
       response => {
         console.log(response);
         this.requestSucess = true;
-        this.responseTurma = response;
-        console.log(this.responseTurma);
-        this.titleModal = this.responseTurma.mensagem;
-        if (this.responseTurma.retorno != null){
-          this.mensagemModal = `IdTurma: ${this.responseTurma.retorno.cdTurma} NomeTurma: ${this.responseTurma.retorno.nmTurma}`;
-          this.turma = {
-            cdTurma: null,
-            nmTurma: null,
-            curso: null,
-            dsPeriodo: null,
-            stTurma: true
+        this.responseAula = response;
+        console.log(this.responseAula);
+        this.titleModal = this.responseAula.mensagem;
+        if (this.responseAula.retorno != null){
+          this.mensagemModal = `Id_Aula: ${this.responseAula.retorno.idAula}`;
+          this.aula = {
+            idAula: null,
+            professor: this.professor,
+            turma: this.turma,
+            disciplina: this.disciplina,
+            lkAula: null,
+            lkGravacao: null,
+            qtAluno: null,
+            dtAula: null,
+            hrInicio: null,
+            hrTermino: null,
+            dsAula: null,
           };
         }else{
-          this.mensagemModal = this.responseTurma.mensagem;
+          this.mensagemModal = this.responseAula.mensagem;
         }
         $('#mensagemModal').modal('show');
         this.cadastrando = false;
@@ -88,7 +129,7 @@ export class AulaCadastrarComponent implements OnInit {
         if (error.error.mensagem != null){
           this.titleModal = error.error.mensagem;
           if(error.error.retorno != null){
-            this.mensagemModal = `NomeTurma: ${error.error.retorno.nmTurma}, Já existe: ${error.error.retorno.cdTurma} `;
+            this.mensagemModal = `Já existe: ${error.error.retorno.idAula} `;
           }else{
             this.mensagemModal = error.error.mensagem;
           }
