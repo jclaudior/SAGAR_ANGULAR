@@ -1,4 +1,4 @@
-import { DisciplinaResponse } from './disciplinaResponse';
+import { DisciplinasResponse } from './disciplinaResponse';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -13,8 +13,8 @@ export class DisciplinaService {
 
   private readonly API = 'http://localhost:8080/curso';
 
-  getListarDisciplina(): Observable<DisciplinaResponse>{
-    return this.http.get<DisciplinaResponse>(`${this.API}`);
+  getListarDisciplina(): Observable<DisciplinasResponse>{
+    return this.http.get<DisciplinasResponse>(`${this.API}`);
   }
 
 }

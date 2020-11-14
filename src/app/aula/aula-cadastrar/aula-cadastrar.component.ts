@@ -1,3 +1,5 @@
+import { DisciplinasResponse } from './../shared/disciplinaResponse';
+import { DisciplinaService } from '../shared/disciplina.service';
 import { CursoService } from '../shared/curso.service';
 import { Professor } from '../shared/professor.model';
 import { Curso } from '../shared/curso.model';
@@ -9,7 +11,6 @@ import { ResponseAula } from '../shared/aulaResponse';
 import { AulaService } from '../shared/aula.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 
 declare var $: any;
 
@@ -30,6 +31,7 @@ export class AulaCadastrarComponent implements OnInit {
   btnCadastrar = false;
 
   responseAula: ResponseAula;
+  responseDisciplinas: DisciplinasResponse;
   responseCursos: CursosResponse;
 
   professor: Professor = {
@@ -80,7 +82,8 @@ export class AulaCadastrarComponent implements OnInit {
   listDisciplina: Array<Disciplina>;
 
   constructor(private service: AulaService,
-              private cursoService: CursoService) {
+              private cursoService: CursoService,
+              private disciplinaService: DisciplinaService) {
 
   }
 
@@ -89,6 +92,12 @@ export class AulaCadastrarComponent implements OnInit {
       response => {
         this.responseCursos = response;
         this.listCurso = this.responseCursos.retorno;
+      }
+    );
+    this.disciplinaService.getListarDisciplina().subscribe(
+      response => {
+        this.responseDisciplinas = response;
+        this.listDisciplina = this.responseDisciplinas.retorno;
       }
     );
   }

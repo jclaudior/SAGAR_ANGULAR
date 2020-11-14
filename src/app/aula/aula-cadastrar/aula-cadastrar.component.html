@@ -14,7 +14,7 @@
         <label>Disciplina</label>
         <select class="form-control" name="disciplina" [(ngModel)]="aula.disciplina" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': disciplina.errors}" required #disciplina="ngModel">
           <option>Selecione uma opção</option>
-          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
+          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{disciplina}}</option>
         </select>
       </div>
       <div class="col-6 mt-5">
