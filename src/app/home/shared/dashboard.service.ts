@@ -12,11 +12,11 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  getTopAcessoAula(): Observable<Dashboard>{
-    return this.http.get<Dashboard>(`${this.API}/top/2020-11-12/2020-11-12`);
+  getTopAcessoAula(dtInicial: Date, dtFinal: Date): Observable<Dashboard>{
+    return this.http.get<Dashboard>(`${this.API}/top/${dtInicial}/${dtFinal}`);
   }
 
-  getLowAcessoAula(): Observable<Dashboard>{
-    return this.http.get<Dashboard>(`${this.API}/low/2020-11-12/2020-11-12`);
+  getLowAcessoAula(dtInicial: Date, dtFinal: Date): Observable<Dashboard>{
+    return this.http.get<Dashboard>(`${this.API}/low/${dtInicial}/${dtFinal}`);
   }
 }
