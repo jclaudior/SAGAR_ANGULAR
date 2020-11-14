@@ -1,4 +1,4 @@
-import { ResponseAula } from './responseAula.model';
+import { ResponseAula } from './aulaResponse';
 import { Aula } from './aula.model';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';

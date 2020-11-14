@@ -5,7 +5,7 @@ import { Turma } from '../shared/turma.model';
 import { Disciplina } from '../shared/disciplina.model';
 import { Aula } from '../shared/aula.model';
 import { CursosResponse } from '../shared/cursoResponse';
-import { ResponseAula } from '../shared/responseAula.model';
+import { ResponseAula } from '../shared/aulaResponse';
 import { AulaService } from '../shared/aula.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -77,6 +77,7 @@ export class AulaCadastrarComponent implements OnInit {
   };
 
   listCurso: Array<Curso>;
+  listDisciplina: Array<Disciplina>;
 
   constructor(private service: AulaService,
               private cursoService: CursoService) {
@@ -143,10 +144,16 @@ export class AulaCadastrarComponent implements OnInit {
     );
   }
 
-  setNewCurso(curso: Curso): void {
+  setNewTurma(curso: Curso): void {
     console.log(curso);
     this.turma.curso = curso;
     console.log(this.turma);
+  }
+
+  setNewDisciplina(disciplina: Disciplina): void{
+    console.log(disciplina);
+    this.disciplina = disciplina;
+    console.log(this.disciplina);
   }
 
 }
