@@ -79,13 +79,13 @@ export class AulaCadastrarComponent implements OnInit {
   listCurso: Array<Curso>;
 
   constructor(private service: AulaService,
-  private cursoService: CursoService) {
+              private cursoService: CursoService) {
 
   }
 
   ngOnInit(): void {
     this.cursoService.getListarCursos().subscribe(
-      response=>{
+      response => {
         this.responseCursos = response;
         this.listCurso = this.responseCursos.retorno;
       }
@@ -128,7 +128,7 @@ export class AulaCadastrarComponent implements OnInit {
         this.requestSucess = false;
         if (error.error.mensagem != null){
           this.titleModal = error.error.mensagem;
-          if(error.error.retorno != null){
+          if (error.error.retorno != null){
             this.mensagemModal = `Já existe: ${error.error.retorno.idAula} `;
           }else{
             this.mensagemModal = error.error.mensagem;

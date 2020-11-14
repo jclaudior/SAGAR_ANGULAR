@@ -14,7 +14,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
 import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
-import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar.component'
+import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar.component';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { EditarCursoComponent } from './curso/editar-curso/editar-curso.component';
 import { CursoConsultarComponent } from './curso/curso-consultar/curso-consultar.component';

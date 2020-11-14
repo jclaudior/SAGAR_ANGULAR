@@ -1,7 +1,7 @@
-<p class="textLinkHere">TURMA > CADASTRO</p>
+<p class="textLinkHere">AULA > CADASTRO</p>
 <hr>
-<h6 class="display-4">CADASTRO DE TURMA</h6>
-<form #formTurma="ngForm">
+<h6 class="display-4">CADASTRO DE AULA</h6>
+<form #formAula="ngForm">
   <div class="row">
       <div class="col-6 mt-5">
         <label>Cod. Turma</label>
@@ -40,7 +40,7 @@
       <div class="col-10 mt-5">
       </div>
       <div class="col-2 mt-5">
-        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formTurma.form.invalid || cadastrando">Cadastrar</button>
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Cadastrar</button>
       </div>
   </div>
 </form>
