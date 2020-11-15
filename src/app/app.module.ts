@@ -1,3 +1,5 @@
+import { AulaConsultarComponent } from './aula/aula-consultar/aula-consultar.component';
+import { AulaEditarComponent } from './aula/aula-editar/aula-editar.component';
 import { AulaCadastrarComponent } from './aula/aula-cadastrar/aula-cadastrar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -41,6 +43,8 @@ import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/discip
     DisciplinaEditarComponent,
     HomeComponent,
     AulaCadastrarComponent,
+    AulaConsultarComponent,
+    AulaEditarComponent,
   ],
   imports: [
     BrowserModule,

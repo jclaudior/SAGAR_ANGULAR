@@ -15,6 +15,8 @@ import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
 import { AulaCadastrarComponent } from './aula/aula-cadastrar/aula-cadastrar.component';
+import { AulaEditarComponent } from './aula/aula-editar/aula-editar.component';
+import { AulaConsultarComponent } from './aula/aula-consultar/aula-consultar.component';
 
 
 export const routes: Routes = [
@@ -82,6 +84,14 @@ export const routes: Routes = [
   {
     path: 'AulaCadastrar',
     component: AulaCadastrarComponent
+  },
+  {
+    path: 'AulaConsultar',
+    component: AulaConsultarComponent
+  },
+  {
+    path: 'AulaEditar',
+    component: AulaEditarComponent
   },
 ];
 
