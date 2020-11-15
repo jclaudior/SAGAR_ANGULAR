@@ -19,6 +19,7 @@ declare var $: any;
   templateUrl: './aula-consultar.component.html',
   styleUrls: ['./aula-consultar.component.css']
 })
+
 export class AulaConsultarComponent implements OnInit {
 
   @ViewChild('formAula', {static: true}) formAula: NgForm;

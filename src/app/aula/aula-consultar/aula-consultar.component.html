@@ -5,7 +5,7 @@
   <div class="row">
       <div class="col-6 mt-5">
         <label>Curso</label>
-        <select class="form-control" name="curso" [(ngModel)]="curso" (ngModelChange)="setNewTurma($event)" [ngClass]="{'is-invalid': curso.errors}" required #curso="ngModel">
+        <select class="form-control" name="curso" >
           <option>Selecione uma opção</option>
         </select>
       </div>
@@ -27,7 +27,7 @@
           <option>Selecione uma opção</option>
         </select>
       </div>
-      <div class="col-3 mt-5">
+      <div class="col-6 mt-5">
         <label>Data</label>
         <input class="form-control" name="dtAula" type="text" [(ngModel)]="aula.dtAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
         <div *ngIf="dtAula.errors && dtAula.dirty" class="invalid-feedback  d-block">
