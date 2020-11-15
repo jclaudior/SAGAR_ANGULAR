@@ -4,17 +4,28 @@
 <form #formAula="ngForm">
   <div class="row">
       <div class="col-6 mt-5">
-        <label>Turma</label>
-        <select class="form-control" name="turma" [(ngModel)]="aula.turma" (ngModelChange)="setNewTurma($event)" [ngClass]="{'is-invalid': turma.errors}" required #turma="ngModel">
+        <label>Curso</label>
+        <select class="form-control" name="curso" [(ngModel)]="curso" (ngModelChange)="setNewTurma($event)" [ngClass]="{'is-invalid': curso.errors}" required #curso="ngModel">
           <option>Selecione uma opção</option>
           <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
+        </select>
+      </div>
+      <div class="col-2 mt-auto">
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" >Buscar</button>
+      </div>
+      <div class="col-2 mt-auto">
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Limpar</button>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Turma</label>
+        <select class="form-control" name="turma" [(ngModel)]="aula.turma" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': turma.errors}" required #turma="ngModel">
+          <option>Selecione uma opção</option>
         </select>
       </div>
       <div class="col-6 mt-5">
         <label>Disciplina</label>
         <select class="form-control" name="disciplina" [(ngModel)]="aula.disciplina" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': disciplina.errors}" required #disciplina="ngModel">
           <option>Selecione uma opção</option>
-          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{disciplina}}</option>
         </select>
       </div>
       <div class="col-6 mt-5">
