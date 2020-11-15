@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/disciplina-cadastrar.component';
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
+import { EstatisticaAcessoComponent } from './estatistica-acesso/estatistica-acesso.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/discip
     DisciplinaConsultarComponent,
     DisciplinaEditarComponent,
     HomeComponent,
+    EstatisticaAcessoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,19 +1,27 @@
+<p class="textLinkHere">ESTATISTICA DE ACESSO</p>
+<hr>
 <div class="container mt-5 mb-5">
   <div class="row">
-    <div class="col-md-6 col-sm-12">
+    <div class="col-md-3 col-sm-12">
       <label>Data Inicial</label>
       <input type="date" [(ngModel)]="dtInicial" (change)="consultarPeriodo()"  class="form-control">
     </div>
-    <div class="col-md-6 col-sm-12" >
+    <div class="col-md-3 col-sm-12" >
       <label>Data Final</label>
       <input type="date" [(ngModel)]="dtFinal" (change)="consultarPeriodo()"  class="form-control">
     </div>
+    <div class="col-md-3 col-sm-12" >
+      <label>Disciplina</label>
+      <select class="form-control">
+        <option></option>
+      </select>
+    </div>
+    <div class="col-md-3 col-sm-12 pt-2" >
+      <button class="btn btn-primary mt-4">Visualizar</button>
+    </div>
   </div>
   <div class="row">
-    <div class="col-md-6 col-sm-12"><canvas id="myChart" width="1200px" height="1000"></canvas></div>
-    <div class="col-md-6 col-sm-12"><canvas id="myChart2" width="1200px" height="1000"></canvas></div>
-    <div class="col-9 mt-5"></div>
-    <div class="col-3 mt-5"><button routerLink="/EstatisticaAcesso" class="btn btn-primary form-control">Estatistica de Acesso</button></div>
+    <div class="col-sm-12"><canvas id="myChart" width="1200px" height="500px"></canvas></div>
   </div>
   </div>
 

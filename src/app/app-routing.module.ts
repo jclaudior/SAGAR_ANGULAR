@@ -1,8 +1,7 @@
 import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar.component';
 import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
-import { from } from 'rxjs';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { TurmaCadastrarComponent } from './turma/turma-cadastrar/turma-cadastrar.component';
 import { TurmaEditarComponent } from './turma/turma-editar/turma-editar.component';
@@ -14,6 +13,7 @@ import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
 import { HomeComponent } from './home/home.component';
+import { EstatisticaAcessoComponent } from './estatistica-acesso/estatistica-acesso.component';
 
 
 export const routes: Routes = [
@@ -82,6 +82,10 @@ export const routes: Routes = [
   {
     path: 'Home',
     component: HomeComponent
+  },
+  {
+    path: 'EstatisticaAcesso',
+    component: EstatisticaAcessoComponent
   }
 ];
 
