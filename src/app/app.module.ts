@@ -22,6 +22,8 @@ import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
 import { EstatisticaAcessoComponent } from './estatistica-acesso/estatistica-acesso.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { EstatisticaAcessoComponent } from './estatistica-acesso/estatistica-ace
     ReactiveFormsModule,
     CommonModule,
     AngularDualListBoxModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

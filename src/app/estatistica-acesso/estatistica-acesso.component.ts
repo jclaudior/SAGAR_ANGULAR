@@ -1,6 +1,8 @@
+import { Disciplina } from './../disciplina/shared/disciplina.model';
 import { Component, OnInit } from '@angular/core';
-import * as Chart from 'chart.js';
 import * as moment from 'moment';
+import { DisciplinaService } from '../curso/shared/disciplina.service';
+import { DiscipinasResponse } from '../curso/shared/disciplinasResponse';
 import { Dashboard } from '../home/shared/dashboard.model';
 import { DashboardService } from '../home/shared/dashboard.service';
 
@@ -18,32 +20,55 @@ export class EstatisticaAcessoComponent implements OnInit {
   mensagemModal = '';
   titleModal = '';
 
-  canvas: any; ctx: any; canvas2: any; ctx2: any; canvas3: any; ctx3: any;
+  acessoAulaDisciplina: Dashboard = {
+    colors: [],
+    values: [],
+    labels: [],
+    labe: null
+  };
 
-  topAcessoAula: Dashboard = {
-    colors: [],
-    values: [],
-    labels: [],
-    labe: null
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
   };
-  lowAcessoAula: Dashboard = {
-    colors: [],
-    values: [],
-    labels: [],
-    labe: null
-  };
+
+  public barChartLabels = [];
+  public barChartType = 'bar';
+  public barChartLegend = false;
+  public doughnutChartColors = [
+    {backgroundColor:[]}
+  ];
+
+  public barChartData = [
+    {data: [], label: ''},
+  ];
+
+
 
   dtInicial: string = moment().subtract(1, 'month').format("YYYY-MM-DD");
   dtFinal: string = moment().format("YYYY-MM-DD");
+  disciplina: Disciplina;
   dtAtual: Date = new Date();
 
+  disciplinaResponse: DiscipinasResponse = {
+    mensagem: null,
+    status: null,
+    retorno: []
+  };
 
 
+  constructor(
+    private dashboardService: DashboardService,
+    private disciplinaService: DisciplinaService) { }
 
-  constructor(private dashboardService: DashboardService) { }
   ngOnInit() {
+    this.disciplinaService.getListarDisciplinas().subscribe(
+      response => {
+        this.disciplinaResponse = response;
+      }
+    );
 
-    if(this.topAcessoAula.labe == null && this.lowAcessoAula.labe == null){
+    if(this.acessoAulaDisciplina.labe == null && this.acessoAulaDisciplina.labe == null && this.disciplina != null){
       this.consultarPeriodo();
     }
 
@@ -53,51 +78,31 @@ export class EstatisticaAcessoComponent implements OnInit {
 
   consultarPeriodo(): void {
     let meses = moment(this.dtFinal).diff(moment(this.dtInicial), 'months', true);
-    if (this.dtInicial != null && this.dtFinal != null) {
+    if (this.dtInicial != null && this.dtFinal != null && this.disciplina != null) {
       if (moment(this.dtInicial) <= moment(this.dtFinal)) {
         if (meses >= 6) {
           this.mensagemModal = "Intervalo deve ser de no máximo 6 meses";
           this.titleModal = "Aviso";
           $('#mensagemModal').modal('show');
         } else {
-          this.canvas = document.getElementById('myChart');
-          this.ctx = this.canvas.getContext('2d');
-          this.dashboardService.getTopAcessoAula(this.dtInicial, this.dtFinal).subscribe(
-            request => {
-              this.topAcessoAula = request;
-              console.log(this.topAcessoAula);
 
-              let myChart = new Chart(this.ctx, {
-                type: 'bar',
-                data: {
-                  labels: this.topAcessoAula.labels,
-                  datasets: [{
-                    label: this.topAcessoAula.labe,
-                    data: this.topAcessoAula.values,
-                    backgroundColor: this.topAcessoAula.colors,
-                    borderWidth: 2,
-                    barPercentage: 0.6
-                  }]
-                },
-                options: {
-                  title: {
-                    display: true,
-                    text: 'Disciplinas Mais Acessadas'
-                  },
-                  legend: {
-                    display: false
-                  },
-                  responsive: true,
-                  display: true,
-                  scales: {
-                    yAxes: [{
-                      ticks: {
-                        beginAtZero: true
-                      }
-                    }]
-                  }
-                }
-              });
+          this.dashboardService.getAcessoAulaDiciplina(this.dtInicial, this.dtFinal, this.disciplina).subscribe(
+            request => {
+              this.acessoAulaDisciplina = request;
+              console.log(this.acessoAulaDisciplina);
+
+              this.barChartLabels = this.acessoAulaDisciplina.labels;
+              this.barChartData =
+              [{
+                data: this.acessoAulaDisciplina.values,
+                label: this.acessoAulaDisciplina.labe,
+
+              }];
+              this.doughnutChartColors = [
+                {backgroundColor:this.acessoAulaDisciplina.colors}
+              ];
+
+
             }
 
 
@@ -111,4 +116,10 @@ export class EstatisticaAcessoComponent implements OnInit {
       }
     }
   }
+
+  setNewCurso(disciplima: Disciplina): void {
+    this.disciplina = disciplima;
+    console.log(this.disciplina);
+  }
+
 }

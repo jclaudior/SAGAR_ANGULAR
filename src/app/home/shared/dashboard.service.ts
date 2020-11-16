@@ -1,3 +1,4 @@
+import { Disciplina } from './../../disciplina/shared/disciplina.model';
 import { Dashboard } from './dashboard.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -18,5 +19,9 @@ export class DashboardService {
 
   getLowAcessoAula(dtInicial: string, dtFinal: string): Observable<Dashboard>{
     return this.http.get<Dashboard>(`${this.API}/low/${dtInicial}/${dtFinal}`);
+  }
+
+  getAcessoAulaDiciplina(dtInicial: string, dtFinal: string,  disciplina: Disciplina): Observable<Dashboard>{
+    return this.http.get<Dashboard>(`${this.API}/${dtInicial}/${dtFinal}/${disciplina.nmDisciplina}`);
   }
 }

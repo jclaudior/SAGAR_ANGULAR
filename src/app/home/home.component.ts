@@ -1,6 +1,5 @@
 import { DashboardService } from './shared/dashboard.service';
 import { Component, OnInit } from '@angular/core';
-import * as Chart from 'chart.js';
 import { Dashboard } from './shared/dashboard.model';
 import * as moment from 'moment';
 
@@ -17,7 +16,34 @@ export class HomeComponent implements OnInit {
   mensagemModal = '';
   titleModal = '';
 
-  canvas: any; ctx: any; canvas2: any; ctx2: any; canvas3: any; ctx3: any;
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+
+  public barChartLabels = [];
+  public barChartType = 'bar';
+  public barChartLegend = false;
+  public doughnutChartColors = [
+    { backgroundColor: [] }
+  ];
+
+  public barChartData = [
+    { data: [], label: '' },
+  ];
+
+
+  public barChartLabelsDois = [];
+  public barChartTypeDois = 'bar';
+  public barChartLegendDois = false;
+  public doughnutChartColorsDois = [
+    { backgroundColor: [] }
+  ];
+
+  public barChartDataDois = [
+    { data: [], label: '' },
+  ];
 
   topAcessoAula: Dashboard = {
     colors: [],
@@ -42,7 +68,7 @@ export class HomeComponent implements OnInit {
   constructor(private dashboardService: DashboardService) { }
   ngOnInit() {
 
-    if(this.topAcessoAula.labe == null && this.lowAcessoAula.labe == null){
+    if (this.topAcessoAula.labe == null && this.lowAcessoAula.labe == null) {
       this.consultarPeriodo();
     }
 
@@ -59,46 +85,22 @@ export class HomeComponent implements OnInit {
           this.titleModal = "Aviso";
           $('#mensagemModal').modal('show');
         } else {
-          this.canvas = document.getElementById('myChart');
-          this.canvas2 = document.getElementById('myChart2');
-          this.ctx = this.canvas.getContext('2d');
-          this.ctx2 = this.canvas2.getContext('2d');
+
+
           this.dashboardService.getTopAcessoAula(this.dtInicial, this.dtFinal).subscribe(
             request => {
               this.topAcessoAula = request;
               console.log(this.topAcessoAula);
+              this.barChartLabels = this.topAcessoAula.labels;
+              this.barChartData =
+                [{
+                  data: this.topAcessoAula.values,
+                  label: this.topAcessoAula.labe,
 
-              let myChart = new Chart(this.ctx, {
-                type: 'bar',
-                data: {
-                  labels: this.topAcessoAula.labels,
-                  datasets: [{
-                    label: this.topAcessoAula.labe,
-                    data: this.topAcessoAula.values,
-                    backgroundColor: this.topAcessoAula.colors,
-                    borderWidth: 2,
-                    barPercentage: 0.6
-                  }]
-                },
-                options: {
-                  title: {
-                    display: true,
-                    text: 'Disciplinas Mais Acessadas'
-                  },
-                  legend: {
-                    display: false
-                  },
-                  responsive: true,
-                  display: true,
-                  scales: {
-                    yAxes: [{
-                      ticks: {
-                        beginAtZero: true
-                      }
-                    }]
-                  }
-                }
-              });
+                }];
+              this.doughnutChartColors = [
+                { backgroundColor: this.topAcessoAula.colors }
+              ];
             }
 
 
@@ -108,37 +110,17 @@ export class HomeComponent implements OnInit {
             request => {
               this.lowAcessoAula = request;
               console.log(this.lowAcessoAula);
-              let myChart2 = new Chart(this.ctx2, {
-                type: 'bar',
-                data: {
-                  labels: this.lowAcessoAula.labels.reverse(),
-                  datasets: [{
-                    label: this.lowAcessoAula.labe,
-                    data: this.lowAcessoAula.values.reverse(),
-                    backgroundColor: this.lowAcessoAula.colors,
-                    borderWidth: 1,
-                    barPercentage: 0.6
-                  }]
-                },
-                options: {
-                  title: {
-                    display: true,
-                    text: 'Disciplinas Menos Acessadas'
-                  },
-                  legend: {
-                    display: false
-                  },
-                  responsive: true,
-                  display: true,
-                  scales: {
-                    yAxes: [{
-                      ticks: {
-                        beginAtZero: true
-                      }
-                    }]
-                  }
-                }
-              });
+              this.barChartLabelsDois = this.lowAcessoAula.labels.reverse();
+              this.barChartDataDois =
+                [{
+                  data: this.lowAcessoAula.values.reverse(),
+                  label: this.lowAcessoAula.labe,
+
+                }];
+              this.doughnutChartColorsDois = [
+                { backgroundColor: this.lowAcessoAula.colors }
+              ];
+
             }
           );
 
