@@ -1,7 +1,5 @@
-import { from } from 'rxjs';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
 import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
@@ -17,6 +15,8 @@ import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/discip
 import { AulaCadastrarComponent } from './aula/aula-cadastrar/aula-cadastrar.component';
 import { AulaEditarComponent } from './aula/aula-editar/aula-editar.component';
 import { AulaConsultarComponent } from './aula/aula-consultar/aula-consultar.component';
+import { HomeComponent } from './home/home.component';
+import { EstatisticaAcessoComponent } from './estatistica-acesso/estatistica-acesso.component';
 
 
 export const routes: Routes = [
@@ -93,6 +93,14 @@ export const routes: Routes = [
     path: 'AulaEditar',
     component: AulaEditarComponent
   },
+  {
+    path: 'Home',
+    component: HomeComponent
+  },
+  {
+    path: 'EstatisticaAcesso',
+    component: EstatisticaAcessoComponent
+  }
 ];
 
 

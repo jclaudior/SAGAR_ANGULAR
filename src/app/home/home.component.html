@@ -1,5 +1,58 @@
 <div class="container mt-5 mb-5">
-  <canvas id="myChart" width="1200px" height="400"></canvas>
-  <canvas class="mt-5" id="myChart2" width="1200px" height="400"></canvas>
-  <canvas class="mt-5" id="myChart3" width="1200px" height="400"></canvas>
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <label>Data Inicial</label>
+      <input type="date" [(ngModel)]="dtInicial" (change)="consultarPeriodo()"  class="form-control">
+    </div>
+    <div class="col-md-6 col-sm-12" >
+      <label>Data Final</label>
+      <input type="date" [(ngModel)]="dtFinal" (change)="consultarPeriodo()"  class="form-control">
+    </div>
   </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div class="col-sm-12 mt-5">
+        <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+        [colors]="doughnutChartColors"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <div class="col-sm-12 mt-5">
+        <canvas baseChart
+        [datasets]="barChartDataDois"
+        [labels]="barChartLabelsDois"
+        [options]="barChartOptions"
+        [legend]="barChartLegendDois"
+        [chartType]="barChartTypeDois"
+        [colors]="doughnutChartColorsDois"></canvas>
+      </div>
+    </div>
+    <div class="col-9 mt-5"></div>
+    <div class="col-3 mt-5"><button routerLink="/EstatisticaAcesso" class="btn btn-primary form-control">Estatistica de Acesso</button></div>
+  </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

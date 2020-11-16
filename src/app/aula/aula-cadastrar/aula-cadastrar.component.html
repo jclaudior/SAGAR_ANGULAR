@@ -5,7 +5,7 @@
   <div class="row">
       <div class="col-6 mt-5">
         <label>Turma</label>
-        <select class="form-control" name="turma" [(ngModel)]="aula.turma" (ngModelChange)="setNewTurma($event)" [ngClass]="{'is-invalid': turma.errors}" required #turma="ngModel">
+        <select class="form-control" name="turma" [(ngModel)]="aula.turma" (ngModelChange)="setNewTurma($event)" [ngClass]="{'is-invalid': turma.errors}" (change)="populaDiciplina()" required #turma="ngModel">
           <option>Selecione uma opção</option>
           <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
         </select>
@@ -14,7 +14,7 @@
         <label>Disciplina</label>
         <select class="form-control" name="disciplina" [(ngModel)]="aula.disciplina" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': disciplina.errors}" required #disciplina="ngModel">
           <option>Selecione uma opção</option>
-          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{disciplina}}</option>
+          <option *ngFor="let disciplina of listDisciplina" [ngValue]="disciplina">{{disciplina.nmDisciplina}}</option>
         </select>
       </div>
       <div class="col-6 mt-5">

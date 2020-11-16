@@ -1,5 +1,10 @@
+import { DashboardService } from './shared/dashboard.service';
 import { Component, OnInit } from '@angular/core';
-import * as Chart from 'chart.js';
+import { Dashboard } from './shared/dashboard.model';
+import * as moment from 'moment';
+
+declare var $: any;
+
 
 @Component({
   selector: 'app-home',
@@ -7,99 +12,125 @@ import * as Chart from 'chart.js';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  requestSucess = false;
+  mensagemModal = '';
+  titleModal = '';
 
-  canvas: any; ctx: any; canvas2: any; ctx2: any; canvas3: any; ctx3: any;
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
 
+
+  public barChartLabels = [];
+  public barChartType = 'bar';
+  public barChartLegend = false;
+  public doughnutChartColors = [
+    { backgroundColor: [] }
+  ];
+
+  public barChartData = [
+    { data: [], label: '' },
+  ];
+
+
+  public barChartLabelsDois = [];
+  public barChartTypeDois = 'bar';
+  public barChartLegendDois = false;
+  public doughnutChartColorsDois = [
+    { backgroundColor: [] }
+  ];
+
+  public barChartDataDois = [
+    { data: [], label: '' },
+  ];
+
+  topAcessoAula: Dashboard = {
+    colors: [],
+    values: [],
+    labels: [],
+    labe: null
+  };
+  lowAcessoAula: Dashboard = {
+    colors: [],
+    values: [],
+    labels: [],
+    labe: null
+  };
+
+  dtInicial: string = moment().subtract(1, 'month').format("YYYY-MM-DD");
+  dtFinal: string = moment().format("YYYY-MM-DD");
+  dtAtual: Date = new Date();
+
+
+
+
+  constructor(private dashboardService: DashboardService) { }
   ngOnInit() {
 
-    this.canvas = document.getElementById('myChart');
-    this.canvas2 = document.getElementById('myChart2');
-    this.canvas3 = document.getElementById('myChart3');
-    this.ctx = this.canvas.getContext('2d');
-    this.ctx2 = this.canvas2.getContext('2d');
-    this.ctx3 = this.canvas3.getContext('2d');
-    let myChart = new Chart(this.ctx, {
-      type: 'bar',
-      data: {
-        labels: ["Redes", "Banco de Dados", "Analise de Sistema", "Redes", "Banco de Dados", "Analise de Sistema"],
-        datasets: [{
-          label: 'Quantida de Alunos Conectados',
-          data: [85, 100, 60, 46, 90, 100],
-          backgroundColor: ['rgba(255, 25, 25, 0.6)', "blue", "orange","green","pink","gray"],
-          borderColor:['red', "blue", "orange","green","pink","gray"],
-          borderWidth: 2,
-          barPercentage: 0.6
-        }]
-      },
-      options: {
-        legend: {
-          display: true
-        },
-        responsive: true,
-        display: true,
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
+    if (this.topAcessoAula.labe == null && this.lowAcessoAula.labe == null) {
+      this.consultarPeriodo();
+    }
 
-    let myChart2 = new Chart(this.ctx2, {
-      type: 'pie',
-      data: {
-        labels: ["Redes", "Banco de Dados", "Analise de Sistema"],
-        datasets: [{
-          label: 'Active Angular Vesrions',
-          data: [85, 100, 60],
-          backgroundColor: ["red", "blue", "orange"],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        legend: {
-          display: true
-        },
-        responsive: true,
-        display: true,
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
 
-    let myChart3 = new Chart(this.ctx3, {
-      type: 'line',
-      data: {
-        labels: ["Angular 10", "Angular 9", "Angular 8"],
-        datasets: [{
-          label: 'Active Angular Vesrions',
-          data: [85, 100, 60],
-          backgroundColor: ["red", "blue", "orange"],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        legend: {
-          display: true
-        },
-        responsive: true,
-        display: true,
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
+
+  }
+
+  consultarPeriodo(): void {
+    let meses = moment(this.dtFinal).diff(moment(this.dtInicial), 'months', true);
+    if (this.dtInicial != null && this.dtFinal != null) {
+      if (moment(this.dtInicial) <= moment(this.dtFinal)) {
+        if (meses >= 6) {
+          this.mensagemModal = "Intervalo deve ser de no máximo 6 meses";
+          this.titleModal = "Aviso";
+          $('#mensagemModal').modal('show');
+        } else {
+
+
+          this.dashboardService.getTopAcessoAula(this.dtInicial, this.dtFinal).subscribe(
+            request => {
+              this.topAcessoAula = request;
+              console.log(this.topAcessoAula);
+              this.barChartLabels = this.topAcessoAula.labels;
+              this.barChartData =
+                [{
+                  data: this.topAcessoAula.values,
+                  label: this.topAcessoAula.labe,
+
+                }];
+              this.doughnutChartColors = [
+                { backgroundColor: this.topAcessoAula.colors }
+              ];
             }
-          }]
+
+
+          );
+
+          this.dashboardService.getLowAcessoAula(this.dtInicial, this.dtFinal).subscribe(
+            request => {
+              this.lowAcessoAula = request;
+              console.log(this.lowAcessoAula);
+              this.barChartLabelsDois = this.lowAcessoAula.labels.reverse();
+              this.barChartDataDois =
+                [{
+                  data: this.lowAcessoAula.values.reverse(),
+                  label: this.lowAcessoAula.labe,
+
+                }];
+              this.doughnutChartColorsDois = [
+                { backgroundColor: this.lowAcessoAula.colors }
+              ];
+
+            }
+          );
+
         }
+      } else {
+        this.mensagemModal = "Data Final de Ser Maior que a Dada Inicial";
+        this.titleModal = "Aviso";
+        $('#mensagemModal').modal('show');
       }
-    });
+    }
   }
 
 }

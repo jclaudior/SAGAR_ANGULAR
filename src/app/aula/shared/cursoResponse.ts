@@ -1,4 +1,4 @@
-import { Curso } from './curso.model';
+import { Curso } from 'src/app/curso/shared/curso.model';
 import { ResponseAPIArray } from 'src/app/reponseAPI/responseAPI.model';
 
 export interface CursosResponse extends ResponseAPIArray<Curso>{

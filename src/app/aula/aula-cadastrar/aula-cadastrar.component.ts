@@ -2,7 +2,6 @@ import { DisciplinasResponse } from './../shared/disciplinaResponse';
 import { DisciplinaService } from '../shared/disciplina.service';
 import { CursoService } from '../shared/curso.service';
 import { Professor } from '../shared/professor.model';
-import { Curso } from '../shared/curso.model';
 import { Turma } from '../shared/turma.model';
 import { Disciplina } from '../shared/disciplina.model';
 import { Aula } from '../shared/aula.model';
@@ -11,6 +10,7 @@ import { ResponseAula } from '../shared/aulaResponse';
 import { AulaService } from '../shared/aula.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Curso } from 'src/app/curso/shared/curso.model';
 
 declare var $: any;
 
@@ -47,6 +47,8 @@ export class AulaCadastrarComponent implements OnInit {
     cdCurso: null,
     nmCurso: null,
     qtHora: null,
+    cordenadorEntity: null,
+    disciplinas: []
   };
 
   turma: Turma = {
@@ -85,6 +87,10 @@ export class AulaCadastrarComponent implements OnInit {
               private cursoService: CursoService,
               private disciplinaService: DisciplinaService) {
 
+  }
+
+  populaDiciplina(): void{
+    this.listDisciplina = this.turma.curso.disciplinas;
   }
 
   ngOnInit(): void {
