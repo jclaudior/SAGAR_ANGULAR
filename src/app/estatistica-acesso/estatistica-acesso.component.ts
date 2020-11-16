@@ -76,6 +76,7 @@ export class EstatisticaAcessoComponent implements OnInit {
 
   }
 
+
   consultarPeriodo(): void {
     let meses = moment(this.dtFinal).diff(moment(this.dtInicial), 'months', true);
     if (this.dtInicial != null && this.dtFinal != null && this.disciplina != null) {
