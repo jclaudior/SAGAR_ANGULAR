@@ -1,3 +1,6 @@
+import { AulaConsultarComponent } from './aula/aula-consultar/aula-consultar.component';
+import { AulaEditarComponent } from './aula/aula-editar/aula-editar.component';
+import { AulaCadastrarComponent } from './aula/aula-cadastrar/aula-cadastrar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,7 +16,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
 import { ProfessorConsultarComponent } from './professor/professor-consultar/professor-consultar.component';
 import { ProfessorEditarComponent } from './professor/professor-editar/professor-editar.component';
-import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar.component'
+import { CursoCadastrarComponent } from './curso/curso-cadastrar/curso-cadastrar.component';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { EditarCursoComponent } from './curso/editar-curso/editar-curso.component';
 import { CursoConsultarComponent } from './curso/curso-consultar/curso-consultar.component';
@@ -22,6 +25,9 @@ import { DisciplinaCadastrarComponent } from './disciplina/disciplina-cadastrar/
 import { DisciplinaConsultarComponent } from './disciplina/disciplina-consultar/disciplina-consultar.component';
 import { DisciplinaEditarComponent } from './disciplina/disciplina-editar/disciplina-editar.component';
 import { ConversaComponent } from './conversa/conversa.component';
+import { EstatisticaAcessoComponent } from './estatistica-acesso/estatistica-acesso.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +47,10 @@ import { ConversaComponent } from './conversa/conversa.component';
     DisciplinaEditarComponent,
     HomeComponent,
     ConversaComponent,
+    AulaCadastrarComponent,
+    AulaConsultarComponent,
+    AulaEditarComponent,
+    EstatisticaAcessoComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +60,8 @@ import { ConversaComponent } from './conversa/conversa.component';
     ReactiveFormsModule,
     CommonModule,
     AngularDualListBoxModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

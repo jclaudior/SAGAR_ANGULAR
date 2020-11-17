@@ -1,0 +1,64 @@
+<p class="textLinkHere">AULA > CONSULTA</p>
+<hr>
+<h6 class="display-4">CONSULTA DE AULA</h6>
+<form #formAula="ngForm">
+  <div class="row">
+      <div class="col-6 mt-5">
+        <label>Curso</label>
+        <select class="form-control" name="curso" >
+          <option>Selecione uma opção</option>
+        </select>
+      </div>
+      <div class="col-2 mt-auto">
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" >Buscar</button>
+      </div>
+      <div class="col-2 mt-auto">
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Limpar</button>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Turma</label>
+        <select class="form-control" name="turma" [(ngModel)]="aula.turma" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': turma.errors}" required #turma="ngModel">
+          <option>Selecione uma opção</option>
+        </select>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Disciplina</label>
+        <select class="form-control" name="disciplina" [(ngModel)]="aula.disciplina" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': disciplina.errors}" required #disciplina="ngModel">
+          <option>Selecione uma opção</option>
+        </select>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Data</label>
+        <input class="form-control" name="dtAula" type="text" [(ngModel)]="aula.dtAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
+        <div *ngIf="dtAula.errors && dtAula.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="dtAula.errors.required">
+              Data Requirida.
+          </div>
+        </div>
+      </div>
+      <div class="col-10 mt-5">
+      </div>
+      <div class="col-2 mt-5">
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Cadastrar</button>
+      </div>
+  </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

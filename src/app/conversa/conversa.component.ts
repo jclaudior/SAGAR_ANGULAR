@@ -1,5 +1,6 @@
 import { ProfessorService } from './../professor/shared/professor.service';
 import { Component, OnInit } from '@angular/core';
+import { Professor } from '../professor/shared/professor.model';
 
 @Component({
   selector: 'app-conversa',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConversaComponent implements OnInit {
 
-  url : string = "api.whatsapp.com/send?phone=55";
+  url : string = "http://api.whatsapp.com/send?phone=55";
 
   professor : Professor = {
     cdMatricula: null,

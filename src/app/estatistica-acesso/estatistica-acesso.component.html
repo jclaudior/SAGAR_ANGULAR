@@ -1,0 +1,56 @@
+<p class="textLinkHere">ESTATISTICA DE ACESSO</p>
+<hr>
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-3 col-sm-12">
+      <label>Data Inicial</label>
+      <input type="date" [(ngModel)]="dtInicial"   class="form-control">
+    </div>
+    <div class="col-md-3 col-sm-12" >
+      <label>Data Final</label>
+      <input type="date" [(ngModel)]="dtFinal"   class="form-control">
+    </div>
+    <div class="col-md-3 col-sm-12" >
+      <label>Disciplina</label>
+      <select class="form-control" name="curso" [(ngModel)]="disciplina" (ngModelChange)="setNewCurso($event)" >
+        <option>Selecione Uma Opção</option>
+        <option *ngFor="let diciplinaSelecionada of disciplinaResponse.retorno" [ngValue]="diciplinaSelecionada">{{diciplinaSelecionada.nmDisciplina}}</option>
+      </select>
+    </div>
+    <div class="col-md-3 col-sm-12 pt-2" >
+      <button class="btn btn-primary mt-4" (click)="consultarPeriodo()">Visualizar</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 mt-5">
+      <canvas baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+      [colors]="doughnutChartColors"></canvas>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

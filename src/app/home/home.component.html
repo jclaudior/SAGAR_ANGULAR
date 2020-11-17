@@ -10,8 +10,30 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 col-sm-12"><canvas id="myChart" width="1200px" height="1000"></canvas></div>
-    <div class="col-md-6 col-sm-12"><canvas id="myChart2" width="1200px" height="1000"></canvas></div>
+    <div class="col-md-6 col-sm-12">
+      <div class="col-sm-12 mt-5">
+        <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+        [colors]="doughnutChartColors"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <div class="col-sm-12 mt-5">
+        <canvas baseChart
+        [datasets]="barChartDataDois"
+        [labels]="barChartLabelsDois"
+        [options]="barChartOptions"
+        [legend]="barChartLegendDois"
+        [chartType]="barChartTypeDois"
+        [colors]="doughnutChartColorsDois"></canvas>
+      </div>
+    </div>
+    <div class="col-9 mt-5"></div>
+    <div class="col-3 mt-5"><button routerLink="/EstatisticaAcesso" class="btn btn-primary form-control">Estatistica de Acesso</button></div>
   </div>
   </div>
 

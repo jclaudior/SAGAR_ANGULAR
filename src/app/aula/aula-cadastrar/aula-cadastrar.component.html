@@ -1,0 +1,108 @@
+<p class="textLinkHere">AULA > CADASTRO</p>
+<hr>
+<h6 class="display-4">CADASTRO DE AULA</h6>
+<form #formAula="ngForm">
+  <div class="row">
+      <div class="col-6 mt-5">
+        <label>Turma</label>
+        <select class="form-control" name="turma" [(ngModel)]="aula.turma" (ngModelChange)="setNewTurma($event)" [ngClass]="{'is-invalid': turma.errors}" (change)="populaDiciplina()" required #turma="ngModel">
+          <option>Selecione uma opção</option>
+          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
+        </select>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Disciplina</label>
+        <select class="form-control" name="disciplina" [(ngModel)]="aula.disciplina" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': disciplina.errors}" required #disciplina="ngModel">
+          <option>Selecione uma opção</option>
+          <option *ngFor="let disciplina of listDisciplina" [ngValue]="disciplina">{{disciplina.nmDisciplina}}</option>
+        </select>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Link da Aula</label>
+        <input class="form-control" name="lkAula" type="text" [(ngModel)]="aula.lkAula" [ngClass]="{'is-invalid': lkAula.errors}" required #lkAula="ngModel">
+        <div *ngIf="lkAula.errors && lkAula.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="lkAula.errors.required">
+              Link da Aula Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mt-5">
+        <label>Link da Gravação</label>
+        <input class="form-control" name="lkGravacao" type="text" [(ngModel)]="aula.lkGravacao" [ngClass]="{'is-invalid': lkGravacao.errors}" required #lkGravacao="ngModel">
+        <div *ngIf="lkGravacao.errors && lkGravacao.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="lkGravacao.errors.required">
+              Link da Gravação Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-3 mt-5">
+        <label>Quantidade de alunos conectados</label>
+        <input class="form-control" name="qtAluno" type="text" [(ngModel)]="aula.qtAluno" [ngClass]="{'is-invalid': qtAluno.errors}" required #qtAluno="ngModel">
+        <div *ngIf="qtAluno.errors && qtAluno.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="qtAluno.errors.required">
+              Quantidade de alunos Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-3 mt-5">
+        <label>Data da Aula</label>
+        <input class="form-control" name="dtAula" type="text" [(ngModel)]="aula.dtAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
+        <div *ngIf="dtAula.errors && dtAula.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="dtAula.errors.required">
+              Data Requirida.
+          </div>
+        </div>
+      </div>
+      <div class="col-3 mt-5">
+        <label>Hora de Inicio</label>
+        <input class="form-control" name="hrInicio" type="text" [(ngModel)]="aula.hrInicio" [ngClass]="{'is-invalid': hrInicio.errors}" required #hrInicio="ngModel">
+        <div *ngIf="hrInicio.errors && hrInicio.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="hrInicio.errors.required">
+              Hora de Inicio Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-3 mt-5">
+        <label>Hora Termino</label>
+        <input class="form-control" name="hrTermino" type="text" [(ngModel)]="aula.hrTermino" [ngClass]="{'is-invalid': hrTermino.errors}" required #hrTermino="ngModel">
+        <div *ngIf="hrTermino.errors && hrTermino.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="hrTermino.errors.required">
+              Hora Termino Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-5">
+        <label>Conteúdo ministrado na aula</label>
+        <textarea class="form-control" name="aula.dsAula" [(ngModel)]="aula.dsAula" [ngClass]="{'is-invalid': dsAula.errors}" required #dsAula="ngModel"></textarea>
+        <div *ngIf="dsAula.errors && dsAula.dirty" class="invalid-feedback  d-block">
+          <div *ngIf="dsAula.errors.required">
+              Conteúdo ministrado na aula Requirido.
+          </div>
+        </div>
+      </div>
+      <div class="col-10 mt-5">
+      </div>
+      <div class="col-2 mt-5">
+        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Cadastrar</button>
+      </div>
+  </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [ngClass]="requestSucess ? 'text-success' : 'text-error'">{{titleModal}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{mensagemModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
