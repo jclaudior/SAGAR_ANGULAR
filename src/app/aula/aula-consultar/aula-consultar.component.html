@@ -44,6 +44,31 @@
       <div class="col-2 mt-5">
         <button class="btn btn-primary form-control" (click)="consultarAula()" #btnConsultar name="btnConsultar" [disabled]="formAula.form.invalid || cadastrando">Consultar</button>
       </div>
+      <div class="col-12" *ngIf="curso?.disciplinas?.length > 0">
+        <table  class="table">
+          <thead>
+            <tr>
+              <th scope="col">Cod Disciplina</th>
+              <th scope="col">Nome Disciplina</th>
+              <th scope="col">Carga Horaria</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let disciplina of curso.disciplinas">
+            <tr>
+              <td>{{disciplina.idDisciplina}}</td>
+              <td>{{disciplina.nmDisciplina}}</td>
+              <td>{{disciplina.qtHora}}</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>{{qtTotalHora}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
 </form>
 <!-- Modal -->

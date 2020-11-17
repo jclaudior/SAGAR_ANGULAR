@@ -30,6 +30,7 @@ export class AulaConsultarComponent implements OnInit {
   titleModal = '';
   cadastrando = false;
   consulta = false;
+  qtTotalHora = 0;
 
   btnCadastrar = false;
 
@@ -87,7 +88,7 @@ export class AulaConsultarComponent implements OnInit {
   listTurma: Array<Turma>;
   listDisciplina: Array<Disciplina>;
 
-  constructor(private service: AulaService,
+  constructor(private aulaService: AulaService,
               private turmaService: TurmaService,
               private cursoService: CursoService,
               private disciplinaService: DisciplinaService) {
@@ -124,11 +125,15 @@ export class AulaConsultarComponent implements OnInit {
   }
 
   buscarAula(): void{
-    this.service.getBuscarAula(this.aula.idAula).subscribe(
+    this.aulaService.getBuscarAula(this.aula.idAula).subscribe(
       respose => {
         console.log(respose);
         this.aula = respose.retorno;
-        this.consulta = true;
+        //this.cordenador = this.curso.cordenadorEntity;
+        this.qtTotalHora = 0;
+        this.curso.disciplinas.forEach(element => {
+          this.qtTotalHora += element.qtHora;
+        });
       },
       error => {
         console.log(error);
