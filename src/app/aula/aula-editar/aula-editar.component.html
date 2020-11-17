@@ -46,11 +46,11 @@
         </div>
       </div>
       <div class="col-3 mt-5">
-        <label>Quantidade de alunos conectados</label>
+        <label>Qtd de alunos conectados</label>
         <input class="form-control" name="qtAluno" type="number" [(ngModel)]="aula.qtAluno" [ngClass]="{'is-invalid': qtAluno.errors}" required #qtAluno="ngModel" [disabled]="formAula.form.invalid || cadastrando">
         <div *ngIf="qtAluno.errors && qtAluno.dirty" class="invalid-feedback  d-block">
           <div *ngIf="qtAluno.errors.required">
-              Quantidade de alunos Requirido.
+              Qtd de alunos Requirido.
           </div>
         </div>
       </div>
