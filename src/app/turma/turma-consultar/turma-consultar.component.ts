@@ -105,7 +105,7 @@ export class TurmaConsultarComponent implements OnInit {
       }
     );
   }
-
+  
   limparTurma(): void{
     this.consulta = false;
     this.turma = {

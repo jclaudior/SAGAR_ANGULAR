@@ -16,7 +16,7 @@
         <button class="btn btn-primary form-control mt-4" (click)="buscarTurma()">Buscar</button>
       </div>
       <div class="col-2 mt-5 pt-2">
-        <button class="btn btn-primary form-control mt-4" (click)="limparTurma()">Limpar</button>
+        <button class="btn btn-primary form-control mt-4" (click)="limparTurma()" [disabled]="!consulta">Limpar</button>
       </div>
       <div class="col-6 mt-5">
         <label>Turma</label>
