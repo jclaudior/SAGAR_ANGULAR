@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { ProfessorCadastrarComponent } from './professor/professor-cadastrar/professor-cadastrar.component';
@@ -23,7 +24,7 @@ import { EstatisticaAcessoComponent } from './estatistica-acesso/estatistica-ace
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
@@ -106,6 +107,10 @@ export const routes: Routes = [
   {
     path: 'EstatisticaAcesso',
     component: EstatisticaAcessoComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

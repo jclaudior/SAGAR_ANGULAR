@@ -1,9 +1,9 @@
-<input type="checkbox" id="check">
-<label for="check" class="btnlabel">
+<input type="checkbox" id="check" *ngIf="!(router.url.includes('login'))">
+<label for="check" class="btnlabel" *ngIf="!(router.url.includes('login'))">
     <i class="fas fa-bars" id="btn"></i>
     <i class="fas fa-times" id="cancel"></i>
 </label>
-<div class="sidebar">
+<div class="sidebar" *ngIf="!(router.url.includes('login'))">
     <header>SAGAR</header>
     <ul class="sidebar-item">
         <li class="li-sidbar"><a routerLink="/Home"><i class="fas fa-home"></i>Home</a></li>
@@ -51,7 +51,7 @@
     </ul>
 </div>
 <section>
-    <app-header></app-header>
+    <app-header *ngIf="!(router.url.includes('login'))"></app-header>
     <div class="container p-3">
         <router-outlet></router-outlet>
     </div>
