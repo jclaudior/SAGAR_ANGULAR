@@ -35,7 +35,7 @@ export class AulaCadastrarComponent implements OnInit {
   responseCursos: CursosResponse;
 
   professor: Professor = {
-    cdMatricula: null,
+    cdMatricula: 1,
     nmProfessor: null,
     dsEmail: null,
     dsCelular: null,
@@ -108,7 +108,7 @@ export class AulaCadastrarComponent implements OnInit {
     );
   }
 
-  cadastrarTurma(): void{
+  cadastrarAula(): void{
     console.log(this.aula);
     this.cadastrando = true;
     this.service.postInserirAula(this.aula).subscribe(

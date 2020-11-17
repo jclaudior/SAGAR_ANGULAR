@@ -1,3 +1,4 @@
+import { TurmaService } from './../../turma/shared/turma.service';
 import { DisciplinasResponse } from '../shared/disciplinaResponse';
 import { DisciplinaService } from '../shared/disciplina.service';
 import { CursoService } from '../shared/curso.service';
@@ -83,12 +84,18 @@ export class AulaConsultarComponent implements OnInit {
   };
 
   listCurso: Array<Curso>;
+  listTurma: Array<Turma>;
   listDisciplina: Array<Disciplina>;
 
   constructor(private service: AulaService,
+              private turmaService: TurmaService,
               private cursoService: CursoService,
               private disciplinaService: DisciplinaService) {
 
+  }
+
+  populaDiciplina(): void{
+    this.listDisciplina = this.turma.curso.disciplinas;
   }
 
   ngOnInit(): void {
@@ -98,6 +105,12 @@ export class AulaConsultarComponent implements OnInit {
         this.listCurso = this.responseCursos.retorno;
       }
     );
+    //this.turmaService.getListarTurmas().subscribe(
+      //response => {
+      //  this.responseTurmas = response;
+      //  this.listTurma = this.responseTurmas.retorno;
+      //}
+    //);
     this.disciplinaService.getListarDisciplina().subscribe(
       response => {
         this.responseDisciplinas = response;
@@ -106,59 +119,30 @@ export class AulaConsultarComponent implements OnInit {
     );
   }
 
-  cadastrarTurma(): void{
-    console.log(this.aula);
-    this.cadastrando = true;
-    this.service.postInserirAula(this.aula).subscribe(
-      response => {
-        console.log(response);
-        this.requestSucess = true;
-        this.responseAula = response;
-        console.log(this.responseAula);
-        this.titleModal = this.responseAula.mensagem;
-        if (this.responseAula.retorno != null){
-          this.mensagemModal = `Id_Aula: ${this.responseAula.retorno.idAula}`;
-          this.aula = {
-            idAula: null,
-            professor: this.professor,
-            turma: this.turma,
-            disciplina: this.disciplina,
-            lkAula: null,
-            lkGravacao: null,
-            qtAluno: null,
-            dtAula: null,
-            hrInicio: null,
-            hrTermino: null,
-            dsAula: null,
-          };
-        }else{
-          this.mensagemModal = this.responseAula.mensagem;
-        }
-        $('#mensagemModal').modal('show');
-        this.cadastrando = false;
+  consultarAula(): void{
+
+  }
+
+  buscarAula(): void{
+    this.service.getBuscarAula(this.aula.idAula).subscribe(
+      respose => {
+        console.log(respose);
+        this.aula = respose.retorno;
+        this.consulta = true;
       },
       error => {
         console.log(error);
         this.requestSucess = false;
         if (error.error.mensagem != null){
           this.titleModal = error.error.mensagem;
-          if (error.error.retorno != null){
-            this.mensagemModal = `Já existe: ${error.error.retorno.idAula} `;
-          }else{
-            this.mensagemModal = error.error.mensagem;
-          }
+          this.mensagemModal = error.error.mensagem;
         }else{
           this.titleModal = error.name;
           this.mensagemModal = error.message;
         }
         $('#mensagemModal').modal('show');
-        this.cadastrando = false;
       }
     );
-  }
-
-  buscarAula(): void{
-
   }
 
   limparAula(): void{

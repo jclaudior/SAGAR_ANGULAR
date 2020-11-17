@@ -37,7 +37,7 @@
       </div>
       <div class="col-3 mt-5">
         <label>Quantidade de alunos conectados</label>
-        <input class="form-control" name="qtAluno" type="text" [(ngModel)]="aula.qtAluno" [ngClass]="{'is-invalid': qtAluno.errors}" required #qtAluno="ngModel">
+        <input class="form-control" name="qtAluno" type="number" [(ngModel)]="aula.qtAluno" [ngClass]="{'is-invalid': qtAluno.errors}" required #qtAluno="ngModel">
         <div *ngIf="qtAluno.errors && qtAluno.dirty" class="invalid-feedback  d-block">
           <div *ngIf="qtAluno.errors.required">
               Quantidade de alunos Requirido.
@@ -46,7 +46,7 @@
       </div>
       <div class="col-3 mt-5">
         <label>Data da Aula</label>
-        <input class="form-control" name="dtAula" type="text" [(ngModel)]="aula.dtAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
+        <input class="form-control" name="dtAula" type="date" [(ngModel)]="aula.dtAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
         <div *ngIf="dtAula.errors && dtAula.dirty" class="invalid-feedback  d-block">
           <div *ngIf="dtAula.errors.required">
               Data Requirida.
@@ -55,7 +55,7 @@
       </div>
       <div class="col-3 mt-5">
         <label>Hora de Inicio</label>
-        <input class="form-control" name="hrInicio" type="text" [(ngModel)]="aula.hrInicio" [ngClass]="{'is-invalid': hrInicio.errors}" required #hrInicio="ngModel">
+        <input class="form-control" name="hrInicio" type="time" [(ngModel)]="aula.hrInicio" [ngClass]="{'is-invalid': hrInicio.errors}" required #hrInicio="ngModel">
         <div *ngIf="hrInicio.errors && hrInicio.dirty" class="invalid-feedback  d-block">
           <div *ngIf="hrInicio.errors.required">
               Hora de Inicio Requirido.
@@ -64,7 +64,7 @@
       </div>
       <div class="col-3 mt-5">
         <label>Hora Termino</label>
-        <input class="form-control" name="hrTermino" type="text" [(ngModel)]="aula.hrTermino" [ngClass]="{'is-invalid': hrTermino.errors}" required #hrTermino="ngModel">
+        <input class="form-control" name="hrTermino" type="time" [(ngModel)]="aula.hrTermino" [ngClass]="{'is-invalid': hrTermino.errors}" required #hrTermino="ngModel">
         <div *ngIf="hrTermino.errors && hrTermino.dirty" class="invalid-feedback  d-block">
           <div *ngIf="hrTermino.errors.required">
               Hora Termino Requirido.
@@ -83,7 +83,7 @@
       <div class="col-10 mt-5">
       </div>
       <div class="col-2 mt-5">
-        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Cadastrar</button>
+        <button class="btn btn-primary form-control" (click)="cadastrarAula()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Cadastrar</button>
       </div>
   </div>
 </form>
