@@ -15,7 +15,7 @@
                 <li><a routerLink="/AulaEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
-        <li class="li-sidbar " (click)="showMenuProfessor()">
+        <li class="li-sidbar " (click)="showMenuProfessor()" *ngIf="isCordenador">
             <a><i class="fas fa-chalkboard-teacher" ></i>Professor</a>
             <ul [hidden] = "professor">
                 <li><a routerLink="/professorCadastrar" class="sublink-sidbar">Cadastrar</a></li>
@@ -23,7 +23,7 @@
                 <li><a routerLink="/ProfessorEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
-        <li class="li-sidbar" (click)="showMenuTurma()">
+        <li class="li-sidbar" (click)="showMenuTurma()" *ngIf="isCordenador">
             <a ><i class="fas fa-users"></i>Turma</a>
             <ul [hidden] = "turma">
                 <li><a routerLink="/turmaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
@@ -31,7 +31,7 @@
                 <li><a routerLink="/turmaEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
-        <li class="li-sidbar" (click)="showMenuDisciplina()">
+        <li class="li-sidbar" (click)="showMenuDisciplina()" *ngIf="isCordenador">
             <a ><i class="fas fa-graduation-cap"></i>Disciplina</a>
             <ul [hidden] = "disciplina">
                 <li><a routerLink="/DisciplinaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
@@ -39,7 +39,7 @@
                 <li><a routerLink="/DisciplinaEditar" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
-        <li class="li-sidbar" (click)="showMenuCurso()">
+        <li class="li-sidbar" (click)="showMenuCurso()" *ngIf="isCordenador">
             <a><i class="fas fa-book"></i>Curso</a>
             <ul [hidden] = "curso">
                 <li><a routerLink="/CursoCadastrar" class="sublink-sidbar">Cadastrar</a></li>
@@ -47,7 +47,8 @@
               <li><a routerLink="/EditarCurso" class="sublink-sidbar">Alterar</a></li>
             </ul>
         </li>
-        <li class="li-sidbar"><a routerLink="/Conversa"><i class="fas fa-comment"></i>Conversa</a></li>
+        <li class="li-sidbar"><a routerLink="/Conversa" *ngIf="isCordenador"><i class="fas fa-comment"></i>Conversa</a></li>
+        <li class="li-sidbar"><a (click)="sair()"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
     </ul>
 </div>
 <section>

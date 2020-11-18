@@ -7,25 +7,32 @@
   <div class="col-12 mt-3">
       <form #formLogin = "ngForm">
           <div class="row d-flex justify-content-center align-items-center">
-              <div class="col-9">
+              <div class="col-5">
                   <div class="row">
-                    <div class=" col-12 my-4 alert alert-danger">
-
+                    <div class=" col-12  alert alert-danger" *ngIf="error">
+                      {{mensagem}}
                     </div>
-                    <div class=" col-12 my-4 alert alert-warning">
-
+                    <div class="form-group col-12 mt-5">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" [checked]="isProfessor"  type="radio" [(ngModel)]="isProfessor" name="inlineRadioOptions" id="inlineRadio1" [value]="true">
+                        <label class="form-check-label" for="inlineRadio1">Professor</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" [(ngModel)]="isProfessor" id="inlineRadio2" [value]="false">
+                        <label class="form-check-label" for="inlineRadio2">Coordenador</label>
+                      </div>
                     </div>
-                      <div class="form-group col-12 my-4">
+                      <div class="form-group col-12 mt-2">
                           <label for="usuario" class="text-green">Matrícula Usuário:</label>
-                          <input type="number" class="form-control"  name="nrMatricula" required >
+                          <input type="number" class="form-control" [(ngModel)]="matricula" name="matricula" required >
                       </div>
                       <div class="form-group col-12 my-4">
                           <label for="senha" class="text-green">Senha:</label>
-                          <input type="password" class="form-control"  name="pwOperador" required >
+                          <input type="password" class="form-control"  [(ngModel)]="senha" name="senha" required >
                           <a class="link">Esqueci minha senha</a>
                       </div>
                       <div class="form-group col-12 my-4 text-center">
-                         <button   class="btn btn-primary btn-lg pl-5 pr-5 person-icon">Login</button>
+                         <button   class="btn btn-primary btn-lg pl-5 pr-5 person-icon" (click)="logar()">Login</button>
                       </div>
                   </div>
               </div>

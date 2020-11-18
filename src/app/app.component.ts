@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   constructor(public router: Router){
 
@@ -14,6 +14,7 @@ export class AppComponent {
 
   title = 'syntaxerrorangular';
 
+  isCordenador = true;
 
   aula = true;
   professor = true;
@@ -21,7 +22,11 @@ export class AppComponent {
   disciplina = true;
   curso = true;
 
-
+  ngOnInit(): void {
+    if (localStorage['professor'] != null){
+      this.isCordenador = false;
+    }
+  }
 
 showMenuAula(): void{
   this.aula =  !this.aula;
@@ -41,6 +46,12 @@ showMenuDisciplina(): void {
 
 showMenuCurso(): void{
   this.curso = !this.curso;
+}
+
+sair(): void{
+  localStorage.clear();
+  //this.router.navigate(['/']);
+  window.location.replace('/login')
 }
 
 }

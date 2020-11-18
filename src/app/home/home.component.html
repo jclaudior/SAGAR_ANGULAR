@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5" *ngIf="isCordenador">
   <div class="row">
     <div class="col-md-6 col-sm-12">
       <label>Data Inicial</label>
@@ -35,6 +35,14 @@
     <div class="col-9 mt-5"></div>
     <div class="col-3 mt-5"><button routerLink="/EstatisticaAcesso" class="btn btn-primary form-control">Estatistica de Acesso</button></div>
   </div>
+  </div>
+  <div class="container mt-5 mb-5" *ngIf="!isCordenador">
+    <h1 class="display-4">Opções de Aula</h1>
+    <div class="row mt-5">
+      <div class="col-md-4 col-sm-12"><a routerLink="/AulaCadastrar" class="btn btn-primary  form-control">Cadastrar</a></div>
+      <div class="col-md-4 col-sm-12"><a routerLink="/AulaConsultar" class="btn btn-primary  form-control">Consultar</a></div>
+      <div class="col-md-4 col-sm-12"><a routerLink="/AulaEditar" class="btn btn-primary form-control">Alterar</a></div>
+    </div>
   </div>
 
   <!-- Modal -->

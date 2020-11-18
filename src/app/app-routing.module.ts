@@ -19,7 +19,9 @@ import { AulaConsultarComponent } from './aula/aula-consultar/aula-consultar.com
 import { HomeComponent } from './home/home.component';
 import { ConversaComponent } from './conversa/conversa.component';
 import { EstatisticaAcessoComponent } from './estatistica-acesso/estatistica-acesso.component';
-
+import {
+  AuthGuardService as AuthGuard
+} from './auth/auth-grarg.service';
 
 export const routes: Routes = [
   {
@@ -28,85 +30,98 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'Home',
-    component: HomeComponent
-  },
-  {
     path: 'professorCadastrar',
-    component: ProfessorCadastrarComponent
-
+    component: ProfessorCadastrarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'ProfessorConsultar',
-    component: ProfessorConsultarComponent
+    component: ProfessorConsultarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'ProfessorEditar',
-    component: ProfessorEditarComponent
+    component: ProfessorEditarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'turmaCadastrar',
-    component: TurmaCadastrarComponent
+    component: TurmaCadastrarComponent,
+    canActivate: [AuthGuard]
 
   },
   {
     path: 'turmaConsultar',
-    component: TurmaConsultarComponent
+    component: TurmaConsultarComponent,
+    canActivate: [AuthGuard]
 
   },
   {
     path: 'turmaEditar',
-    component: TurmaEditarComponent
+    component: TurmaEditarComponent,
+    canActivate: [AuthGuard]
 
   },
   {
     path: 'CursoCadastrar',
-    component: CursoCadastrarComponent
-  },
+    component: CursoCadastrarComponent,
+    canActivate: [AuthGuard]
+   },
   {
     path: 'CursoConsultar',
-    component: CursoConsultarComponent
+    component: CursoConsultarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'EditarCurso',
-    component: EditarCursoComponent
+    component: EditarCursoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'DisciplinaCadastrar',
-    component: DisciplinaCadastrarComponent
+    component: DisciplinaCadastrarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'DisciplinaConsultar',
-    component: DisciplinaConsultarComponent
+    component: DisciplinaConsultarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'DisciplinaEditar',
-    component: DisciplinaEditarComponent
+    component: DisciplinaEditarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'AulaCadastrar',
-    component: AulaCadastrarComponent
+    component: AulaCadastrarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'AulaConsultar',
-    component: AulaConsultarComponent
+    component: AulaConsultarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'AulaEditar',
-    component: AulaEditarComponent
+    component: AulaEditarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'Home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
 
   {
     path: 'Conversa',
-    component: ConversaComponent
+    component: ConversaComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'EstatisticaAcesso',
-    component: EstatisticaAcessoComponent
+    component: EstatisticaAcessoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

@@ -58,6 +58,8 @@ export class HomeComponent implements OnInit {
     labe: null
   };
 
+  isCordenador = true;
+
   dtInicial: string = moment().subtract(1, 'month').format("YYYY-MM-DD");
   dtFinal: string = moment().format("YYYY-MM-DD");
   dtAtual: Date = new Date();
@@ -67,6 +69,13 @@ export class HomeComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService) { }
   ngOnInit() {
+    if (localStorage['reload'] != null){
+      localStorage.removeItem('reload');
+      window.location.reload();
+    }
+    if (localStorage['professor'] != null){
+      this.isCordenador = false;
+    }
 
     if (this.topAcessoAula.labe == null && this.lowAcessoAula.labe == null) {
       this.consultarPeriodo();
