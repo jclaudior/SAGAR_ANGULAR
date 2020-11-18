@@ -46,13 +46,13 @@ export class TurmaCadastrarComponent implements OnInit {
   listCurso: Array<Curso>;
 
   constructor(private service: TurmaService,
-  private cursoService: CursoService) {
+              private cursoService: CursoService) {
 
   }
 
   ngOnInit(): void {
     this.cursoService.getListarCursos().subscribe(
-      response=>{
+      response => {
         this.responseCursos = response;
         this.listCurso = this.responseCursos.retorno;
       }
@@ -89,7 +89,7 @@ export class TurmaCadastrarComponent implements OnInit {
         this.requestSucess = false;
         if (error.error.mensagem != null){
           this.titleModal = error.error.mensagem;
-          if(error.error.retorno != null){
+          if (error.error.retorno != null){
             this.mensagemModal = `NomeTurma: ${error.error.retorno.nmTurma}, Já existe: ${error.error.retorno.cdTurma} `;
           }else{
             this.mensagemModal = error.error.mensagem;

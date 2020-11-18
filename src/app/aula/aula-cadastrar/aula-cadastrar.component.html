@@ -7,7 +7,7 @@
         <label>Turma</label>
         <select class="form-control" name="turma" [(ngModel)]="aula.turma" (ngModelChange)="setNewTurma($event)" [ngClass]="{'is-invalid': turma.errors}" (change)="populaDiciplina()" required #turma="ngModel">
           <option>Selecione uma opção</option>
-          <option *ngFor="let curso of listCurso" [ngValue]="curso">{{curso.nmCurso}}</option>
+          <option *ngFor="let turma of listTurma" [ngValue]="turma">{{turma.nmTurma}}</option>
         </select>
       </div>
       <div class="col-6 mt-5">

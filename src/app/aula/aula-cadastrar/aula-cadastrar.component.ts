@@ -1,8 +1,10 @@
+import { TurmasResponse } from '../shared/turmaResponse';
 import { DisciplinasResponse } from './../shared/disciplinaResponse';
 import { DisciplinaService } from '../shared/disciplina.service';
+import { TurmaService } from '../shared/turma.service';
+import { Turma } from '../shared/turma.model';
 import { CursoService } from '../shared/curso.service';
 import { Professor } from '../shared/professor.model';
-import { Turma } from '../shared/turma.model';
 import { Disciplina } from '../shared/disciplina.model';
 import { Aula } from '../shared/aula.model';
 import { CursosResponse } from '../shared/cursoResponse';
@@ -31,8 +33,9 @@ export class AulaCadastrarComponent implements OnInit {
   btnCadastrar = false;
 
   responseAula: ResponseAula;
-  responseDisciplinas: DisciplinasResponse;
   responseCursos: CursosResponse;
+  responseTurmas: TurmasResponse;
+  responseDisciplinas: DisciplinasResponse;
 
   professor: Professor = {
     cdMatricula: 1,
@@ -81,10 +84,12 @@ export class AulaCadastrarComponent implements OnInit {
   };
 
   listCurso: Array<Curso>;
+  listTurma: Array<Turma>;
   listDisciplina: Array<Disciplina>;
 
   constructor(private service: AulaService,
               private cursoService: CursoService,
+              private turmaService: TurmaService,
               private disciplinaService: DisciplinaService) {
 
   }
@@ -98,6 +103,12 @@ export class AulaCadastrarComponent implements OnInit {
       response => {
         this.responseCursos = response;
         this.listCurso = this.responseCursos.retorno;
+      }
+    );
+    this.turmaService.getListarTurmas().subscribe(
+      response => {
+        this.responseTurmas = response;
+        this.listTurma = this.responseTurmas.retorno;
       }
     );
     this.disciplinaService.getListarDisciplina().subscribe(
@@ -159,9 +170,9 @@ export class AulaCadastrarComponent implements OnInit {
     );
   }
 
-  setNewTurma(curso: Curso): void {
-    console.log(curso);
-    this.turma.curso = curso;
+  setNewTurma(turma: Turma): void {
+    console.log(turma);
+    this.turma = turma;
     console.log(this.turma);
   }
 
