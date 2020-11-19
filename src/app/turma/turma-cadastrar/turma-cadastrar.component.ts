@@ -70,7 +70,7 @@ export class TurmaCadastrarComponent implements OnInit {
         console.log(this.responseTurma);
         this.titleModal = this.responseTurma.mensagem;
         if (this.responseTurma.retorno != null){
-          this.mensagemModal = `IdTurma: ${this.responseTurma.retorno.cdTurma} NomeTurma: ${this.responseTurma.retorno.nmTurma}`;
+          this.mensagemModal = `Codigo: ${this.responseTurma.retorno.cdTurma} Descrição: ${this.responseTurma.retorno.nmTurma}`;
           this.turma = {
             cdTurma: null,
             nmTurma: null,
