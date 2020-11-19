@@ -11,7 +11,7 @@ export class DisciplinaService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly API = 'http://localhost:8080/curso';
+  private readonly API = 'http://localhost:8080/disciplina';
 
   getListarDisciplina(): Observable<DisciplinasResponse>{
     return this.http.get<DisciplinasResponse>(`${this.API}`);

@@ -10,9 +10,9 @@
         <li class="li-sidbar" (click)="showMenuAula()">
             <a><i class="fas fa-book-open"></i>Aula</a>
             <ul [hidden] = "aula">
-                <li><a routerLink="/AulaCadastrar" class="sublink-sidbar">Cadastrar</a></li>
+                <li><a routerLink="/AulaCadastrar" class="sublink-sidbar" *ngIf="!isCordenador">Cadastrar</a></li>
                 <li><a routerLink="/AulaConsultar" class="sublink-sidbar">Consultar</a></li>
-                <li><a routerLink="/AulaEditar" class="sublink-sidbar">Alterar</a></li>
+                <li><a routerLink="/AulaEditar" class="sublink-sidbar" *ngIf="!isCordenador">Alterar</a></li>
             </ul>
         </li>
         <li class="li-sidbar " (click)="showMenuProfessor()" *ngIf="isCordenador">

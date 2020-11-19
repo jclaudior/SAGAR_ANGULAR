@@ -5,44 +5,60 @@
   <div class="row">
       <div class="col-6 mt-5">
         <label>Curso</label>
-        <select class="form-control" name="curso" >
+        <select class="form-control" name="disciplina" [(ngModel)]="curso" (ngModelChange)="setNewCurso($event)" >
           <option>Selecione uma opção</option>
+          <option *ngFor="let cursoSelect of listCurso" [ngValue]="cursoSelect">{{cursoSelect.nmCurso}}</option>
         </select>
       </div>
       <div class="col-2 mt-auto">
-        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" >Buscar</button>
+        <button class="btn btn-primary form-control"  #btnCadastrar name="btnCadastrar" (click)="buscarAula()" [disabled]="formAula.form.invalid ||(curso.cdCurso == null )|| (turma.nmTurma == null) || (disciplina.idDisciplina == null) ">Buscar</button>
       </div>
       <div class="col-2 mt-auto">
-        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Limpar</button>
+        <button class="btn btn-primary form-control"  #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando" (click)="limparAula()">Limpar</button>
       </div>
       <div class="col-6 mt-5">
         <label>Turma</label>
-        <select class="form-control" name="turma" [(ngModel)]="aula.turma" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': turma.errors}" required #turma="ngModel">
+        <select class="form-control" name="disciplina" [(ngModel)]="turma" (ngModelChange)="setNewTurma($event)" >
           <option>Selecione uma opção</option>
+          <option *ngFor="let turmaSelect of listTurma" [ngValue]="turmaSelect">{{turmaSelect.nmTurma}}</option>
         </select>
       </div>
       <div class="col-6 mt-5">
         <label>Disciplina</label>
-        <select class="form-control" name="disciplina" [(ngModel)]="aula.disciplina" (ngModelChange)="setNewDisciplina($event)" [ngClass]="{'is-invalid': disciplina.errors}" required #disciplina="ngModel">
+        <select class="form-control" name="disciplina" [(ngModel)]="disciplina" (ngModelChange)="setNewDisciplina($event)" >
           <option>Selecione uma opção</option>
+          <option *ngFor="let disciplinaSelect of listDisciplina" [ngValue]="disciplinaSelect">{{disciplinaSelect.nmDisciplina}}</option>
         </select>
       </div>
       <div class="col-6 mt-5">
         <label>Data</label>
-        <input class="form-control" name="dtAula" type="text" [(ngModel)]="aula.dtAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
+        <input class="form-control"  name="dataAula" type="date" [(ngModel)]="dataAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
         <div *ngIf="dtAula.errors && dtAula.dirty" class="invalid-feedback  d-block">
           <div *ngIf="dtAula.errors.required">
               Data Requirida.
           </div>
         </div>
       </div>
-      <div class="col-10 mt-5">
-      </div>
-      <div class="col-2 mt-5">
-        <button class="btn btn-primary form-control" (click)="cadastrarTurma()" #btnCadastrar name="btnCadastrar" [disabled]="formAula.form.invalid || cadastrando">Cadastrar</button>
-      </div>
   </div>
 </form>
+<div class="col-12" *ngIf="responseAulas?.retorno?.length > 0">
+  <table  class="table">
+    <thead>
+      <tr>
+        <th scope="col">Cod Disciplina</th>
+        <th scope="col">Nome Disciplina</th>
+        <th scope="col">Carga Horaria</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let aula of responseAulas?.retorno">
+      <tr>
+        <td>{{aula.idAula}}</td>
+        <td>{{aula.turma.nmTurma}}</td>
+        <td>{{aula.professor.nmProfessor}}</td>
+      </tr>
+    </tbody>
+  </table>
+
 <!-- Modal -->
 <div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

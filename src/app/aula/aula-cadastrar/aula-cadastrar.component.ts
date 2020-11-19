@@ -11,6 +11,8 @@ import { AulaService } from '../shared/aula.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Curso } from 'src/app/curso/shared/curso.model';
+import { TurmaService } from '../shared/turma.service';
+import { ResponseTurmas } from '../shared/responseTurma.model';
 
 declare var $: any;
 
@@ -80,11 +82,15 @@ export class AulaCadastrarComponent implements OnInit {
     dsAula: null,
   };
 
-  listCurso: Array<Curso>;
+  
+
+  listTurma: Array<Turma>;
   listDisciplina: Array<Disciplina>;
 
+  turmaResponse: ResponseTurmas;
+
   constructor(private service: AulaService,
-              private cursoService: CursoService,
+              private turmaService: TurmaService,
               private disciplinaService: DisciplinaService) {
 
   }
@@ -94,23 +100,23 @@ export class AulaCadastrarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cursoService.getListarCursos().subscribe(
+
+    if (localStorage['professor'] != null){
+      this.professor = JSON.parse(localStorage['professor']);
+    }
+
+    this.turmaService.getListarTurma().subscribe(
       response => {
-        this.responseCursos = response;
-        this.listCurso = this.responseCursos.retorno;
+        this.listTurma = response.retorno;
       }
     );
-    this.disciplinaService.getListarDisciplina().subscribe(
-      response => {
-        this.responseDisciplinas = response;
-        this.listDisciplina = this.responseDisciplinas.retorno;
-      }
-    );
+
   }
 
-  cadastrarTurma(): void{
+  cadastrarAula(): void{
     console.log(this.aula);
     this.cadastrando = true;
+    this.aula.professor = this.professor;
     this.service.postInserirAula(this.aula).subscribe(
       response => {
         console.log(response);
@@ -119,7 +125,7 @@ export class AulaCadastrarComponent implements OnInit {
         console.log(this.responseAula);
         this.titleModal = this.responseAula.mensagem;
         if (this.responseAula.retorno != null){
-          this.mensagemModal = `Id_Aula: ${this.responseAula.retorno.idAula}`;
+          this.mensagemModal = `Protocolo: ${this.responseAula.retorno.idAula}`;
           this.aula = {
             idAula: null,
             professor: this.professor,
@@ -159,9 +165,9 @@ export class AulaCadastrarComponent implements OnInit {
     );
   }
 
-  setNewTurma(curso: Curso): void {
-    console.log(curso);
-    this.turma.curso = curso;
+  setNewTurma(turma: Turma): void {
+    console.log(turma);
+    this.turma = turma ;
     console.log(this.turma);
   }
 

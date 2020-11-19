@@ -11,6 +11,8 @@ import { AulaService } from '../shared/aula.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Curso } from 'src/app/curso/shared/curso.model';
+import { TurmaService } from '../shared/turma.service';
+import { ResponseTurmas } from '../shared/responseTurma.model';
 
 declare var $: any;
 
@@ -21,7 +23,7 @@ declare var $: any;
 })
 export class AulaEditarComponent implements OnInit {
 
-  @ViewChild('formAula', {static: true}) formAula: NgForm;
+  @ViewChild('formAula', { static: true }) formAula: NgForm;
 
   requestSucess = false;
   mensagemModal = '';
@@ -81,42 +83,50 @@ export class AulaEditarComponent implements OnInit {
     dsAula: null,
   };
 
-  listCurso: Array<Curso>;
+
+
+  listTurma: Array<Turma>;
   listDisciplina: Array<Disciplina>;
 
-  constructor(private service: AulaService,
-              private cursoService: CursoService,
-              private disciplinaService: DisciplinaService) {
+  turmaResponse: ResponseTurmas;
 
+  constructor(private service: AulaService,
+    private turmaService: TurmaService,
+    private disciplinaService: DisciplinaService) {
+
+  }
+
+  populaDiciplina(): void {
+    this.listDisciplina = this.turma.curso.disciplinas;
   }
 
   ngOnInit(): void {
-    this.cursoService.getListarCursos().subscribe(
+
+    if (localStorage['professor'] != null) {
+      this.professor = JSON.parse(localStorage['professor']);
+    }
+
+    this.turmaService.getListarTurma().subscribe(
       response => {
-        this.responseCursos = response;
-        this.listCurso = this.responseCursos.retorno;
+        this.listTurma = response.retorno;
       }
     );
-    this.disciplinaService.getListarDisciplina().subscribe(
-      response => {
-        this.responseDisciplinas = response;
-        this.listDisciplina = this.responseDisciplinas.retorno;
-      }
-    );
+
   }
 
-  cadastrarTurma(): void{
+  alterarAula(): void {
     console.log(this.aula);
     this.cadastrando = true;
-    this.service.postInserirAula(this.aula).subscribe(
+    this.aula.professor = this.professor;
+    this.service.postEditarAula(this.aula).subscribe(
       response => {
         console.log(response);
         this.requestSucess = true;
         this.responseAula = response;
         console.log(this.responseAula);
         this.titleModal = this.responseAula.mensagem;
-        if (this.responseAula.retorno != null){
-          this.mensagemModal = `Id_Aula: ${this.responseAula.retorno.idAula}`;
+        if (this.responseAula.retorno != null) {
+          this.mensagemModal = `Protocolo: ${this.responseAula.retorno.idAula}`;
           this.aula = {
             idAula: null,
             professor: this.professor,
@@ -130,7 +140,7 @@ export class AulaEditarComponent implements OnInit {
             hrTermino: null,
             dsAula: null,
           };
-        }else{
+        } else {
           this.mensagemModal = this.responseAula.mensagem;
         }
         $('#mensagemModal').modal('show');
@@ -139,14 +149,14 @@ export class AulaEditarComponent implements OnInit {
       error => {
         console.log(error);
         this.requestSucess = false;
-        if (error.error.mensagem != null){
+        if (error.error.mensagem != null) {
           this.titleModal = error.error.mensagem;
-          if (error.error.retorno != null){
+          if (error.error.retorno != null) {
             this.mensagemModal = `Já existe: ${error.error.retorno.idAula} `;
-          }else{
+          } else {
             this.mensagemModal = error.error.mensagem;
           }
-        }else{
+        } else {
           this.titleModal = error.name;
           this.mensagemModal = error.message;
         }
@@ -156,11 +166,35 @@ export class AulaEditarComponent implements OnInit {
     );
   }
 
-  buscarAula(): void{
-
+  setNewTurma(turma: Turma): void {
+    console.log(turma);
+    this.turma = turma;
+    console.log(this.turma);
   }
 
-  limparAula(): void{
+  setNewDisciplina(disciplina: Disciplina): void {
+    console.log(disciplina);
+    this.disciplina = disciplina;
+    console.log(this.disciplina);
+  }
+  buscarAula(): void {
+    this.service.getBuscarAula(this.aula.idAula).subscribe(
+      response => {
+        if (response.retorno.professor.cdMatricula == this.professor.cdMatricula) {
+          this.aula = response.retorno;
+          console.log(this.aula);
+        } else {
+          this.requestSucess = false;
+          this.titleModal = "Aula Invalida";
+          this.mensagemModal = "Aula invalida para Edição!";
+          $('#mensagemModal').modal('show');
+          this.cadastrando = false;
+        }
+      }
+    );
+  }
+
+  limparAula(): void {
     this.consulta = false;
     this.aula = {
       idAula: null,
@@ -177,16 +211,5 @@ export class AulaEditarComponent implements OnInit {
     };
   }
 
-  setNewTurma(curso: Curso): void {
-    console.log(curso);
-    this.turma.curso = curso;
-    console.log(this.turma);
-  }
-
-  setNewDisciplina(disciplina: Disciplina): void{
-    console.log(disciplina);
-    this.disciplina = disciplina;
-    console.log(this.disciplina);
-  }
 
 }

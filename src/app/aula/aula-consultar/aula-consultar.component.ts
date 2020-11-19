@@ -1,3 +1,4 @@
+import { ResponseAulas } from './../shared/aulaResponse';
 import { DisciplinasResponse } from '../shared/disciplinaResponse';
 import { DisciplinaService } from '../shared/disciplina.service';
 import { CursoService } from '../shared/curso.service';
@@ -9,8 +10,9 @@ import { CursosResponse } from '../shared/cursoResponse';
 import { ResponseAula } from '../shared/aulaResponse';
 import { AulaService } from '../shared/aula.service';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Curso } from 'src/app/curso/shared/curso.model';
+import { TurmaService } from '../shared/turma.service';
 
 declare var $: any;
 
@@ -24,6 +26,7 @@ export class AulaConsultarComponent implements OnInit {
 
   @ViewChild('formAula', {static: true}) formAula: NgForm;
 
+
   requestSucess = false;
   mensagemModal = '';
   titleModal = '';
@@ -31,19 +34,6 @@ export class AulaConsultarComponent implements OnInit {
   consulta = false;
 
   btnCadastrar = false;
-
-  responseAula: ResponseAula;
-  responseDisciplinas: DisciplinasResponse;
-  responseCursos: CursosResponse;
-
-  professor: Professor = {
-    cdMatricula: null,
-    nmProfessor: null,
-    dsEmail: null,
-    dsCelular: null,
-    pwAcesso: null,
-    stProfessor: null,
-  };
 
   curso: Curso = {
     cdCurso: null,
@@ -68,26 +58,21 @@ export class AulaConsultarComponent implements OnInit {
     stDisciplina: null,
   };
 
-  aula: Aula = {
-    idAula: null,
-    professor: this.professor,
-    turma: this.turma,
-    disciplina: this.disciplina,
-    lkAula: null,
-    lkGravacao: null,
-    qtAluno: null,
-    dtAula: null,
-    hrInicio: null,
-    hrTermino: null,
-    dsAula: null,
-  };
+  dataAula: Date;
+
+  responseAulas: ResponseAulas;
+  responseAula: ResponseAula;
+  responseDisciplinas: DisciplinasResponse;
+  responseCursos: CursosResponse;
 
   listCurso: Array<Curso>;
   listDisciplina: Array<Disciplina>;
+  listTurma: Array<Turma>;
 
   constructor(private service: AulaService,
               private cursoService: CursoService,
-              private disciplinaService: DisciplinaService) {
+              private disciplinaService: DisciplinaService,
+              private turmaService: TurmaService) {
 
   }
 
@@ -102,86 +87,40 @@ export class AulaConsultarComponent implements OnInit {
       response => {
         this.responseDisciplinas = response;
         this.listDisciplina = this.responseDisciplinas.retorno;
+        console.log(this.responseDisciplinas.retorno);
       }
     );
-  }
 
-  cadastrarTurma(): void{
-    console.log(this.aula);
-    this.cadastrando = true;
-    this.service.postInserirAula(this.aula).subscribe(
+    this.turmaService.getListarTurma().subscribe(
       response => {
-        console.log(response);
-        this.requestSucess = true;
-        this.responseAula = response;
-        console.log(this.responseAula);
-        this.titleModal = this.responseAula.mensagem;
-        if (this.responseAula.retorno != null){
-          this.mensagemModal = `Id_Aula: ${this.responseAula.retorno.idAula}`;
-          this.aula = {
-            idAula: null,
-            professor: this.professor,
-            turma: this.turma,
-            disciplina: this.disciplina,
-            lkAula: null,
-            lkGravacao: null,
-            qtAluno: null,
-            dtAula: null,
-            hrInicio: null,
-            hrTermino: null,
-            dsAula: null,
-          };
-        }else{
-          this.mensagemModal = this.responseAula.mensagem;
-        }
-        $('#mensagemModal').modal('show');
-        this.cadastrando = false;
-      },
-      error => {
-        console.log(error);
-        this.requestSucess = false;
-        if (error.error.mensagem != null){
-          this.titleModal = error.error.mensagem;
-          if (error.error.retorno != null){
-            this.mensagemModal = `Já existe: ${error.error.retorno.idAula} `;
-          }else{
-            this.mensagemModal = error.error.mensagem;
-          }
-        }else{
-          this.titleModal = error.name;
-          this.mensagemModal = error.message;
-        }
-        $('#mensagemModal').modal('show');
-        this.cadastrando = false;
+        this.listTurma = response.retorno;
       }
     );
   }
 
   buscarAula(): void{
-
+    this.service.getBuscarAulaFiltro(this.curso.cdCurso, this.turma.cdTurma, this.disciplina.idDisciplina, this.dataAula).subscribe(
+      response => {
+        this.responseAulas = response;
+        console.log(this.responseAulas);
+      }
+    );
   }
 
   limparAula(): void{
-    this.consulta = false;
-    this.aula = {
-      idAula: null,
-      professor: null,
-      turma: null,
-      disciplina: null,
-      lkAula: null,
-      lkGravacao: null,
-      qtAluno: null,
-      dtAula: null,
-      hrInicio: null,
-      hrTermino: null,
-      dsAula: null,
-    };
+    window.location.reload();
   }
 
-  setNewTurma(curso: Curso): void {
-    console.log(curso);
-    this.turma.curso = curso;
+  setNewTurma(turma: Turma): void {
+    console.log(turma);
+    this.turma = turma ;
     console.log(this.turma);
+  }
+
+  setNewCurso(curso: Curso): void {
+    console.log(curso);
+    this.curso = curso;
+    console.log(this.curso);
   }
 
   setNewDisciplina(disciplina: Disciplina): void{
