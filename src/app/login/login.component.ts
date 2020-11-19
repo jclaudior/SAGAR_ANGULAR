@@ -48,12 +48,17 @@ export class LoginComponent implements OnInit {
       console.log(this.professor);
       this.loginService.postLoginProfessor(this.professor).subscribe(
         response => {
-          this.professor = response.retorno;
-          localStorage['professor'] = JSON.stringify(this.professor);
-          localStorage.removeItem('cordenador');
-          this.error = true;
-          localStorage['reload'] = 1;
-          this.router.navigate(['/Home']);
+          if (response.retorno.stProfessor) {
+            this.professor = response.retorno;
+            localStorage['professor'] = JSON.stringify(this.professor);
+            localStorage.removeItem('cordenador');
+            this.error = true;
+            localStorage['reload'] = 1;
+            this.router.navigate(['/Home']);
+          } else {
+            this.error = true;
+            this.mensagem = "Professor Inativo!";
+          }
 
         },
         error => {
@@ -70,12 +75,17 @@ export class LoginComponent implements OnInit {
       this.cordenador.pwAcesso = this.senha;
       this.loginService.postLoginCordenador(this.cordenador).subscribe(
         response => {
-          this.cordenador = response.retorno;
-          localStorage['cordenador'] = JSON.stringify(this.cordenador);
-          localStorage.removeItem('professor');
-          this.error = true;
-          localStorage['reload'] = 1;
-          this.router.navigate(['/Home']);
+          if (response.retorno.stCordenador) {
+            this.cordenador = response.retorno;
+            localStorage['cordenador'] = JSON.stringify(this.cordenador);
+            localStorage.removeItem('professor');
+            this.error = true;
+            localStorage['reload'] = 1;
+            this.router.navigate(['/Home']);
+          } else {
+            this.error = true;
+            this.mensagem = "Professor Inativo!";
+          }
         },
         error => {
           this.error = true;
