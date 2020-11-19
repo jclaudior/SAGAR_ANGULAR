@@ -41,7 +41,8 @@ export class EditarCursoComponent implements OnInit {
     nmCurso: null,
     qtHora: null,
     cordenadorEntity: this.cordenador,
-    disciplinas: []
+    disciplinas: [],
+    stCurso: true
   };
 
   tab = 1;
@@ -177,7 +178,8 @@ export class EditarCursoComponent implements OnInit {
             nmCurso: null,
             qtHora: null,
             cordenadorEntity: this.cordenador,
-            disciplinas: []
+            disciplinas: [],
+            stCurso: true
           };
           this.cordenador = {
             cdMatricula: null,
@@ -279,7 +281,8 @@ export class EditarCursoComponent implements OnInit {
           nmCurso: null,
           qtHora: null,
           cordenadorEntity: this.cordenador,
-          disciplinas: []
+          disciplinas: [],
+          stCurso: true
         };
         this.sourceStations = [];
         this.confirmedStations = [];
@@ -302,7 +305,8 @@ export class EditarCursoComponent implements OnInit {
       nmCurso: null,
       qtHora: null,
       cordenadorEntity: this.cordenador,
-      disciplinas: []
+      disciplinas: [],
+      stCurso: true
     };
     this.sourceStations = [];
     this.confirmedStations = [];

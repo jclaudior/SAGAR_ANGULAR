@@ -1,22 +1,33 @@
-
 <p class="textLinkHere">CURSO > CONSULTA</p>
 <hr>
 <h6 class="display-4">CONSULTA DE CURSO</h6>
 <form #formConsultaCurso="ngForm">
-<div class="row">
+  <div class="row">
     <div class="col-4 mt-5">
       <label>Cod. Curso</label>
-      <input class="form-control" type="number" [(ngModel)]="curso.cdCurso" name="cdCurso" [ngClass]="{'is-invalid': codigoCurso.errors}" required #codigoCurso="ngModel">
+      <input class="form-control" type="number" [(ngModel)]="curso.cdCurso" name="cdCurso"
+        [ngClass]="{'is-invalid': codigoCurso.errors}" required #codigoCurso="ngModel">
     </div>
     <div class="col-2 mt-5 pt-2">
-      <button class="btn btn-primary form-control mt-4" [disabled]="formConsultaCurso.form.invalid" (click)="buscarCurso()">Buscar</button>
+      <button class="btn btn-primary form-control mt-4" [disabled]="formConsultaCurso.form.invalid"
+        (click)="buscarCurso()">Buscar</button>
     </div>
     <div class="col-2 mt-5 pt-2">
       <button class="btn btn-primary form-control mt-4" (click)="limpar()">Limpar</button>
     </div>
-    <div class="col-12 mt-5">
+    <div class="col-8 mt-5">
       <label>Nome do Curso</label>
       <input class="form-control" type="text" [(ngModel)]="curso.nmCurso" name="nmCurso" disabled>
+    </div>
+
+    <div class="col-4 mt-5">
+      <label>Status:</label>
+      <div *ngIf="curso.stCurso== true" class="text-success d-block">
+        <b>Ativo</b>
+      </div>
+      <div *ngIf="curso.stCurso == false" class="text-error d-block">
+        <b>Inativo</b>
+      </div>
     </div>
     <div class="col-6 mt-5">
       <label>Cod. Coordenador</label>
@@ -27,31 +38,31 @@
       <input class="form-control" type="text" [(ngModel)]="cordenador.nmCordenador" name="nmCoordenador" disabled>
     </div>
     <div class="col-12" *ngIf="curso?.disciplinas?.length > 0">
-    <table  class="table">
-      <thead>
-        <tr>
-          <th scope="col">Cod Disciplina</th>
-          <th scope="col">Nome Disciplina</th>
-          <th scope="col">Carga Horaria</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let disciplina of curso.disciplinas">
-        <tr>
-          <td>{{disciplina.idDisciplina}}</td>
-          <td>{{disciplina.nmDisciplina}}</td>
-          <td>{{disciplina.qtHora}}</td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>{{qtTotalHora}}</td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Cod Disciplina</th>
+            <th scope="col">Nome Disciplina</th>
+            <th scope="col">Carga Horaria</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let disciplina of curso.disciplinas">
+          <tr>
+            <td>{{disciplina.idDisciplina}}</td>
+            <td>{{disciplina.nmDisciplina}}</td>
+            <td>{{disciplina.qtHora}}</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>{{qtTotalHora}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
 
   </div>
-
-</div>
 </form>

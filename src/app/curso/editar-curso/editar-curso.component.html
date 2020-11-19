@@ -44,7 +44,11 @@
 	<dual-list [sort]="keepSorted" [source]="source" [key]="idDisciplina" [display]="display" [filter]="filter"
 		[(destination)]="confirmed" height="150px" [format]="format" [disabled]="disabled"></dual-list>
   </div>
-  <div class="col-10 mt-5"></div>
+  <div class="col-10 mt-5">
+    <label>Status:</label>
+    <br><input type="checkbox"  (change)="curso.stCurso = !curso.stCurso"  [checked]="!curso.stCurso" [disabled]="!consulta" name="stTurma">
+    <label class="ml-2"><b>Inativo</b></label>
+  </div>
   <div class="col-2 mt-5">
     <button class="btn btn-primary form-control" (click)="alterarCurso()" [disabled]="formCurso.form.invalid || cadastrando || (confirmed?.length <= 0)">Alterar</button>
   </div>

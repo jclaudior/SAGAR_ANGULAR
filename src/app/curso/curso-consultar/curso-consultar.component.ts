@@ -30,7 +30,8 @@ export class CursoConsultarComponent implements OnInit {
     nmCurso: null,
     qtHora: null,
     cordenadorEntity: this.cordenador,
-    disciplinas: []
+    disciplinas: [],
+    stCurso: null
   };
 
   constructor(private cursoService: CursoService) { }
@@ -77,7 +78,9 @@ export class CursoConsultarComponent implements OnInit {
       nmCurso: null,
       qtHora: null,
       cordenadorEntity: this.cordenador,
-      disciplinas: []
+      disciplinas: [],
+      stCurso: null
+
     };
 
   }

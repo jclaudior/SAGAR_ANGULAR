@@ -44,7 +44,8 @@ export class CursoCadastrarComponent implements OnInit {
     nmCurso: null,
     qtHora: null,
     cordenadorEntity: this.cordenador,
-    disciplinas: []
+    disciplinas: [],
+    stCurso: true
   };
 
   tab = 1;
@@ -184,7 +185,8 @@ export class CursoCadastrarComponent implements OnInit {
             nmCurso: null,
             qtHora: null,
             cordenadorEntity: this.cordenador,
-            disciplinas: []
+            disciplinas: [],
+            stCurso: true
           };
           this.cordenador = {
             cdMatricula: null,

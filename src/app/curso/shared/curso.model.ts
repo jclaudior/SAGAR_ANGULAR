@@ -7,4 +7,5 @@ export interface Curso{
   qtHora: number;
   cordenadorEntity: Cordenador;
   disciplinas: Array<Disciplina>;
+  stCurso: boolean;
 }
