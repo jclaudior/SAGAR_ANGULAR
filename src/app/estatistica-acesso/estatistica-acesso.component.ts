@@ -29,7 +29,14 @@ export class EstatisticaAcessoComponent implements OnInit {
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+          ticks: {
+              beginAtZero: true
+          }
+      }]
+  }
   };
 
   public barChartLabels = [];
@@ -55,6 +62,7 @@ export class EstatisticaAcessoComponent implements OnInit {
     status: null,
     retorno: []
   };
+
 
 
   constructor(
