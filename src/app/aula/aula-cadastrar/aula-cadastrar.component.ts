@@ -50,7 +50,8 @@ export class AulaCadastrarComponent implements OnInit {
     nmCurso: null,
     qtHora: null,
     cordenadorEntity: null,
-    disciplinas: []
+    disciplinas: [],
+    stCurso: null
   };
 
   turma: Turma = {
@@ -82,7 +83,7 @@ export class AulaCadastrarComponent implements OnInit {
     dsAula: null,
   };
 
-  
+
 
   listTurma: Array<Turma>;
   listDisciplina: Array<Disciplina>;

@@ -13,6 +13,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Curso } from 'src/app/curso/shared/curso.model';
 import { TurmaService } from '../shared/turma.service';
+import * as moment from 'moment';
+import { ResponseTurmas } from '../shared/responseTurma.model';
 
 declare var $: any;
 
@@ -35,12 +37,26 @@ export class AulaConsultarComponent implements OnInit {
 
   btnCadastrar = false;
 
+  responseAula: ResponseAula;
+  responseDisciplinas: DisciplinasResponse;
+  responseCursos: CursosResponse;
+
+  professor: Professor = {
+    cdMatricula: null,
+    nmProfessor: null,
+    dsEmail: null,
+    dsCelular: null,
+    pwAcesso: null,
+    stProfessor: null,
+  };
+
   curso: Curso = {
     cdCurso: null,
     nmCurso: null,
     qtHora: null,
     cordenadorEntity: null,
-    disciplinas: []
+    disciplinas: [],
+    stCurso: null
   };
 
   turma: Turma = {
@@ -58,75 +74,114 @@ export class AulaConsultarComponent implements OnInit {
     stDisciplina: null,
   };
 
-  dataAula: Date;
+  aula: Aula = {
+    idAula: null,
+    professor: this.professor,
+    turma: this.turma,
+    disciplina: this.disciplina,
+    lkAula: null,
+    lkGravacao: null,
+    qtAluno: null,
+    dtAula: null,
+    hrInicio: null,
+    hrTermino: null,
+    dsAula: null,
+  };
 
-  responseAulas: ResponseAulas;
-  responseAula: ResponseAula;
-  responseDisciplinas: DisciplinasResponse;
-  responseCursos: CursosResponse;
 
-  listCurso: Array<Curso>;
-  listDisciplina: Array<Disciplina>;
+
   listTurma: Array<Turma>;
+  listDisciplina: Array<Disciplina>;
+
+  turmaResponse: ResponseTurmas;
 
   constructor(private service: AulaService,
-              private cursoService: CursoService,
-              private disciplinaService: DisciplinaService,
-              private turmaService: TurmaService) {
+    private turmaService: TurmaService,
+    private disciplinaService: DisciplinaService) {
 
   }
 
+
+
   ngOnInit(): void {
-    this.cursoService.getListarCursos().subscribe(
-      response => {
-        this.responseCursos = response;
-        this.listCurso = this.responseCursos.retorno;
-      }
-    );
-    this.disciplinaService.getListarDisciplina().subscribe(
-      response => {
-        this.responseDisciplinas = response;
-        this.listDisciplina = this.responseDisciplinas.retorno;
-        console.log(this.responseDisciplinas.retorno);
-      }
-    );
+
+    if (localStorage['professor'] != null) {
+      this.professor = JSON.parse(localStorage['professor']);
+    }
 
     this.turmaService.getListarTurma().subscribe(
       response => {
         this.listTurma = response.retorno;
       }
     );
+
   }
 
-  buscarAula(): void{
-    this.service.getBuscarAulaFiltro(this.curso.cdCurso, this.turma.cdTurma, this.disciplina.idDisciplina, this.dataAula).subscribe(
+
+
+  buscarAula(): void {
+    this.service.getBuscarAula(this.aula.idAula).subscribe(
       response => {
-        this.responseAulas = response;
-        console.log(this.responseAulas);
+        if (response.retorno.professor.cdMatricula == this.professor.cdMatricula) {
+          this.aula = response.retorno;
+          console.log(this.aula);
+          this.aula.dtAula = moment(this.aula.dtAula).format("YYYY-MM-DD");
+        } else {
+          this.requestSucess = false;
+          this.titleModal = "Aula Invalida";
+          this.mensagemModal = "Aula invalida para Edição!";
+          $('#mensagemModal').modal('show');
+          this.cadastrando = false;
+        }
+      },
+      error => {
+        console.log(error);
+        this.requestSucess = false;
+        if (error.error.mensagem != null){
+          this.titleModal = error.error.mensagem;
+          this.mensagemModal = error.error.mensagem;
+        }else{
+          this.titleModal = error.name;
+          this.mensagemModal = error.message;
+        }
+        $('#mensagemModal').modal('show');
       }
     );
   }
 
-  limparAula(): void{
-    window.location.reload();
-  }
+  limparAula(): void {
 
-  setNewTurma(turma: Turma): void {
-    console.log(turma);
-    this.turma = turma ;
-    console.log(this.turma);
-  }
+    this.turma = {
+      cdTurma: null,
+      nmTurma: null,
+      curso: this.curso,
+      dsPeriodo: null,
+      stTurma: true
+    };
 
-  setNewCurso(curso: Curso): void {
-    console.log(curso);
-    this.curso = curso;
-    console.log(this.curso);
-  }
+    this.disciplina = {
+      idDisciplina: null,
+      nmDisciplina: null,
+      qtHora: null,
+      stDisciplina: null,
+    };
 
-  setNewDisciplina(disciplina: Disciplina): void{
-    console.log(disciplina);
-    this.disciplina = disciplina;
-    console.log(this.disciplina);
+    this.aula = {
+      idAula: null,
+      professor: null,
+      turma: this.turma,
+      disciplina: this.disciplina,
+      lkAula: null,
+      lkGravacao: null,
+      qtAluno: null,
+      dtAula: null,
+      hrInicio: null,
+      hrTermino: null,
+      dsAula: null,
+    };
+
+
+    //this.consulta = false;
   }
 
 }

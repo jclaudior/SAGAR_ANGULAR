@@ -13,6 +13,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Curso } from 'src/app/curso/shared/curso.model';
 import { TurmaService } from '../shared/turma.service';
 import { ResponseTurmas } from '../shared/responseTurma.model';
+import * as moment from 'moment';
 
 declare var $: any;
 
@@ -51,7 +52,8 @@ export class AulaEditarComponent implements OnInit {
     nmCurso: null,
     qtHora: null,
     cordenadorEntity: null,
-    disciplinas: []
+    disciplinas: [],
+    stCurso: null
   };
 
   turma: Turma = {
@@ -183,6 +185,7 @@ export class AulaEditarComponent implements OnInit {
         if (response.retorno.professor.cdMatricula == this.professor.cdMatricula) {
           this.aula = response.retorno;
           console.log(this.aula);
+          this.aula.dtAula = moment(this.aula.dtAula).format("YYYY-MM-DD");
         } else {
           this.requestSucess = false;
           this.titleModal = "Aula Invalida";
@@ -190,6 +193,18 @@ export class AulaEditarComponent implements OnInit {
           $('#mensagemModal').modal('show');
           this.cadastrando = false;
         }
+      },
+      error => {
+        console.log(error);
+        this.requestSucess = false;
+        if (error.error.mensagem != null){
+          this.titleModal = error.error.mensagem;
+          this.mensagemModal = error.error.mensagem;
+        }else{
+          this.titleModal = error.name;
+          this.mensagemModal = error.message;
+        }
+        $('#mensagemModal').modal('show');
       }
     );
   }

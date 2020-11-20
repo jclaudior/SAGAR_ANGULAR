@@ -10,7 +10,7 @@ export interface Aula{
     lkAula: string;
     lkGravacao: string;
     qtAluno: number;
-    dtAula: Date;
+    dtAula: string;
     hrInicio: string;
     hrTermino: string;
     dsAula: string;

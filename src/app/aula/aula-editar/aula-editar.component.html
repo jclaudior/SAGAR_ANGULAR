@@ -56,7 +56,7 @@
       </div>
       <div class="col-3 mt-5">
         <label>Data da Aula</label>
-        <input class="form-control" name="dtAula" type="text" [(ngModel)]="aula.dtAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
+        <input class="form-control" name="dtAula" type="date" [(ngModel)]="aula.dtAula" [ngClass]="{'is-invalid': dtAula.errors}" required #dtAula="ngModel">
         <div *ngIf="dtAula.errors && dtAula.dirty" class="invalid-feedback  d-block">
           <div *ngIf="dtAula.errors.required">
               Data Requirida.
