@@ -33,7 +33,7 @@
           <option>Selecione Uma Opção</option>
           <option value="Matutino">Matutino</option>
           <option value="Vespertino">Vespertino</option>
-          <option value="Diurno">Diurno</option>
+          <option value="Noturno">Noturno</option>
         </select>
         <div *ngIf="dsPeriodo.errors && dsPeriodo.dirty" class="invalid-feedback  d-block">
           <div *ngIf="dsPeriodo.errors.required">
@@ -59,7 +59,7 @@
         <label class="ml-2"><b>Inativo</b></label>
       </div>
       <div class="col-2 mt-5">
-        <button class="btn btn-primary form-control" (click)="alterarTurma()" name="btnEditar" #btnEditar [disabled]="formTurma.form.invalid || !consulta">Altear</button>
+        <button class="btn btn-primary form-control" (click)="alterarTurma()" name="btnEditar" #btnEditar [disabled]="formTurma.form.invalid || !consulta">Alterar</button>
       </div>
   </div>
 </form>
